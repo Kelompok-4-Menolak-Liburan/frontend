@@ -33,7 +33,7 @@ const Button = ({
     "purple-tertiary":
       "bg-custom-purple-100 text-custom-purple-300 disabled:bg-custom-purple-75 disabled:text-custom-purple-100",
     "green-primary":
-      "bg-custom-green-normal text-white disabled:bg-custom-green-disabled disabled:text-custom-green-light-hover hover:bg-custom-green-normal-hover",
+      "bg-custom-green-normal text-white disabled:bg-custom-green-light-active disabled:text-custom-green-dark hover:bg-custom-green-normal-hover",
   };
 
   return (
