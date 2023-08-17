@@ -3,7 +3,7 @@ import Button from "@/components/button";
 import { EmojiHappy } from "iconsax-react";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between bg-black text-white p-24 font-poppins">
+    <main className="flex min-h-screen flex-col items-center justify-between text-white p-24 font-poppins">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
       perferendis incidunt natus quod illum exercitationem, nemo maxime odit
       dolores temporibus amet! Illum praesentium sapiente, vitae saepe eius
