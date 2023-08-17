@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable}`}>
         <div className="flex w-full h-screen bg-custom-purple-400">
           <Sidebar />
-          <div className="overflow-y-scroll flex-1 pl-[0px]">{children}</div>
+          <div className="overflow-y-scroll flex-1">{children}</div>
         </div>
       </body>
     </html>
