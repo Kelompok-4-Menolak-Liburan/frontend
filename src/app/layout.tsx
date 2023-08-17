@@ -1,3 +1,4 @@
+import Sidebar from "@/components/sidebar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
@@ -28,7 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable}`}>
-        {children}
+        <div className="flex w-full h-screen bg-custom-purple-400">
+          <Sidebar />
+          <div className="overflow-y-scroll flex-1">{children}</div>
+        </div>
       </body>
     </html>
   );
