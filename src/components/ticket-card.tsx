@@ -3,6 +3,7 @@ import { Calendar, Ticket } from "iconsax-react";
 import Button from "./button";
 import Image from "next/image";
 
+// Defining the prop types for the TicketCard component
 interface TicketCardProps {
   type: "history" | "checkout";
   ticketName: string;
@@ -23,21 +24,24 @@ const TicketCard: React.FC<TicketCardProps> = ({
   dateTimePurchase,
   imageTicketUrl,
 }) => {
+  // Formatting the event date based on the conditions startdate and enddate
   const formattedEventDate =
     eventEndDate && !isSameDay(eventStartDate, eventEndDate)
       ? format(
           eventStartDate,
-          `${
-            isSameMonth(eventStartDate, eventEndDate)
-              ? "dd"
-              : "dd MMMM"
-          }'${"-" + format(eventEndDate, "dd MMMM")}' yyyy`
+          `${isSameMonth(eventStartDate, eventEndDate) ? "dd" : "dd MMMM"}'${
+            "-" + format(eventEndDate, "dd MMMM")
+          }' yyyy`
         )
       : format(eventStartDate, "dd MMMM yyyy");
+
+  // Formatting the purchased date and time
   const formattedPurchasedDateTime = format(
     dateTimePurchase,
     "MMM dd, yyyy, HH:mm"
   );
+
+  // Font size and styling based on the ticket type
   const fontSizeTypeEffect = {
     history: {
       date: "text-base",
@@ -50,6 +54,8 @@ const TicketCard: React.FC<TicketCardProps> = ({
       eventName: "text-sm",
     },
   };
+
+  // Image size and styling based on the ticket type
   const imageSizeTypeEffect = {
     history: {
       width: 320,
@@ -65,17 +71,23 @@ const TicketCard: React.FC<TicketCardProps> = ({
   return (
     <div
       className={`w-full ${
-        type === "history" ? "py-[30px]" : "py-5"
+        type === "history" ? "py-7" : "py-5"
       } px-7 font-poppins text-white flex bg-custom-purple-300 rounded-[10px]  border border-white items-center justify-between`}
     >
       <div className="flex flex-col gap-1">
+        {/* Event Name */}
         <h3 className={`${fontSizeTypeEffect[type].eventName} uppercase`}>
           {eventName}
         </h3>
+
+        {/* Ticket Name */}
         <h4 className={`font-bold ${fontSizeTypeEffect[type].ticketName}`}>
           {ticketName}
         </h4>
+
+        {/* Container ticket date and ticket amount */}
         <div className="flex divide-x">
+          {/* Ticket Date */}
           <div className="flex gap-2 items-center justify-center pr-3">
             {eventStartDate && (
               <>
@@ -86,6 +98,8 @@ const TicketCard: React.FC<TicketCardProps> = ({
               </>
             )}
           </div>
+
+          {/* Ticket Amount */}
           <div className="flex gap-2 items-center justify-center pl-3">
             <>
               <Ticket size={22} color="#FFFFFF" />
@@ -95,13 +109,17 @@ const TicketCard: React.FC<TicketCardProps> = ({
             </>
           </div>
         </div>
+
+        {/* Render button and puchased datetime on history type */}
         {type === "history" && (
           <>
+            {/* Purchased date time */}
             <p
               className={`${fontSizeTypeEffect[type].date} text-custom-purple-75`}
             >
               Purchased on {formattedPurchasedDateTime}
             </p>
+            {/* Button Component Rendered */}
             <div className="flex gap-4 pt-3">
               <Button type="button" color="green-primary" size="extra-small">
                 E-Voucher
@@ -113,6 +131,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
           </>
         )}
       </div>
+      {/* Ticket Image */}
       <Image
         src={imageTicketUrl}
         alt={eventName + "Ticket"}
