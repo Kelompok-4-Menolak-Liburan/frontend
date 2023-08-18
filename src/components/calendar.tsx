@@ -15,7 +15,7 @@ const Calendar = ({
   return (
     <div className="flex flex-col w-[340px] bg-custom-purple-300 font-poppins overflow-hidden text-white border border-white rounded-xl">
       {/* Render the header */}
-      <h2 className="font-bold text-center p-2.5  text-xl rounded-xl gap-1 flex w-full items-center justify-center">
+      <h2 className="font-bold text-center p-2.5  text-base rounded-xl gap-1 flex w-full items-center justify-center">
         <span className="text-red-600">*</span>
         Select Date Event
       </h2>
