@@ -40,9 +40,9 @@ const TicketCard: React.FC<TicketCardProps> = ({
   );
   const fontSizeTypeEffect = {
     history: {
-      date: "text-lg",
-      ticketName: "text-2xl",
-      eventName: "text-lg",
+      date: "text-base",
+      ticketName: "text-xl",
+      eventName: "text-base",
     },
     checkout: {
       date: "text-sm",
