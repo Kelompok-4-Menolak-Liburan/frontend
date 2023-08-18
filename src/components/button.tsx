@@ -9,7 +9,12 @@ const Button = ({
 }: {
   size: "extra-small" | "small" | "normal" | "large" | "extra-large";
   onClick?: () => void;
-  color: "purple-primary" | "secondary" | "purple-tertiary" | "green-primary";
+  color:
+    | "purple-primary"
+    | "purple-secondary"
+    | "purple-tertiary"
+    | "green-primary"
+    | "green-secondary";
   children: string | JSX.Element;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -28,12 +33,14 @@ const Button = ({
   const colorStyle = {
     "purple-primary":
       "bg-custom-purple-300 text-white disabled:bg-custom-purple-100 disabled:text-custom-purple-75",
-    secondary:
+    "purple-secondary":
       "bg-transparent text-white disabled:text-custom-purple-100 border-white border disabled:border-custom-purple-100",
     "purple-tertiary":
       "bg-custom-purple-100 text-custom-purple-300 disabled:bg-custom-purple-75 disabled:text-custom-purple-100",
     "green-primary":
       "bg-custom-green-normal text-white disabled:bg-custom-green-light-active disabled:text-custom-green-dark hover:bg-custom-green-normal-hover",
+    "green-secondary":
+      "bg-transparent text-custom-green-normal disabled:text-custom-dark border-custom-green-normal border disabled:border-custom-green-dark",
   };
 
   return (
