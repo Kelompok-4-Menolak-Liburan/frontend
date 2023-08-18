@@ -1,4 +1,5 @@
 "use client";
+import Avatar from "@/components/avatar";
 import Button from "@/components/button";
 import Calendar from "@/components/calendar";
 import { EmojiHappy } from "iconsax-react";
@@ -33,6 +34,7 @@ export default function Home() {
         value={dateRange}
         onChange={(value) => setDateRange(value.selection)}
       />
+      <Avatar size="normal" imageUrl="/logo.png" name="Name" role="Customer"/>
       {dateRange && dateRange.startDate && dateRange.endDate && (
         <p className="text-white text-xl font-poppins font-bold">
           {dateRange.startDate.toLocaleDateString()}
