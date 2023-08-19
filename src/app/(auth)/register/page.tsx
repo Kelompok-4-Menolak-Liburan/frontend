@@ -74,14 +74,14 @@ const Signup = () => {
             alt="longTrapezoid"
             width={364}
             height={94}
-            className="absolute top-0 left-0 sm:h-[42px] lg:h-[60px] 2xl:h-[94px] w-[150px] lg:w-[200px] 2xl:w-[364px]"
+            className="absolute top-0 left-0 sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[150px] lg:w-[200px] 2xl:w-[314px]"
           />
           <Image
             src="/registration/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute top-0 left-[120px] lg:left-[150px] 2xl:left-[246px] sm:h-[42px] lg:h-[60px] 2xl:h-[94px] w-[100px] lg:w-[150px] 2xl:w-[284px] ${trapezoid1 ? "opacity-100" : "opacity-0"
+            className={`absolute top-0 left-[120px] lg:left-[150px] 2xl:left-[246px] sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[100px] lg:w-[150px] 2xl:w-[244px] ${trapezoid1 ? "opacity-100" : "opacity-0"
               } transition duration-300 ease-in-out`}
           />
           <Image
@@ -89,11 +89,11 @@ const Signup = () => {
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute top-0 left-[195px] lg:left-[260px] 2xl:left-[419px] sm:h-[42px] lg:h-[60px] 2xl:h-[94px] w-[100px] lg:w-[150px] 2xl:w-[284px] ${trapezoid2 ? "opacity-100" : "opacity-0"
+            className={`absolute top-0 left-[195px] lg:left-[260px] 2xl:left-[419px] sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[100px] lg:w-[150px] 2xl:w-[244px] ${trapezoid2 ? "opacity-100" : "opacity-0"
               } transition duration-300 ease-in-out`}
           />
         </div>
-        <div className="flex flex-col w-1/2 items-center gap-y-[52px] md:gap-y-[10px] lg:gap-y-[70px] absolute top-1/2 -translate-y-1/2">
+        <div className="flex flex-col w-1/2 items-center gap-y-[52px] md:gap-y-[10px] lg:gap-y-[40px] absolute top-1/2 -translate-y-1/2">
           {/* Title */}
           <div className="relative">
             {/* Sparkle */}
@@ -105,10 +105,10 @@ const Signup = () => {
               width={124}
               height={124}
             />
-            <h1 className="text-center font-bold text-4xl leading-[135%] tracking-widest text-white lg:text-[48px]">
+            <h1 className="text-center font-bold text-4xl leading-[135%] tracking-widest text-white lg:text-4xl 2xl:text-5xl">
               SIGN UP
             </h1>
-            <h2 className="font-gantari-r text-base text-center leading-[135%] tracking-[0.02em] text-white lg:text-[18px]">
+            <h2 className="font-gantari-r text-base text-center leading-[135%] tracking-[0.02em] text-white lg:text-lg 2xl:text-lg">
               Create a new account
             </h2>
           </div>
@@ -120,7 +120,7 @@ const Signup = () => {
           >
             {/* Form */}
             <div className="flex flex-col gap-y-[10px] w-full">
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-lg">
+              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
                 EMAIL
               </h3>
               <TextInput
@@ -130,7 +130,7 @@ const Signup = () => {
                 textFieldValue={email}
                 setTextFieldValue={setEmail}
               />
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-lg">
+              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
                 USERNAME
               </h3>
               <TextInput
@@ -140,7 +140,7 @@ const Signup = () => {
                 textFieldValue={username}
                 setTextFieldValue={setUsername}
               />
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-lg">
+              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
                 PASSWORD
               </h3>
               <TextInput
@@ -158,7 +158,7 @@ const Signup = () => {
               </Button>
 
               {/* Toggle Login Page */}
-              <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-lg">
+              <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
                 Already have an account?&nbsp;
                 <Link className="text-custom-green-normal font-bold" href="/login">
                   Login
