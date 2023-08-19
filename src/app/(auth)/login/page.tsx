@@ -7,7 +7,7 @@ import TextInput from "@/components/text-input";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
 
-const Signup = () => {
+const Login = () => {
   const router = useRouter()
 
   // State to animate
@@ -56,7 +56,7 @@ const Signup = () => {
 
       {/* Image */}
       <div
-        style={{ backgroundImage: `url(/auth/register-bg.png)` }}
+        style={{ backgroundImage: `url(/auth/login-bg.png)` }}
         className={`absolute inset-0 h-full w-full bg-cover bg-center max-sm:top-1/2 max-sm:-translate-y-1/2 transition delay-[2000ms] duration-[700ms] ease-in-out ${mount ? "opacity-0" : "opacity-100"
           } ${finish ? "-z-10" : "z-50"} md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none flex flex-col gap-4 lg:gap-7 items-center justify-center`}
       >
@@ -106,10 +106,10 @@ const Signup = () => {
               height={124}
             />
             <h1 className="text-center font-bold text-4xl leading-[135%] tracking-widest text-white lg:text-4xl 2xl:text-5xl">
-              SIGN UP
+              LOGIN
             </h1>
             <h2 className="font-gantari-r text-base text-center leading-[135%] tracking-[0.02em] text-white lg:text-lg 2xl:text-lg">
-              Create a new account
+              Sign to continue
             </h2>
           </div>
 
@@ -120,16 +120,6 @@ const Signup = () => {
           >
             {/* Form */}
             <div className="flex flex-col gap-y-[10px] w-full">
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                EMAIL
-              </h3>
-              <TextInput
-                boxType="email"
-                placeholder="Your email address"
-                fullWidth={true}
-                textFieldValue={email}
-                setTextFieldValue={setEmail}
-              />
               <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
                 USERNAME
               </h3>
@@ -154,14 +144,14 @@ const Signup = () => {
             {/* Buttons */}
             <div className="flex w-full flex-col gap-y-[15px]">
               <Button fullWidth={true} size="small" color="green-primary" type="submit">
-                Sign Up
+                Log In
               </Button>
 
               {/* Toggle Login Page */}
               <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
-                Already have an account?&nbsp;
+                Don&apos;t an account?
                 <Link className="text-custom-green-normal font-bold" href="/login">
-                  Login
+                  Register
                 </Link>
               </p>
             </div>
@@ -173,4 +163,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
