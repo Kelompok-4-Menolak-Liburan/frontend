@@ -17,6 +17,16 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        blink: {
+          "0%": { opacity: "1" },
+          "10%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        blink: "blink 0.5s ease-in-out",
+      },
       colors: {
         "custom-purple-50": "#EAEBF0",
         "custom-purple-75": "#ABADC0",
