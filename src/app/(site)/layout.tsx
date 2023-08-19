@@ -1,13 +1,12 @@
-
 import Sidebar from "@/components/sidebar";
 
 const SiteLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <body>
-      <div className="flex w-full h-screen bg-custom-purple-400">
-          <Sidebar />
-          <div className="overflow-y-scroll flex-1">{children}</div>
-        </div>
+      <div className="flex h-screen w-full bg-custom-purple-400">
+        <Sidebar />
+        <div className="flex-1 overflow-y-scroll">{children}</div>
+      </div>
     </body>
   );
 };

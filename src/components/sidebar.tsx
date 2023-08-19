@@ -16,16 +16,16 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="font-poppins text-white max-w-[303px] h-full sticky rounded-r-[40px] flex flex-col items-center justify-between p-[65px] bg-custom-purple-500">
+    <nav className="sticky flex h-full max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
       {/* Sidebar header */}
-      <h1 className="font-bold text-[33px]">SeTiket</h1>
+      <h1 className="text-[33px] font-bold">SeTiket</h1>
 
       {/* Navigation items list */}
       <ul className="flex flex-col gap-3">
         {navigationItems.map((item, index) => (
           <li
             key={index}
-            className={`hover:bg-custom-purple-300 duration-300 transition rounded-full ${
+            className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
               pathname.toLowerCase().includes(item.href.toLowerCase()) ||
               pathname.toLowerCase() === item.href.toLowerCase()
                 ? "bg-custom-purple-300"
@@ -35,7 +35,7 @@ const Sidebar = () => {
             {/* Link to the respective navigation item */}
             <Link
               href={item.href}
-              className="flex py-3 px-6 gap-3 items-center"
+              className="flex items-center gap-3 px-6 py-3"
             >
               {/* Displaying the icon with dynamic variant based on the active status */}
               {
@@ -56,8 +56,8 @@ const Sidebar = () => {
         ))}
       </ul>
       {/* Logout button */}
-      <button className="hover:bg-custom-purple-300 duration-300 transition rounded-full">
-        <Link href="/tes" className="flex py-3 px-6 gap-3 items-center">
+      <button className="rounded-full transition duration-300 hover:bg-custom-purple-300">
+        <Link href="/tes" className="flex items-center gap-3 px-6 py-3">
           <LogoutCurve size="32" color="#FFFFFF" />
           <h2 className="text-[19px]">Logout</h2>
         </Link>

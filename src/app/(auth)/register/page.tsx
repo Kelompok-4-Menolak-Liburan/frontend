@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { ArrowLeft } from "iconsax-react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import Button from "@/components/button";
 import { useRouter } from "next/navigation";
 
 const Signup = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   // State to animate
   const [mount, setMount] = useState(false);
@@ -44,12 +44,12 @@ const Signup = () => {
   }, []);
 
   return (
-    <main className="flex h-screen relative w-screen flex-row md:min-h-[450px] font-poppins overflow-hidden">
+    <main className="relative flex h-screen w-screen flex-row overflow-hidden font-poppins md:min-h-[450px]">
       {/* Back Button */}
       <button
         aria-label="Back Button"
         onClick={() => router.back()}
-        className="absolute top-9 left-7 z-30 flex items-center justify-center md:top-auto md:bottom-14 md:left-12"
+        className="absolute left-7 top-9 z-30 flex items-center justify-center md:bottom-14 md:left-12 md:top-auto"
       >
         <ArrowLeft size={40} color="#FFFFFF" />
       </button>
@@ -57,70 +57,81 @@ const Signup = () => {
       {/* Image */}
       <div
         style={{ backgroundImage: `url(/auth/register-bg.png)` }}
-        className={`absolute inset-0 h-full w-full bg-cover bg-center max-sm:top-1/2 max-sm:-translate-y-1/2 transition delay-[2000ms] duration-[700ms] ease-in-out ${mount ? "opacity-0" : "opacity-100"
-          } ${finish ? "-z-10" : "z-50"} md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none flex flex-col gap-4 lg:gap-7 items-center justify-center`}
+        className={`absolute inset-0 h-full w-full bg-cover bg-center transition delay-[2000ms] duration-[700ms] ease-in-out max-sm:top-1/2 max-sm:-translate-y-1/2 ${
+          mount ? "opacity-0" : "opacity-100"
+        } ${
+          finish ? "-z-10" : "z-50"
+        } flex flex-col items-center justify-center gap-4 md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none lg:gap-7`}
       >
-        <Image src="/logo.png" alt="Logo SeTiket" width={250} height={250} className="w-[100px] lg:w-[250px] aspect-square" />
-        <h1 className="text-3xl lg:text-7xl text-[#C5C5C5] font-bold">SeTiket</h1>
+        <Image
+          src="/logo.png"
+          alt="Logo SeTiket"
+          width={250}
+          height={250}
+          className="aspect-square w-[100px] lg:w-[250px]"
+        />
+        <h1 className="text-3xl font-bold text-[#C5C5C5] lg:text-7xl">
+          SeTiket
+        </h1>
       </div>
 
-
-      <div className="flex relative flex-col w-full md:w-1/2 md:flex-1 items-center">
+      <div className="relative flex w-full flex-col items-center md:w-1/2 md:flex-1">
         {/* Title */}
-        <div className="relative md:flex hidden w-full items-center justify-center bg-center">
+        <div className="relative hidden w-full items-center justify-center bg-center md:flex">
           {/* Trapezoid Stuff */}
           <Image
             src="/auth/long-trapezoid.svg"
             alt="longTrapezoid"
             width={364}
             height={94}
-            className="absolute top-0 left-0 sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[150px] lg:w-[200px] 2xl:w-[314px]"
+            className="absolute left-0 top-0 w-[150px] sm:h-[42px] lg:h-[60px] lg:w-[200px] 2xl:h-[80px] 2xl:w-[314px]"
           />
           <Image
             src="/auth/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute top-0 left-[120px] lg:left-[150px] 2xl:left-[246px] sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[100px] lg:w-[150px] 2xl:w-[244px] ${trapezoid1 ? "opacity-100" : "opacity-0"
-              } transition duration-300 ease-in-out`}
+            className={`absolute left-[120px] top-0 w-[100px] sm:h-[42px] lg:left-[150px] lg:h-[60px] lg:w-[150px] 2xl:left-[246px] 2xl:h-[80px] 2xl:w-[244px] ${
+              trapezoid1 ? "opacity-100" : "opacity-0"
+            } transition duration-300 ease-in-out`}
           />
           <Image
             src="/auth/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute top-0 left-[195px] lg:left-[260px] 2xl:left-[419px] sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[100px] lg:w-[150px] 2xl:w-[244px] ${trapezoid2 ? "opacity-100" : "opacity-0"
-              } transition duration-300 ease-in-out`}
+            className={`absolute left-[195px] top-0 w-[100px] sm:h-[42px] lg:left-[260px] lg:h-[60px] lg:w-[150px] 2xl:left-[419px] 2xl:h-[80px] 2xl:w-[244px] ${
+              trapezoid2 ? "opacity-100" : "opacity-0"
+            } transition duration-300 ease-in-out`}
           />
         </div>
-        <div className="flex flex-col w-1/2 items-center gap-y-[52px] md:gap-y-[10px] lg:gap-y-[40px] absolute top-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 flex w-1/2 -translate-y-1/2 flex-col items-center gap-y-[52px] md:gap-y-[10px] lg:gap-y-[40px]">
           {/* Title */}
           <div className="relative">
             {/* Sparkle */}
             <Image
-              className="absolute -top-14 -right-12 z-20 h-24 w-24 animate-sparkle-pulse select-none lg:-top-28 lg:-right-20 lg:h-[175px] lg:w-[175px]"
+              className="absolute -right-12 -top-14 z-20 h-24 w-24 animate-sparkle-pulse select-none lg:-right-20 lg:-top-28 lg:h-[175px] lg:w-[175px]"
               src={"/auth/sparkle.webp"}
               priority={true}
               alt="Sparkling Star"
               width={124}
               height={124}
             />
-            <h1 className="text-center font-bold text-4xl leading-[135%] tracking-widest text-white lg:text-4xl 2xl:text-5xl">
+            <h1 className="text-center text-4xl font-bold leading-[135%] tracking-widest text-white lg:text-4xl 2xl:text-5xl">
               SIGN UP
             </h1>
-            <h2 className="font-gantari-r text-base text-center leading-[135%] tracking-[0.02em] text-white lg:text-lg 2xl:text-lg">
+            <h2 className="font-gantari-r text-center text-base leading-[135%] tracking-[0.02em] text-white lg:text-lg 2xl:text-lg">
               Create a new account
             </h2>
           </div>
           <div className="flex flex-col gap-y-[15px]">
-
             {/* Input Form */}
             <form
               method="post"
-              className="flex flex-col w-[305px] sm:w-[300px] lg:w-[400px] 2xl:w-[550px] items-center justify-center gap-y-48 md:gap-y-[10px] lg:gap-y-[70px]"
+              className="flex w-[305px] flex-col items-center justify-center gap-y-48 sm:w-[300px] md:gap-y-[10px] lg:w-[400px] lg:gap-y-[70px] 2xl:w-[550px]"
             >
               {/* Form */}
-              <div className="flex flex-col gap-y-[10px] w-full">
+              <div className="flex w-full flex-col gap-y-[10px]">
                 <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
                   EMAIL
                 </h3>
@@ -154,23 +165,29 @@ const Signup = () => {
               </div>
               {/* Buttons */}
               <div className="flex w-full flex-col gap-y-[15px]">
-                <Button fullWidth={true} size="small" color="green-primary" type="submit">
+                <Button
+                  fullWidth={true}
+                  size="small"
+                  color="green-primary"
+                  type="submit"
+                >
                   Sign Up
                 </Button>
-
               </div>
             </form>
             {/* Toggle Login Page */}
             <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
               Already have an account?&nbsp;
-              <Link className="text-custom-green-normal font-bold" href="/login">
+              <Link
+                className="font-bold text-custom-green-normal"
+                href="/login"
+              >
                 Login
               </Link>
             </p>
           </div>
         </div>
       </div>
-
     </main>
   );
 };

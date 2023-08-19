@@ -31,14 +31,14 @@ const TicketCard: React.FC<TicketCardProps> = ({
           eventStartDate,
           `${isSameMonth(eventStartDate, eventEndDate) ? "dd" : "dd MMMM"}'${
             "-" + format(eventEndDate, "dd MMMM")
-          }' yyyy`
+          }' yyyy`,
         )
       : format(eventStartDate, "dd MMMM yyyy");
 
   // Formatting the purchased date and time
   const formattedPurchasedDateTime = format(
     dateTimePurchase,
-    "MMM dd, yyyy, HH:mm"
+    "MMM dd, yyyy, HH:mm",
   );
 
   // Font size and styling based on the ticket type
@@ -72,7 +72,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
     <div
       className={`w-full ${
         type === "history" ? "py-7" : "py-5"
-      } px-7 font-poppins text-white flex bg-custom-purple-300 rounded-[10px]  border border-white items-center justify-between`}
+      } flex items-center justify-between rounded-[10px] border border-white  bg-custom-purple-300 px-7 font-poppins text-white`}
     >
       <div className="flex flex-col gap-1">
         {/* Event Name */}
@@ -88,7 +88,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
         {/* Container ticket date and ticket amount */}
         <div className="flex divide-x">
           {/* Ticket Date */}
-          <div className="flex gap-2 items-center justify-center pr-3">
+          <div className="flex items-center justify-center gap-2 pr-3">
             {eventStartDate && (
               <>
                 <Calendar size={22} color="#FFFFFF" />
@@ -100,7 +100,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
           </div>
 
           {/* Ticket Amount */}
-          <div className="flex gap-2 items-center justify-center pl-3">
+          <div className="flex items-center justify-center gap-2 pl-3">
             <>
               <Ticket size={22} color="#FFFFFF" />
               <h5 className={fontSizeTypeEffect[type].date}>
@@ -137,7 +137,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
         alt={eventName + "Ticket"}
         width={imageSizeTypeEffect[type].width}
         height={imageSizeTypeEffect[type].height}
-        className={`${imageSizeTypeEffect[type].styling} object-cover object-center rounded-[10px]`}
+        className={`${imageSizeTypeEffect[type].styling} rounded-[10px] object-cover object-center`}
       ></Image>
     </div>
   );
