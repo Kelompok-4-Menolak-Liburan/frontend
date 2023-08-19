@@ -1,9 +1,9 @@
 import React from 'react'
-import BulletList from './bullet-list';
-import PurchaseTicket from './purchase-ticket-card';
 import Tabs from './tabs';
+import PurchaseTicket from './purchase-ticket-card';
+import BulletList from './bullet-list';
 
-export const EventDetailsTabs = () => {
+const EventDetailsTabs = () => {
     const tabs = [
         {
             label: "Description",
@@ -31,3 +31,4 @@ export const EventDetailsTabs = () => {
         <Tabs tabs={tabs} />
     )
 }
+export default EventDetailsTabs
