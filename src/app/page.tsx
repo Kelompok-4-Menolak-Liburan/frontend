@@ -1,11 +1,8 @@
 "use client";
-import Avatar from "@/components/avatar";
-import Button from "@/components/button";
 import EventCard from "@/components/event-card";
-import TicketCard from "@/components/ticket-card";
 
 export default function Home() {
-
+  
   return (
     <main className="flex min-h-screen flex-wrap gap-5 items-stretch justify-between text-white p-24 font-poppins">
       <EventCard

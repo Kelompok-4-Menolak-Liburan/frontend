@@ -1,6 +1,6 @@
 import { getFormattedCurrency } from "@/libs/utils";
-import BulletList from "./bullet-list";
-import Button from "./button";
+import BulletList from "../bullet-list";
+import Button from "../button";
 
 interface PurchaseTicketProps {
     ticketName: string;
