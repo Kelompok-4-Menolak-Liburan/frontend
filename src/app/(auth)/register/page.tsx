@@ -56,7 +56,7 @@ const Signup = () => {
 
       {/* Image */}
       <div
-        style={{ backgroundImage: `url(/registration/register-bg.png)` }}
+        style={{ backgroundImage: `url(/auth/register-bg.png)` }}
         className={`absolute inset-0 h-full w-full bg-cover bg-center max-sm:top-1/2 max-sm:-translate-y-1/2 transition delay-[2000ms] duration-[700ms] ease-in-out ${mount ? "opacity-0" : "opacity-100"
           } ${finish ? "-z-10" : "z-50"} md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none flex flex-col gap-4 lg:gap-7 items-center justify-center`}
       >
@@ -70,14 +70,14 @@ const Signup = () => {
         <div className="relative md:flex hidden w-full items-center justify-center bg-center">
           {/* Trapezoid Stuff */}
           <Image
-            src="/registration/long-trapezoid.svg"
+            src="/auth/long-trapezoid.svg"
             alt="longTrapezoid"
             width={364}
             height={94}
             className="absolute top-0 left-0 sm:h-[42px] lg:h-[60px] 2xl:h-[80px] w-[150px] lg:w-[200px] 2xl:w-[314px]"
           />
           <Image
-            src="/registration/short-trapezoid.svg"
+            src="/auth/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
@@ -85,7 +85,7 @@ const Signup = () => {
               } transition duration-300 ease-in-out`}
           />
           <Image
-            src="/registration/short-trapezoid.svg"
+            src="/auth/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
@@ -99,7 +99,7 @@ const Signup = () => {
             {/* Sparkle */}
             <Image
               className="absolute -top-14 -right-12 z-20 h-24 w-24 animate-sparkle-pulse select-none lg:-top-28 lg:-right-20 lg:h-[175px] lg:w-[175px]"
-              src={"/registration/sparkle.webp"}
+              src={"/auth/sparkle.webp"}
               priority={true}
               alt="Sparkling Star"
               width={124}
@@ -112,60 +112,62 @@ const Signup = () => {
               Create a new account
             </h2>
           </div>
+          <div className="flex flex-col gap-y-[15px]">
 
-          {/* Input Form */}
-          <form
-            method="post"
-            className="flex flex-col w-[305px] sm:w-[300px] lg:w-[400px] 2xl:w-[550px] items-center justify-center gap-y-48 md:gap-y-[10px] lg:gap-y-[70px]"
-          >
-            {/* Form */}
-            <div className="flex flex-col gap-y-[10px] w-full">
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                EMAIL
-              </h3>
-              <TextInput
-                boxType="email"
-                placeholder="Your email address"
-                fullWidth={true}
-                textFieldValue={email}
-                setTextFieldValue={setEmail}
-              />
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                USERNAME
-              </h3>
-              <TextInput
-                boxType="text"
-                placeholder="Your username"
-                fullWidth={true}
-                textFieldValue={username}
-                setTextFieldValue={setUsername}
-              />
-              <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                PASSWORD
-              </h3>
-              <TextInput
-                boxType="password"
-                placeholder="Your password"
-                fullWidth={true}
-                textFieldValue={password}
-                setTextFieldValue={setPassword}
-              />
-            </div>
-            {/* Buttons */}
-            <div className="flex w-full flex-col gap-y-[15px]">
-              <Button fullWidth={true} size="small" color="green-primary" type="submit">
-                Sign Up
-              </Button>
+            {/* Input Form */}
+            <form
+              method="post"
+              className="flex flex-col w-[305px] sm:w-[300px] lg:w-[400px] 2xl:w-[550px] items-center justify-center gap-y-48 md:gap-y-[10px] lg:gap-y-[70px]"
+            >
+              {/* Form */}
+              <div className="flex flex-col gap-y-[10px] w-full">
+                <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
+                  EMAIL
+                </h3>
+                <TextInput
+                  boxType="email"
+                  placeholder="Your email address"
+                  fullWidth={true}
+                  textFieldValue={email}
+                  setTextFieldValue={setEmail}
+                />
+                <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
+                  USERNAME
+                </h3>
+                <TextInput
+                  boxType="text"
+                  placeholder="Your username"
+                  fullWidth={true}
+                  textFieldValue={username}
+                  setTextFieldValue={setUsername}
+                />
+                <h3 className="text-sm font-semibold leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
+                  PASSWORD
+                </h3>
+                <TextInput
+                  boxType="password"
+                  placeholder="Your password"
+                  fullWidth={true}
+                  textFieldValue={password}
+                  setTextFieldValue={setPassword}
+                />
+              </div>
+              {/* Buttons */}
+              <div className="flex w-full flex-col gap-y-[15px]">
+                <Button fullWidth={true} size="small" color="green-primary" type="submit">
+                  Sign Up
+                </Button>
 
-              {/* Toggle Login Page */}
-              <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
-                Already have an account?&nbsp;
-                <Link className="text-custom-green-normal font-bold" href="/login">
-                  Login
-                </Link>
-              </p>
-            </div>
-          </form>
+              </div>
+            </form>
+            {/* Toggle Login Page */}
+            <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
+              Already have an account?&nbsp;
+              <Link className="text-custom-green-normal font-bold" href="/login">
+                Login
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
 
