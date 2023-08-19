@@ -1,6 +1,6 @@
 "use client"
-import Switch from "@/components/switch";
-import EventDetailsTabs from "../components/tabs/event-details-tabs";
+import Switch from '@/components/switch';
+import EventDetailsTabs from '@/components/tabs/event-details-tabs';
 import React, { useState } from 'react';
 export default function Home() {
   const [isChecked, setIsChecked] = useState(false);

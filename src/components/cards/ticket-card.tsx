@@ -1,6 +1,6 @@
 import { format, isSameDay, isSameMonth } from "date-fns";
 import { Calendar, Ticket } from "iconsax-react";
-import Button from "./button";
+import Button from "../button";
 import Image from "next/image";
 
 // Defining the prop types for the TicketCard component
