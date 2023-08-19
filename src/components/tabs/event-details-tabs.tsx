@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from './tabs';
-import PurchaseTicket from './purchase-ticket-card';
-import BulletList from './bullet-list';
+import PurchaseTicket from '../cards/purchase-ticket-card';
+import BulletList from '../bullet-list';
 
 const EventDetailsTabs = () => {
     const tabs = [
