@@ -17,7 +17,6 @@ const Login = () => {
   const [trapezoid2, setTrapezoid2] = useState(false);
 
   // Input Text State
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -150,7 +149,7 @@ const Login = () => {
               {/* Toggle Login Page */}
               <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
                 Don&apos;t an account?&nbsp;
-                <Link className="text-custom-green-normal font-bold" href="/register">
+                <Link className="text-custom-green-normal font-bold" href="/register" type="button">
                   Register
                 </Link>
               </p>
