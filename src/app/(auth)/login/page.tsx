@@ -149,8 +149,8 @@ const Login = () => {
 
               {/* Toggle Login Page */}
               <p className="text-center text-sm leading-none text-white lg:mt-[10px] lg:text-base 2xl:text-lg">
-                Don&apos;t an account?
-                <Link className="text-custom-green-normal font-bold" href="/login">
+                Don&apos;t an account?&nbsp;
+                <Link className="text-custom-green-normal font-bold" href="/register">
                   Register
                 </Link>
               </p>
