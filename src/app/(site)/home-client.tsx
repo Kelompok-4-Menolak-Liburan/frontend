@@ -1,13 +1,28 @@
 "use client"
+import EventCard from '@/components/cards/event-card';
+import Dropdown from '@/components/drop-down';
 import Header from '@/components/header';
-import Image from 'next/image';
+import ImageSlider from '@/components/image-slider';
 import React, { useState } from 'react'
 import { Range } from 'react-date-range';
 
-export const HomeClient = ({ data }: { data: any }) => {
+
+// import required modules
+type EventCardData = {
+    imageUrl: string;
+    price: number;
+    eventEndTime: string;
+    eventStartTime: string;
+    location: string;
+    eventName: string;
+    eventOrganizer: string;
+    imageEventOrganizerUrl: string;
+    eventStartDate: Date;
+    eventEndDate: Date;
+    timeZone: string;
+};
+export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     const [search, setSearch] = useState("")
-    // State to manage the visibility of the calendar.
-    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
     // State to manage the selected date range.
     const [dateRange, setDateRange] = useState<Range>({
@@ -15,9 +30,52 @@ export const HomeClient = ({ data }: { data: any }) => {
         endDate: new Date(),
         key: "selection",
     });
+    const dropdownData = [
+        {
+            options: ['Option 1', 'Option 2', 'Option 3'],
+            placeholder: 'Select an option',
+            selectedOption: 'Option 1',
+            setSelectedOption: () => { },
+        },
+        {
+            options: ['Choice A', 'Choice B', 'Choice C'],
+            selectedOption: 'Choice B',
+            setSelectedOption: () => { },
+        },
+        {
+            options: ['Apple', 'Banana', 'Orange', 'Grapes'],
+            placeholder: 'Choose a fruit',
+            selectedOption: 'Banana',
+            setSelectedOption: () => { },
+        },
+        // ... Add more data for other DropdownProps
+    ];
+
+
+    const dummyImages = [
+        {
+            imageUrl: "/ticket-image.jpg",
+            imageAlt: "Image 1",
+            imageWidth: 700,
+            imageHeight: 300,
+        },
+        {
+            imageUrl: "/logo.png",
+            imageAlt: "Image 2",
+            imageWidth: 700,
+            imageHeight: 300,
+        },
+        {
+            imageUrl: "/auth/login-bg.png",
+            imageAlt: "Image 3",
+            imageWidth: 700,
+            imageHeight: 300,
+        },
+        // Tambahkan data gambar lainnya sesuai kebutuhan
+    ];
 
     return (
-        <div className='flex flex-col w-full'> <Header
+        <div className='flex flex-col w-full gap-6'> <Header
             dateRange={dateRange}
             setDateRange={setDateRange}
             search={search}
@@ -27,7 +85,36 @@ export const HomeClient = ({ data }: { data: any }) => {
             avatarImageUrl="/logo.png"
             avatarName="Tes"
             avatarRole="Customer"
-        /><Image src="/ticket-image.jpg" width={700} height={100} alt="Image" className='w-full h-[350px] rounded-3xl object-center object-cover'></Image>
-            <div className="flex flex-wrap"></div></div>
+        />
+            <ImageSlider imageArray={dummyImages} />
+
+            <div className='flex justify-between items-center pt-4'>
+                <h1 className='text-white font-poppins text-3xl font-bold'>Upcoming Events</h1>
+                <div className='flex gap-3 items-center justify-center'>
+                    {dropdownData.map((item, index) => {
+                        return <Dropdown key={index} options={item.options} placeholder={item.placeholder} selectedOption={item.selectedOption} setSelectedOption={item.setSelectedOption} />
+                    })}
+                </div>
+            </div>
+
+            <div className="grid grid-cols-4 gap-10 w-full">
+                {data.map((event, index) => (
+                    <EventCard
+                        key={index}
+                        imageUrl={event.imageUrl}
+                        price={event.price}
+                        eventEndTime={event.eventEndTime}
+                        eventStartTime={event.eventStartTime}
+                        location={event.location}
+                        eventName={event.eventName}
+                        eventOrganizer={event.eventOrganizer}
+                        imageEventOrganizerUrl={event.imageEventOrganizerUrl}
+                        eventStartDate={event.eventStartDate}
+                        eventEndDate={event.eventEndDate}
+                        timeZone={event.timeZone}
+                    />
+                ))}
+            </div>
+        </div>
     )
 }
