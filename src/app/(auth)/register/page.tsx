@@ -57,9 +57,11 @@ const Signup = () => {
       {/* Image */}
       <div
         style={{ backgroundImage: `url(/auth/register-bg.png)` }}
-        className={`absolute inset-0 h-full w-full bg-cover bg-center transition delay-[2000ms] duration-[700ms] ease-in-out max-sm:top-1/2 max-sm:-translate-y-1/2 ${mount ? "opacity-0" : "opacity-100"
-          } ${finish ? "-z-10" : "z-50"
-          } flex flex-col items-center justify-center gap-4 md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none lg:gap-7`}
+        className={`absolute inset-0 h-full w-full bg-cover bg-center transition delay-[2000ms] duration-[700ms] ease-in-out max-sm:top-1/2 max-sm:-translate-y-1/2 ${
+          mount ? "opacity-0" : "opacity-100"
+        } ${
+          finish ? "-z-10" : "z-50"
+        } flex flex-col items-center justify-center gap-4 md:static md:z-20 md:w-1/2 md:opacity-100 md:transition-none lg:gap-7`}
       >
         <Image
           src="/logo.png"
@@ -89,16 +91,18 @@ const Signup = () => {
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute left-[120px] top-0 w-[100px] sm:h-[42px] lg:left-[150px] lg:h-[60px] lg:w-[150px] 2xl:left-[246px] 2xl:h-[80px] 2xl:w-[244px] ${trapezoid1 ? "opacity-100" : "opacity-0"
-              } transition duration-300 ease-in-out`}
+            className={`absolute left-[120px] top-0 w-[100px] sm:h-[42px] lg:left-[150px] lg:h-[60px] lg:w-[150px] 2xl:left-[246px] 2xl:h-[80px] 2xl:w-[244px] ${
+              trapezoid1 ? "opacity-100" : "opacity-0"
+            } transition duration-300 ease-in-out`}
           />
           <Image
             src="/auth/short-trapezoid.svg"
             alt="longTrapezoid"
             width={284}
             height={94}
-            className={`absolute left-[195px] top-0 w-[100px] sm:h-[42px] lg:left-[260px] lg:h-[60px] lg:w-[150px] 2xl:left-[419px] 2xl:h-[80px] 2xl:w-[244px] ${trapezoid2 ? "opacity-100" : "opacity-0"
-              } transition duration-300 ease-in-out`}
+            className={`absolute left-[195px] top-0 w-[100px] sm:h-[42px] lg:left-[260px] lg:h-[60px] lg:w-[150px] 2xl:left-[419px] 2xl:h-[80px] 2xl:w-[244px] ${
+              trapezoid2 ? "opacity-100" : "opacity-0"
+            } transition duration-300 ease-in-out`}
           />
         </div>
         <div className="absolute top-1/2 flex w-1/2 -translate-y-1/2 flex-col items-center gap-y-[52px] md:gap-y-[10px] lg:gap-y-[40px]">
