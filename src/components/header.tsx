@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import TextInput from "./text-input";
 import { Calendar2 } from "iconsax-react";
 import Button from "./button";
@@ -32,7 +32,22 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   // State to manage the visibility of the calendar.
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const calendarRef = useRef<HTMLButtonElement>(null); // Specify the type of dropdownRef
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+      setIsCalendarOpen(false);
+    }
+  };
 
+  useEffect(() => {
+    // Add event listener when the component mounts
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="flex w-full items-center gap-4">
@@ -50,6 +65,7 @@ const Header: React.FC<HeaderProps> = ({
         <button
           onClick={() => setIsCalendarOpen(!isCalendarOpen)}
           className="relative"
+          ref={calendarRef}
         >
           <Calendar2 size={30} color="#FFFFFF" />
 

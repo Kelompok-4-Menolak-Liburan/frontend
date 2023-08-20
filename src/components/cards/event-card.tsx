@@ -42,8 +42,8 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div className="bg flex w-[378px] cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[103%]">
-      <div className="relative h-[182px] w-full">
+    <div className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[103%]">
+      <div className="relative h-[172px] w-full">
         {/* The event image */}
         <Image
           src={imageUrl}
