@@ -1,4 +1,3 @@
-
 import Dropdown from "@/components/drop-down";
 import Header from "@/components/header";
 import { Metadata } from "next";
@@ -7,7 +6,6 @@ import { HomeClient } from "./home-client";
 import Image from "next/image";
 export default function Home() {
   const eventCardData = [
-
     {
       imageUrl: "/ticket-image.jpg",
       price: 120000,
@@ -105,7 +103,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex min-h-full flex-col overflow-hidden items-center justify-between gap-2 px-16 py-12 font-poppins text-white">
+    <main className="flex min-h-full flex-col items-center justify-between gap-2 overflow-hidden px-16 py-12 font-poppins text-white">
       <HomeClient data={eventCardData} />
     </main>
   );

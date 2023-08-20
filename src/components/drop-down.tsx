@@ -25,7 +25,10 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   // Event listener to close the dropdown when clicking outside of it
   const handleOutsideClick = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setOpen(false);
     }
   };
@@ -56,10 +59,11 @@ const Dropdown: React.FC<DropdownProps> = ({
       </div>
       {/* Dropdown open */}
       <div
-        className={`${open
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none -translate-y-[60px] opacity-0"
-          } absolute left-1/2 top-16 z-20 min-w-[250px] -translate-x-1/2 rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-14`}
+        className={`${
+          open
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-[60px] opacity-0"
+        } absolute left-1/2 top-16 z-20 min-w-[250px] -translate-x-1/2 rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-14`}
       >
         {/* Mapping options */}
         {options.map((option) => (
