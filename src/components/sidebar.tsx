@@ -16,7 +16,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky flex h-full max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
+    <nav className="fixed flex h-screen max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
       {/* Sidebar header */}
       <h1 className="text-[33px] font-bold">SeTiket</h1>
 

@@ -135,6 +135,7 @@ const Login = () => {
                   USERNAME
                 </h3>
                 <TextInput
+                  color="purple"
                   boxType="text"
                   placeholder="Your username"
                   fullWidth={true}
@@ -145,6 +146,7 @@ const Login = () => {
                   PASSWORD
                 </h3>
                 <TextInput
+                  color="purple"
                   boxType="password"
                   placeholder="Your password"
                   fullWidth={true}
