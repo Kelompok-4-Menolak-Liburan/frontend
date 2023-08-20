@@ -1,8 +1,8 @@
 // Importing required modules and components
-import { getFormattedCurrency } from "@/libs/utlils"; 
-import { format, getDate } from "date-fns"; 
+import { getFormattedCurrency } from "@/libs/utlils";
+import { format, getDate } from "date-fns";
 import { ArchiveAdd } from "iconsax-react";
-import Image from "next/image"; 
+import Image from "next/image";
 
 interface EventCardProps {
   imageUrl: string;
@@ -42,29 +42,29 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div className="w-[378px] bg-custom-purple-300 hover:scale-[103%] duration-300 cursor-pointer transition flex flex-col bg font-poppins rounded-xl overflow-hidden text-white">
-      <div className="w-full h-[182px] relative">
+    <div className="bg flex w-[378px] cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[103%]">
+      <div className="relative h-[182px] w-full">
         {/* The event image */}
         <Image
           src={imageUrl}
           alt={eventName + " Image"}
           width={378}
           height={112}
-          className="object-center object-cover w-full h-full"
+          className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        <p className="bg-custom-purple-300 rounded-md absolute z-10 left-4 text-base top-4 px-3 py-[5px]">
+        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-base">
           {getFormattedCurrency(price)}
         </p>
         {/* Adding an "Add to Archive" button */}
-        <button className="bg-custom-purple-300 rounded-md absolute z-10 right-4 top-4 aspect-square p-1.5">
+        <button className="absolute right-4 top-4 z-10 aspect-square rounded-md bg-custom-purple-300 p-1.5">
           <ArchiveAdd size={28} color="#FFFFFF" variant="Bold" />
         </button>
       </div>
-      <div className="flex flex-col px-5 justify-between flex-1 border-b border-x rounded-b-xl border-white">
-        <div className="flex w-full gap-6 py-4 h-full">
+      <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
+        <div className="flex h-full w-full gap-6 py-4">
           {/* The event month and dates */}
-          <div className="flex flex-col font-bold text-lg items-center justify-center">
+          <div className="flex flex-col items-center justify-center text-lg font-bold">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,7 +73,7 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="font-bold text-xl pb-1 uppercase">{eventName}</p>
+            <p className="pb-1 text-xl font-bold uppercase">{eventName}</p>
             <p className="text-lg">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
@@ -81,15 +81,15 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
         </div>
         {/* Event organizer information */}
-        <div className="border-t border-dashed border-white flex items-center gap-4 py-3">
+        <div className="flex items-center gap-4 border-t border-dashed border-white py-3">
           <Image
             src={imageEventOrganizerUrl}
             alt="Avatar"
             width={36}
             height={36}
-            className="object-center object-cover w-9 h-9 aspect-square rounded-full"
+            className="aspect-square h-9 w-9 rounded-full object-cover object-center"
           />
-          <p className="font-bold text-xl">{eventOrganizer}</p>
+          <p className="text-xl font-bold">{eventOrganizer}</p>
         </div>
       </div>
     </div>
