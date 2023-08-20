@@ -136,6 +136,7 @@ const Signup = () => {
                   EMAIL
                 </h3>
                 <TextInput
+                  color="purple"
                   boxType="email"
                   placeholder="Your email address"
                   fullWidth={true}
@@ -146,6 +147,7 @@ const Signup = () => {
                   USERNAME
                 </h3>
                 <TextInput
+                  color="purple"
                   boxType="text"
                   placeholder="Your username"
                   fullWidth={true}
@@ -156,6 +158,7 @@ const Signup = () => {
                   PASSWORD
                 </h3>
                 <TextInput
+                  color="purple"
                   boxType="password"
                   placeholder="Your password"
                   fullWidth={true}
