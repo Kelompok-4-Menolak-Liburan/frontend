@@ -1,7 +1,5 @@
 "use client"
 import Dropdown from "@/components/drop-down";
-import Switch from "@/components/switch";
-import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Metadata } from "next";
 import React, { useState } from "react";
 export default function Home() {
@@ -20,11 +18,3 @@ export default function Home() {
     </main>
   );
 }
-
-export const metadata: Metadata = {
-  title: "SeTiket",
-  description: "Registration",
-  generator: "Next.js",
-  applicationName: "SeTiket",
-  colorScheme: "dark",
-};
