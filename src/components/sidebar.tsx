@@ -16,7 +16,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky flex h-full max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
+    <nav className="fixed flex h-screen max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
       {/* Sidebar header */}
       <h1 className="text-[33px] font-bold">SeTiket</h1>
 
@@ -25,12 +25,11 @@ const Sidebar = () => {
         {navigationItems.map((item, index) => (
           <li
             key={index}
-            className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
-              pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+            className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
               pathname.toLowerCase() === item.href.toLowerCase()
-                ? "bg-custom-purple-300"
-                : "bg-transparent"
-            }`}
+              ? "bg-custom-purple-300"
+              : "bg-transparent"
+              }`}
           >
             {/* Link to the respective navigation item */}
             <Link
@@ -42,12 +41,11 @@ const Sidebar = () => {
                 <item.icon
                   size="32"
                   color="#FFFFFF"
-                  variant={`${
-                    pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+                  variant={`${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
                     pathname.toLowerCase() === item.href.toLowerCase()
-                      ? "Bold"
-                      : "Outline"
-                  }`}
+                    ? "Bold"
+                    : "Outline"
+                    }`}
                 />
               }
               <h2 className="text-[19px]">{item.label}</h2>
