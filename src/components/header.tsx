@@ -15,6 +15,8 @@ interface HeaderProps {
   avatarRole?: "Customer" | "Event Organizer" | "Administrator";
   placeholder: string;
   avatarImageUrl: string;
+  dateRange: Range
+  setDateRange: Dispatch<SetStateAction<Range>>
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -25,16 +27,11 @@ const Header: React.FC<HeaderProps> = ({
   avatarRole,
   avatarImageUrl,
   placeholder,
+  dateRange,
+  setDateRange
 }) => {
   // State to manage the visibility of the calendar.
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
-  // State to manage the selected date range.
-  const [dateRange, setDateRange] = useState<Range>({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: "selection",
-  });
 
   return (
     <div className="flex w-full flex-col gap-4">
