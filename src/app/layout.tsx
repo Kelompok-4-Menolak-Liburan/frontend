@@ -16,7 +16,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
 export default function RootLayout({
   children,
 }: {
@@ -24,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id, en" className={`${inter.variable} ${poppins.variable}`}>
-       {children}
+      {children}
     </html>
   );
 }
