@@ -16,8 +16,8 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
     },
     normal: {
       imageStyle: "w-[50px] h-[50px]",
-      primaryTextStyle: "text-base",
-      childTextStyle: "text-[11px]",
+      primaryTextStyle: "text-lg",
+      childTextStyle: "text-base",
     },
     large: {
       imageStyle: "w-[75px] h-[75px]",
@@ -34,13 +34,13 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
   };
 
   return (
-    <div className="flex gap-4 items-center justify-center">
+    <div className="flex items-center justify-center gap-4">
       <Image
         src={imageUrl}
         alt={name + " Avatar"}
         width={sizeEffectImage[size]}
         height={sizeEffectImage[size]}
-        className={`rounded-full aspect-square object-center object-cover ${sizeEffectStyle[size].imageStyle}`}
+        className={`aspect-square rounded-full object-cover object-center ${sizeEffectStyle[size].imageStyle}`}
       />
       {/* Render name and role if provided */}
       {name && role && (

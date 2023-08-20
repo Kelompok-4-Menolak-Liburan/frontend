@@ -23,9 +23,20 @@ const config: Config = {
           "10%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "sparkle-pulse": {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-0.25rem) scale(1.3)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         blink: "blink 0.5s ease-in-out",
+        "fade-in": "fade-in 0.5s ease-in-out",
+        "sparkle-pulse": "sparkle-pulse 1.5s ease-out infinite",
       },
       colors: {
         "custom-purple-50": "#EAEBF0",
