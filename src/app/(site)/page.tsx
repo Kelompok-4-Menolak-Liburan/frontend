@@ -1,20 +1,15 @@
-"use client";
+"use client"
 import Dropdown from "@/components/drop-down";
+import Header from "@/components/header";
 import { Metadata } from "next";
 import React, { useState } from "react";
 export default function Home() {
-  const options = ["Option 1", "Option 2", "Option 3"];
-  const [selectedOption, setSelectedOption] = useState("");
+  const [search, setSearch] = useState('');
+  const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"]
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between gap-2 p-24 font-poppins text-white">
-      <div className="w-[300px]">
-        <Dropdown
-          options={options}
-          placeholder="Select an option"
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-        />
-      </div>
+    <main className="flex min-h-full flex-col items-center justify-between gap-2 p-24 font-poppins text-white">
+      <Header search={search} setSearch={setSearch} placeholder="Search Event" hastags={hastags} avatarImageUrl="/logo.png" avatarName="Tes" avatarRole="Customer" />
+
     </main>
   );
 }
