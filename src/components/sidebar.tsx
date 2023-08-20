@@ -25,11 +25,12 @@ const Sidebar = () => {
         {navigationItems.map((item, index) => (
           <li
             key={index}
-            className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+            className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
+              pathname.toLowerCase().includes(item.href.toLowerCase()) ||
               pathname.toLowerCase() === item.href.toLowerCase()
-              ? "bg-custom-purple-300"
-              : "bg-transparent"
-              }`}
+                ? "bg-custom-purple-300"
+                : "bg-transparent"
+            }`}
           >
             {/* Link to the respective navigation item */}
             <Link
@@ -41,11 +42,12 @@ const Sidebar = () => {
                 <item.icon
                   size="32"
                   color="#FFFFFF"
-                  variant={`${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+                  variant={`${
+                    pathname.toLowerCase().includes(item.href.toLowerCase()) ||
                     pathname.toLowerCase() === item.href.toLowerCase()
-                    ? "Bold"
-                    : "Outline"
-                    }`}
+                      ? "Bold"
+                      : "Outline"
+                  }`}
                 />
               }
               <h2 className="text-[19px]">{item.label}</h2>
