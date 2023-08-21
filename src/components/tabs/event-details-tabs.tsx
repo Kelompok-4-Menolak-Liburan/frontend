@@ -16,7 +16,7 @@ const EventDetailsTabs = () => {
               "A multisensory festival that collaborates with artists in various creative fields",
             ]}
           />
-          <p className="text-base">
+          <p>
             Mari kurangi penggunaan plastik sekali pakai, drinking station
             tersedia di dalam venue untuk mengambil minum. Silahkan membawa
             tumbler milik Anda!Let&apos;s reduce single-use plastic. Refillable
