@@ -17,6 +17,7 @@ interface HeaderProps {
   avatarImageUrl: string;
   dateRange: Range;
   setDateRange: Dispatch<SetStateAction<Range>>;
+  setSelectedDate: Dispatch<SetStateAction<Range | undefined>>;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -29,10 +30,11 @@ const Header: React.FC<HeaderProps> = ({
   placeholder,
   dateRange,
   setDateRange,
+  setSelectedDate,
 }) => {
   // State to manage the visibility of the calendar.
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const calendarRef = useRef<HTMLButtonElement>(null); // Specify the type of dropdownRef
+  const calendarRef = useRef<HTMLDivElement>(null); // Specify the type of dropdownRef
   const handleOutsideClick = (event: MouseEvent) => {
     if (
       calendarRef.current &&
@@ -51,6 +53,17 @@ const Header: React.FC<HeaderProps> = ({
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
+  const handleButtonAction = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // Prevent the click event from reaching the outer button element
+    setSelectedDate(dateRange);
+    setIsCalendarOpen(false);
+  }
+  const handleButtonCancelFilter = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // Prevent the click event from reaching the outer button element
+    setSelectedDate(undefined);
+    setIsCalendarOpen(false);
+  }
+
   return (
     <div className="flex w-full flex-col gap-2 lg:gap-4">
       <div className="flex w-full items-center gap-4">
@@ -66,19 +79,36 @@ const Header: React.FC<HeaderProps> = ({
           />
         </div>
         <button
-          onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+          onClick={() => setIsCalendarOpen(true)}
           className="lg:relative"
-          ref={calendarRef}
         >
           <Calendar2 size={30} color="#FFFFFF" />
 
           {/* Render the Calendar component when the calendar is open. */}
           {isCalendarOpen && (
-            <div className="absolute left-1/2 top-32 z-[30] -translate-x-1/2 animate-fade-in lg:top-16">
+            <div className="absolute left-1/2 top-32 z-[30] -translate-x-1/2 animate-fade-in lg:top-16"
+              ref={calendarRef}
+            >
               <Calendar
                 value={dateRange}
                 onChange={(value) => setDateRange(value.selection)}
+                roundedBottom={false}
               />
+              <div className="w-full bg-custom-purple-300 flex gap-5 p-2 items-center justify-center rounded-b-xl border-b border border-white">
+
+                <Button size="extra-small" color="green-primary" >
+                  <button onClick={(e) => handleButtonCancelFilter(e)}>
+
+                    Clear
+                  </button>
+                </Button>
+                <Button size="extra-small" color="green-primary" >
+                  <button onClick={(e) => handleButtonAction(e)}>
+
+                    Select
+                  </button>
+                </Button>
+              </div>
             </div>
           )}
         </button>

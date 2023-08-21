@@ -33,6 +33,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     endDate: new Date(),
     key: "selection",
   });
+  const [selectedDate, setSelectedDate] = useState<undefined | Range>(undefined)
 
   // State for selected topic and category
   const [selectedTopic, setSelectedTopic] = useState<string>("");
@@ -40,13 +41,32 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
   // Filtering logic based on search, topic, and category
   const filteredData = data.filter((item) => {
-    const includesSearch = item.eventName.includes(search);
-    const matchesTopic = !selectedTopic || item.topic.includes(selectedTopic);
+    const includesNameSearch = item.eventName.toLowerCase().includes(search);
+    const includesLocationSearch = item.location.toLowerCase().includes(search);
+    const matchesTopic = !selectedTopic || item.topic.toLowerCase().includes(selectedTopic);
     const matchesCategory =
-      !selectedCategory || item.category.includes(selectedCategory);
+      !selectedCategory || item.category.toLowerCase().includes(selectedCategory);
 
-    return includesSearch && matchesTopic && matchesCategory;
+    // Add the date range filtering condition
+    const startDate = selectedDate?.startDate;
+    const endDate = selectedDate?.endDate;
+    const eventStartDate = new Date(item.eventStartDate);
+    const eventEndDate = new Date(item.eventEndDate);
+
+    // Check if the event date range is within the selected range (if available)
+    const withinDateRange =
+      !startDate || !endDate || (eventStartDate >= startDate && eventEndDate <= endDate);
+
+    // Include the event if any of the filter conditions match
+    return (
+      includesNameSearch &&
+      matchesTopic &&
+      matchesCategory &&
+      includesLocationSearch &&
+      (withinDateRange || selectedDate === undefined) // Include if withinDateRange is undefined or selectedDate is undefined
+    );
   });
+
 
   // Lists of categories and topics for dropdowns
   const categories = [
@@ -143,10 +163,11 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
         setDateRange={setDateRange}
         search={search}
         setSearch={setSearch}
-        placeholder="Search Event"
+        placeholder="Select an event name or event location"
         hastags={hastags}
         avatarImageUrl="/logo.png"
         avatarName="Tes"
+        setSelectedDate={setSelectedDate}
         avatarRole="Customer"
       />
 
@@ -168,9 +189,8 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           })}
         </div>
       )}
-
       {/* Display search results or upcoming events */}
-      <div className="flex flex-col justify-between gap-9 pt-2 lg:flex-row lg:items-center lg:pt-4">
+      <div className="flex flex-col justify-between gap-4 pt-2 lg:flex-row lg:items-center lg:pt-4">
         {search ? (
           // Display search results header
           <h2 className="font-poppins text-lg font-bold text-white lg:text-xl">
@@ -201,7 +221,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
       {/* Display event cards or "Not found" message */}
       {filteredData.length > 0 ? (
-        <div className="w-full flex flex-wrap gap-6">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-3 xl:grid-cols-4">
           {filteredData.map((event, index) => (
             <EventCard
               key={index}
