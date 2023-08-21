@@ -25,7 +25,10 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   // Event listener to close the dropdown when clicking outside of it
   const handleOutsideClick = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setOpen(false);
     }
   };

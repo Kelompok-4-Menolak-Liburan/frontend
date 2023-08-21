@@ -15,8 +15,8 @@ interface HeaderProps {
   avatarRole?: "Customer" | "Event Organizer" | "Administrator";
   placeholder: string;
   avatarImageUrl: string;
-  dateRange: Range
-  setDateRange: Dispatch<SetStateAction<Range>>
+  dateRange: Range;
+  setDateRange: Dispatch<SetStateAction<Range>>;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -28,13 +28,16 @@ const Header: React.FC<HeaderProps> = ({
   avatarImageUrl,
   placeholder,
   dateRange,
-  setDateRange
+  setDateRange,
 }) => {
   // State to manage the visibility of the calendar.
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const calendarRef = useRef<HTMLButtonElement>(null); // Specify the type of dropdownRef
   const handleOutsideClick = (event: MouseEvent) => {
-    if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+    if (
+      calendarRef.current &&
+      !calendarRef.current.contains(event.target as Node)
+    ) {
       setIsCalendarOpen(false);
     }
   };

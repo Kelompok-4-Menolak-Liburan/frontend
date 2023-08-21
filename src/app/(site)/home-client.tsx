@@ -108,7 +108,6 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
     ];
 
-
     const dummyImages = [
         {
             imageUrl: "/ticket-image.jpg",
@@ -130,6 +129,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
         },
         // Tambahkan data gambar lainnya sesuai kebutuhan
     ];
+
 
     return (
         <div className='flex flex-col w-full gap-4 lg:gap-6'> <Header
@@ -192,5 +192,5 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
                 </div>
             }
         </div>
-    )
-}
+    );
+};
