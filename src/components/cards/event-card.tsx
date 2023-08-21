@@ -42,7 +42,7 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div className="bg flex w-[290px] cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]">
+    <div className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]">
       <div className="relative h-[122px] w-full">
         {/* The event image */}
         <Image
@@ -53,7 +53,7 @@ const EventCard: React.FC<EventCardProps> = ({
           className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm">
+        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm 2xl:text-base">
           {getFormattedCurrency(price)}
         </p>
         {/* Adding an "Add to Archive" button */}
@@ -64,7 +64,7 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
         <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-3">
           {/* The event month and dates */}
-          <div className="flex flex-col items-center justify-center text-sm font-bold">
+          <div className="flex flex-col items-center justify-center text-sm 2xl:text-base font-bold">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,11 +73,11 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-sm font-bold uppercase">{eventName}</p>
-            <p className="text-xs">
+            <p className="pb-1 text-sm lg:text-base 2xl:text-lg font-bold uppercase">{eventName}</p>
+            <p className="text-xs lg:text-sm">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
-            <p className="text-sm">{location}</p>
+            <p className="text-sm 2xl:text-base">{location}</p>
           </div>
         </div>
         {/* Event organizer information */}
@@ -89,7 +89,7 @@ const EventCard: React.FC<EventCardProps> = ({
             height={32}
             className="aspect-square  rounded-full object-cover object-center"
           />
-          <p className="text-xs font-bold">{eventOrganizer}</p>
+          <p className="text-xs 2xl:text-sm font-bold">{eventOrganizer}</p>
         </div>
       </div>
     </div>
