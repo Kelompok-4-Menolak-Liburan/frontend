@@ -50,6 +50,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     "Pertandingan",
     "Exhibition, Expo, Pameran",
     "Konferensi",
+    "Seni, Budaya",
     "Workshop",
     "Pertunjukan",
     "Atraksi, Theme Park",
@@ -94,13 +95,13 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
   const dropdownData = [
     {
       options: categories,
-      placeholder: "Select an option",
+      placeholder: "Categories",
       selectedOption: selectedCategory,
       setSelectedOption: setSelectedCategory,
     },
     {
       options: topics,
-      placeholder: "Select an option",
+      placeholder: "Topics",
       selectedOption: selectedTopic,
       setSelectedOption: setSelectedTopic,
     },
@@ -129,7 +130,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
   ];
 
   return (
-    <div className="flex w-full flex-col gap-4 lg:gap-6">
+    <div className="flex w-full flex-col gap-4 lg:gap-4">
       {" "}
       <Header
         dateRange={dateRange}
@@ -159,14 +160,14 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           })}
         </div>
       )}
-      <div className="lf:items-center flex flex-col justify-between gap-4 pt-2 lg:flex-row lg:pt-4">
+      <div className="lg:items-center flex flex-col justify-between gap-9 pt-2 lg:flex-row lg:pt-4">
         {search ? (
           <h2 className="font-poppins text-lg font-bold text-white lg:text-xl">
             Search results for &quot;{search}&quot;
           </h2>
         ) : (
           <>
-            <h1 className="font-poppins text-xl font-bold text-white lg:text-3xl">
+            <h1 className="font-poppins text-xl font-bold text-white lg:text-2xl">
               Upcoming Events
             </h1>
             <div className="flex flex-wrap items-center  gap-3">
@@ -186,7 +187,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
         )}
       </div>
       {filteredData.length > 0 ? (
-        <div className="grid w-full grid-cols-1 gap-10 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredData.map((event, index) => (
             <EventCard
               key={index}
@@ -205,12 +206,12 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           ))}
         </div>
       ) : (
-        <h3 className="items-center justify-center  pt-4 text-center font-poppins text-2xl font-bold text-custom-green-normal lg:text-3xl ">
+        <h3 className="items-center justify-center  pt-4 text-center font-poppins text-2xl font-bold text-custom-green-normal lg:text-2xl ">
           Not found results
         </h3>
       )}
       {(selectedCategory || selectedTopic) && (
-        <div className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center pt-4">
           <Button
             size="extra-small"
             color="green-primary"
