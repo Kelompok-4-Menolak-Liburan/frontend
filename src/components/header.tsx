@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = ({
         {/* Map and render hashtags if they are provided. */}
         {hastags?.map((item, index) => {
           return (
-            <p key={index} className="text-xs text-white lg:text-sm">
+            <p key={index} className="text-sm text-white">
               {item}
             </p>
           );

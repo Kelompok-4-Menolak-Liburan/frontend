@@ -10,12 +10,12 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
   // Define styles and dimensions based on avatar size
   const sizeEffectStyle = {
     small: {
-      imageStyle: "w-[40px] aspect-square",
+      imageStyle: "w-[30px] h-[30px]",
       primaryTextStyle: "text-xs",
       childTextStyle: "text-[10px]",
     },
     normal: {
-      imageStyle: "w-[30px] aspect-square lg:w-[50px]",
+      imageStyle: "w-[40px] h-[40px]",
       primaryTextStyle: "text-base",
       childTextStyle: "text-sm",
     },
@@ -28,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
 
   // Define image dimensions based on avatar size
   const sizeEffectImage = {
-    small: 40,
+    small: 30,
     normal: 50,
     large: 75,
   };

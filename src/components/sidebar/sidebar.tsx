@@ -63,11 +63,10 @@ const Sidebar = () => {
         </div>
       </div>
       <div
-        className={`fixed z-50 flex ${
-          isExpand
+        className={`fixed z-50 flex ${isExpand
             ? "max-lg:translate-x-0"
             : "max-lg:pointer-events-none max-lg:-translate-x-full"
-        } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[250px]`}
+          } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[250px]`}
       >
         {/* Sidebar header */}
         <h1 className="text-2xl font-bold lg:text-3xl">SeTiket</h1>
@@ -77,12 +76,11 @@ const Sidebar = () => {
           {navigationItems.map((item, index) => (
             <li
               key={index}
-              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
-                pathname.toLowerCase().includes(item.href.toLowerCase()) ||
-                pathname.toLowerCase() === item.href.toLowerCase()
+              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+                  pathname.toLowerCase() === item.href.toLowerCase()
                   ? "bg-custom-purple-300"
                   : "bg-transparent"
-              }`}
+                }`}
             >
               {/* Link to the respective navigation item */}
               <Link
@@ -94,14 +92,13 @@ const Sidebar = () => {
                   <item.icon
                     size="28"
                     color="#FFFFFF"
-                    variant={`${
-                      pathname
+                    variant={`${pathname
                         .toLowerCase()
                         .includes(item.href.toLowerCase()) ||
-                      pathname.toLowerCase() === item.href.toLowerCase()
+                        pathname.toLowerCase() === item.href.toLowerCase()
                         ? "Bold"
                         : "Outline"
-                    }`}
+                      }`}
                   />
                 }
                 <h2 className="text-base lg:text-lg">{item.label}</h2>

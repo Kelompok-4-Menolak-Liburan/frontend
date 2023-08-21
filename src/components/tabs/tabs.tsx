@@ -21,7 +21,7 @@ const Tabs = ({ tabs }: TabsProps) => {
   return (
     <div className="flex w-full flex-col font-poppins text-white">
       {/* Tab header section */}
-      <div className="flex w-full border-spacing-y-10 items-center gap-10 border-b border-white pb-3 text-xl font-bold capitalize">
+      <div className="flex w-full border-spacing-y-10 items-center gap-10 border-b border-white pb-3 text-base font-bold capitalize">
         {tabs.map((tab, index) => (
           <button
             key={index}
@@ -37,7 +37,7 @@ const Tabs = ({ tabs }: TabsProps) => {
         ))}
       </div>
       {/* Tab content section */}
-      <div className="flex flex-col py-6 text-base text-white">
+      <div className="flex flex-col py-6 text-sm text-white">
         {tabs.map((tab, index) => (
           <div
             key={index}
