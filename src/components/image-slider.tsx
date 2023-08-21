@@ -21,14 +21,14 @@ const ImageSlider = ({ imageArray }: { imageArray: ImageSliderProps[] }) => {
   }, [currentIndex, imageArray]);
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col items-center justify-center gap-4">
       <Image
         src={imageArray[currentIndex].imageUrl}
         width={imageArray[currentIndex].imageWidth}
         height={imageArray[currentIndex].imageHeight}
         alt="Image"
         key={imageArray[currentIndex].imageAlt}
-        className="w-full h-[200px] lg:h-[300px] animate-blink rounded-3xl object-center object-cover"
+        className="h-[200px] w-full animate-blink rounded-3xl object-cover object-center lg:h-[300px]"
       />
       <BulletPagination
         numberPage={imageArray.length}

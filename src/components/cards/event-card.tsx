@@ -62,9 +62,9 @@ const EventCard: React.FC<EventCardProps> = ({
         </button>
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
-        <div className="flex h-full w-full gap-4 lg:gap-6 py-2 lg:py-4">
+        <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-4">
           {/* The event month and dates */}
-          <div className="flex flex-col items-center justify-center text-base lg:text-lg font-bold">
+          <div className="flex flex-col items-center justify-center text-base font-bold lg:text-lg">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,7 +73,9 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-base lg:text-xl font-bold uppercase">{eventName}</p>
+            <p className="pb-1 text-base font-bold uppercase lg:text-xl">
+              {eventName}
+            </p>
             <p className="text-sm lg:text-lg">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
@@ -81,15 +83,15 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
         </div>
         {/* Event organizer information */}
-        <div className="flex items-center gap-3 lg:gap-4 border-t border-dashed border-white py-3">
+        <div className="flex items-center gap-3 border-t border-dashed border-white py-3 lg:gap-4">
           <Image
             src={imageEventOrganizerUrl}
             alt="Avatar"
             width={36}
             height={36}
-            className="aspect-square w-6 lg:w-9 rounded-full object-cover object-center"
+            className="aspect-square w-6 rounded-full object-cover object-center lg:w-9"
           />
-          <p className="text-[15px] lg:text-xl font-bold">{eventOrganizer}</p>
+          <p className="text-[15px] font-bold lg:text-xl">{eventOrganizer}</p>
         </div>
       </div>
     </div>

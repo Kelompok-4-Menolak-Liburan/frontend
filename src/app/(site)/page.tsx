@@ -117,9 +117,8 @@ export default function Home() {
     // Repeat the above structure for a total of 10 EventCards
   ];
 
-
   return (
-    <main className="flex w-full min-h-full flex-col max-lg:pt-[70px] overflow-hidden items-center justify-between gap-2 p-8 lg:px-16 lg:py-12 font-poppins text-white">
+    <main className="flex min-h-full w-full flex-col items-center justify-between gap-2 overflow-hidden p-8 font-poppins text-white max-lg:pt-[70px] lg:px-16 lg:py-12">
       <HomeClient data={eventCardData} />
     </main>
   );

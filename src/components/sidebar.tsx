@@ -1,9 +1,16 @@
 "use client";
-import { Star1, Ticket, Repeat, Setting, LogoutCurve, HambergerMenu } from "iconsax-react";
+import {
+  Star1,
+  Ticket,
+  Repeat,
+  Setting,
+  LogoutCurve,
+  HambergerMenu,
+} from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
 // An array of navigation items, each containing an icon, label, and href.
 const navigationItems = [
@@ -16,7 +23,7 @@ const navigationItems = [
 const Sidebar = () => {
   // Using the usePathname hook to get the current pathname
   const pathname = usePathname();
-  const [isExpand, setIsExpand] = useState(false)
+  const [isExpand, setIsExpand] = useState(false);
 
   // Side Bar background ref
   const sideBarBgRef = useRef<HTMLDivElement>(null);
@@ -41,28 +48,41 @@ const Sidebar = () => {
   }, [setIsExpand]);
   return (
     <nav className="overflow-hidden">
-      <div className="flex items-center w-full lg:hidden fixed top-0 bg-custom-purple-500 py-3 px-6 z-[40]">
-        <div className="relative flex items-center w-full">
-
-          <button onClick={() => setIsExpand(!isExpand)} className=""><HambergerMenu size="40" color="#FFFFFF" /></button>
-          <Image src="/logo.png" width={30} height={30} alt="Logo" className="absolute left-1/2 -translate-x-1/2" />
+      <div className="fixed top-0 z-[40] flex w-full items-center bg-custom-purple-500 px-6 py-3 lg:hidden">
+        <div className="relative flex w-full items-center">
+          <button onClick={() => setIsExpand(!isExpand)} className="">
+            <HambergerMenu size="40" color="#FFFFFF" />
+          </button>
+          <Image
+            src="/logo.png"
+            width={30}
+            height={30}
+            alt="Logo"
+            className="absolute left-1/2 -translate-x-1/2"
+          />
         </div>
       </div>
-      <div className={`fixed z-50 flex ${isExpand ? "max-lg:translate-x-0" : "max-lg:-translate-x-full pointer-events-none"
-        } transition duration-300 h-screen max-w-[200px] lg:max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white`}>
+      <div
+        className={`fixed z-50 flex ${
+          isExpand
+            ? "max-lg:translate-x-0"
+            : "pointer-events-none max-lg:-translate-x-full"
+        } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[303px]`}
+      >
         {/* Sidebar header */}
-        <h1 className="text-2xl lg:text-[33px] font-bold">SeTiket</h1>
+        <h1 className="text-2xl font-bold lg:text-[33px]">SeTiket</h1>
 
         {/* Navigation items list */}
         <ul className="flex flex-col gap-3">
           {navigationItems.map((item, index) => (
             <li
               key={index}
-              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
+                pathname.toLowerCase().includes(item.href.toLowerCase()) ||
                 pathname.toLowerCase() === item.href.toLowerCase()
-                ? "bg-custom-purple-300"
-                : "bg-transparent"
-                }`}
+                  ? "bg-custom-purple-300"
+                  : "bg-transparent"
+              }`}
             >
               {/* Link to the respective navigation item */}
               <Link
@@ -74,11 +94,14 @@ const Sidebar = () => {
                   <item.icon
                     size="28"
                     color="#FFFFFF"
-                    variant={`${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+                    variant={`${
+                      pathname
+                        .toLowerCase()
+                        .includes(item.href.toLowerCase()) ||
                       pathname.toLowerCase() === item.href.toLowerCase()
-                      ? "Bold"
-                      : "Outline"
-                      }`}
+                        ? "Bold"
+                        : "Outline"
+                    }`}
                   />
                 }
                 <h2 className="text-base lg:text-[19px]">{item.label}</h2>
@@ -97,11 +120,10 @@ const Sidebar = () => {
       {isExpand && (
         <div
           ref={sideBarBgRef}
-          className="fixed inset-0 h-full z-[48] w-full bg-opacity-80 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-[48] h-full w-full bg-opacity-80 backdrop-blur-sm lg:hidden"
         />
       )}
     </nav>
-
   );
 };
 
