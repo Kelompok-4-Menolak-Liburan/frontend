@@ -201,7 +201,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
       {/* Display event cards or "Not found" message */}
       {filteredData.length > 0 ? (
-        <div className="w-full flex flex-wrap gap-6">
+        <div className="flex w-full flex-wrap gap-6">
           {filteredData.map((event, index) => (
             <EventCard
               key={index}
