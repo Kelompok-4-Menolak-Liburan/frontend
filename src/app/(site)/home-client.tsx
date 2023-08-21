@@ -69,10 +69,9 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
     // Include the event if any of the filter conditions match
     return (
-      includesNameSearch &&
+      (includesNameSearch || includesLocationSearch) &&
       matchesTopic &&
       matchesCategory &&
-      includesLocationSearch &&
       (withinDateRange || selectedDate === undefined) // Include if withinDateRange is undefined or selectedDate is undefined
     );
   });
