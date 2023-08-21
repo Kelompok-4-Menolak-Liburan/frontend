@@ -42,8 +42,9 @@ const TextInput: React.FC<TextInputProps> = ({
   };
   return (
     <div
-      className={`${fullWidth ? "w-full" : "w-[261px]"} flex flex-col gap-y-1 ${colorEffect[color].inputStyle
-        } bg-opacity-80 focus-within:border focus-within:border-custom-green-normal `}
+      className={`${fullWidth ? "w-full" : "w-[261px]"} flex flex-col gap-y-1 ${
+        colorEffect[color].inputStyle
+      } bg-opacity-80 focus-within:border focus-within:border-custom-green-normal `}
     >
       <div className="flex w-full flex-row items-center rounded-lg bg-transparent px-3.5 py-2 font-poppins lg:px-5 lg:py-2.5 ">
         {/* Search Icon for search type */}
@@ -65,9 +66,11 @@ const TextInput: React.FC<TextInputProps> = ({
                 : "password"
               : boxType
           } // Conditionally set input type
-          className={`h-full w-full bg-transparent font-poppins text-sm leading-[25px] ${colorEffect[color].fontStyle
-            } outline-none after:hidden lg:text-base ${boxType === "search" && "ml-[11.5px]"
-            } ${boxType === "password" && "mr-[5px]"}`}
+          className={`h-full w-full bg-transparent font-poppins text-sm leading-[25px] ${
+            colorEffect[color].fontStyle
+          } outline-none after:hidden lg:text-base ${
+            boxType === "search" && "ml-[11.5px]"
+          } ${boxType === "password" && "mr-[5px]"}`}
         />
         {/* Eyes Icon Button for Password Type */}
         {boxType === "password" && (
