@@ -36,15 +36,17 @@ const BulletPagination: FC<BulletPaginationProps> = ({
             key={number}
             onClick={() => setCurrentNumberPage(number)}
             aria-label={`Page-${number}`}
-            className={`${currentNumberPage === number && "scale-105"
-              } transition duration-300 hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF]`}
+            className={`${
+              currentNumberPage === number && "scale-105"
+            } transition duration-300 hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF]`}
           >
             <DotIcon
               size={12}
-              className={`${currentNumberPage === number
-                ? colorEffect[primaryColor].selected
-                : colorEffect[primaryColor].unselected
-                } w-[6px] lg:w-[8px]`}
+              className={`${
+                currentNumberPage === number
+                  ? colorEffect[primaryColor].selected
+                  : colorEffect[primaryColor].unselected
+              } w-[6px] lg:w-[8px]`}
             />
           </button>
         ))}
