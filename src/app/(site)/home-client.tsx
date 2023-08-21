@@ -43,8 +43,12 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
   // Filtering logic based on search, topic, and category
   const filteredData = data.filter((item) => {
-    const includesNameSearch = item.eventName.toLowerCase().includes(search.toLowerCase());
-    const includesLocationSearch = item.location.toLowerCase().includes(search.toLowerCase());
+    const includesNameSearch = item.eventName
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    const includesLocationSearch = item.location
+      .toLowerCase()
+      .includes(search.toLowerCase());
     const matchesTopic =
       !selectedTopic || item.topic.includes(selectedTopic);
     const matchesCategory =
