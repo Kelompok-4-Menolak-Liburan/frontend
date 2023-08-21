@@ -57,12 +57,14 @@ const Header: React.FC<HeaderProps> = ({
     event.stopPropagation(); // Prevent the click event from reaching the outer button element
     setSelectedDate(dateRange);
     setIsCalendarOpen(false);
-  }
-  const handleButtonCancelFilter = (event: React.MouseEvent<HTMLButtonElement>) => {
+  };
+  const handleButtonCancelFilter = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     event.stopPropagation(); // Prevent the click event from reaching the outer button element
     setSelectedDate(undefined);
     setIsCalendarOpen(false);
-  }
+  };
 
   return (
     <div className="flex w-full flex-col gap-2 lg:gap-4">
@@ -78,15 +80,13 @@ const Header: React.FC<HeaderProps> = ({
             fullWidth={true}
           />
         </div>
-        <button
-          onClick={() => setIsCalendarOpen(true)}
-          className="lg:relative"
-        >
+        <button onClick={() => setIsCalendarOpen(true)} className="lg:relative">
           <Calendar2 size={30} color="#FFFFFF" />
 
           {/* Render the Calendar component when the calendar is open. */}
           {isCalendarOpen && (
-            <div className="absolute left-1/2 top-32 z-[30] -translate-x-1/2 animate-fade-in lg:top-16"
+            <div
+              className="absolute left-1/2 top-32 z-[30] -translate-x-1/2 animate-fade-in lg:top-16"
               ref={calendarRef}
             >
               <Calendar
@@ -94,19 +94,14 @@ const Header: React.FC<HeaderProps> = ({
                 onChange={(value) => setDateRange(value.selection)}
                 roundedBottom={false}
               />
-              <div className="w-full bg-custom-purple-300 flex gap-5 p-2 items-center justify-center rounded-b-xl border-b border border-white">
-
-                <Button size="extra-small" color="green-primary" >
+              <div className="flex w-full items-center justify-center gap-5 rounded-b-xl border border-b border-white bg-custom-purple-300 p-2">
+                <Button size="extra-small" color="green-primary">
                   <button onClick={(e) => handleButtonCancelFilter(e)}>
-
                     Clear
                   </button>
                 </Button>
-                <Button size="extra-small" color="green-primary" >
-                  <button onClick={(e) => handleButtonAction(e)}>
-
-                    Select
-                  </button>
+                <Button size="extra-small" color="green-primary">
+                  <button onClick={(e) => handleButtonAction(e)}>Select</button>
                 </Button>
               </div>
             </div>

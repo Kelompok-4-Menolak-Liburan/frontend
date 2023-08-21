@@ -7,15 +7,19 @@ const Calendar = ({
   value,
   disabledDates,
   onChange,
-  roundedBottom
+  roundedBottom,
 }: {
   value: Range;
   onChange: (value: RangeKeyDict) => void;
   disabledDates?: Date[];
-  roundedBottom?: boolean
+  roundedBottom?: boolean;
 }) => {
   return (
-    <div className={`flex w-[340px] flex-col overflow-hidden ${roundedBottom ? "rounded-xl" : "rounded-t-xl"} border border-white bg-custom-purple-300 font-poppins text-white`}>
+    <div
+      className={`flex w-[340px] flex-col overflow-hidden ${
+        roundedBottom ? "rounded-xl" : "rounded-t-xl"
+      } border border-white bg-custom-purple-300 font-poppins text-white`}
+    >
       {/* Render the header */}
       <h2 className="flex w-full items-center  justify-center gap-1 rounded-xl p-2.5 text-center text-base font-bold">
         <span className="text-red-600">*</span>

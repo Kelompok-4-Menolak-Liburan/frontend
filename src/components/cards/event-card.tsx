@@ -64,7 +64,7 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
         <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-3">
           {/* The event month and dates */}
-          <div className="flex flex-col items-center justify-center text-sm 2xl:text-base font-bold">
+          <div className="flex flex-col items-center justify-center text-sm font-bold 2xl:text-base">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,7 +73,9 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-sm lg:text-base 2xl:text-lg font-bold uppercase">{eventName}</p>
+            <p className="pb-1 text-sm font-bold uppercase lg:text-base 2xl:text-lg">
+              {eventName}
+            </p>
             <p className="text-xs lg:text-sm">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
@@ -89,7 +91,7 @@ const EventCard: React.FC<EventCardProps> = ({
             height={32}
             className="aspect-square  rounded-full object-cover object-center"
           />
-          <p className="text-xs 2xl:text-sm font-bold">{eventOrganizer}</p>
+          <p className="text-xs font-bold 2xl:text-sm">{eventOrganizer}</p>
         </div>
       </div>
     </div>

@@ -10,11 +10,11 @@ const Button = ({
   size: "extra-small" | "small" | "normal" | "large" | "extra-large";
   onClick?: () => void;
   color:
-  | "purple-primary"
-  | "purple-secondary"
-  | "purple-tertiary"
-  | "green-primary"
-  | "green-secondary";
+    | "purple-primary"
+    | "purple-secondary"
+    | "purple-tertiary"
+    | "green-primary"
+    | "green-secondary";
   children: string | JSX.Element;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -51,8 +51,9 @@ const Button = ({
       aria-label={
         typeof children === "string" ? `${children} Button` : "Button"
       }
-      className={`rounded-full font-poppins text-base font-bold transition duration-300 hover:opacity-80 disabled:cursor-not-allowed ${fullWidth ? "w-full" : "w-fit"
-        } ${sizeEffect[size]} ${colorStyle[color]} `}
+      className={`rounded-full font-poppins text-base font-bold transition duration-300 hover:opacity-80 disabled:cursor-not-allowed ${
+        fullWidth ? "w-full" : "w-fit"
+      } ${sizeEffect[size]} ${colorStyle[color]} `}
     >
       {children}
     </button>
