@@ -1,4 +1,5 @@
 "use client"
+import Button from '@/components/button';
 import EventCard from '@/components/cards/event-card';
 import Dropdown from '@/components/drop-down';
 import Header from '@/components/header';
@@ -20,6 +21,8 @@ type EventCardData = {
     eventStartDate: Date;
     eventEndDate: Date;
     timeZone: string;
+    topic: string;
+    category: string;
 };
 export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     const [search, setSearch] = useState("")
@@ -30,25 +33,79 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
         endDate: new Date(),
         key: "selection",
     });
+    const [selectedTopic, setSelectedTopic] = useState<string>("");
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+    const filteredData = data.filter(item => {
+        const includesSearch = item.eventName.includes(search);
+        const matchesTopic = !selectedTopic || item.topic.includes(selectedTopic);
+        const matchesCategory = !selectedCategory || item.category.includes(selectedCategory);
+
+        return includesSearch && matchesTopic && matchesCategory;
+    });
+
+    const categories = [
+        "Festival, Fair, Bazaar",
+        "Konser",
+        "Pertandingan",
+        "Exhibition, Expo, Pameran",
+        "Konferensi",
+        "Workshop",
+        "Pertunjukan",
+        "Atraksi, Theme Park",
+        "Akomodasi",
+        "Seminar, Talk Show",
+        "Social Gathering",
+        "Training, Sertifikasi, Ujian",
+        "Pensi, Event Sekolah, Kampus",
+        "Trip, Tur",
+        "Turnamen, Kompetisi",
+        "Lainnya"
+    ]
+    const topics = [
+        "Anak, Keluarga",
+        "Bisnis",
+        "Desain, Foto, Video",
+        "Fashion, Kecantikan",
+        "Film, Sinema",
+        "Game, E-Sports",
+        "Hobi, Kerajinan Tangan",
+        "Investasi, Saham",
+        "Karir, Pengembangan Diri",
+        "Keagamaan",
+        "Kesehatan, Kebugaran",
+        "Keuangan, Finansial",
+        "Lingkungan Hidup",
+        "Makanan, Minuman",
+        "Marketing",
+        "Musik",
+        "Olahraga",
+        "Otomotif",
+        "Sains, Teknologi",
+        "Seni, Budaya",
+        "Sosial, Hukum, Politik",
+        "Standup Comedy",
+        "Pendidikan, Beasiswa",
+        "Tech, Start-Up",
+        "Wisata & Liburan",
+        "Lainnya"
+    ]
+
+
     const dropdownData = [
         {
-            options: ['Option 1', 'Option 2', 'Option 3'],
+            options: categories,
             placeholder: 'Select an option',
-            selectedOption: 'Option 1',
-            setSelectedOption: () => { },
+            selectedOption: selectedCategory,
+            setSelectedOption: setSelectedCategory
         },
         {
-            options: ['Choice A', 'Choice B', 'Choice C'],
-            selectedOption: 'Choice B',
-            setSelectedOption: () => { },
+            options: topics,
+            placeholder: 'Select an option',
+            selectedOption: selectedTopic,
+            setSelectedOption: setSelectedTopic
         },
-        {
-            options: ['Apple', 'Banana', 'Orange', 'Grapes'],
-            placeholder: 'Choose a fruit',
-            selectedOption: 'Banana',
-            setSelectedOption: () => { },
-        },
-        // ... Add more data for other DropdownProps
+
     ];
 
 
@@ -75,7 +132,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     ];
 
     return (
-        <div className='flex flex-col w-full gap-6'> <Header
+        <div className='flex flex-col w-full gap-4 lg:gap-6'> <Header
             dateRange={dateRange}
             setDateRange={setDateRange}
             search={search}
@@ -85,36 +142,55 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
             avatarImageUrl="/logo.png"
             avatarName="Tes"
             avatarRole="Customer"
-        />
+        />{!search ?
             <ImageSlider imageArray={dummyImages} />
+            : <div className='flex gap-3 items-center  flex-wrap'>
+                {dropdownData.map((item, index) => {
+                    return <Dropdown key={index} options={item.options} placeholder={item.placeholder} selectedOption={item.selectedOption} setSelectedOption={item.setSelectedOption} />
+                })}
+            </div>}
 
-            <div className='flex justify-between items-center pt-4'>
-                <h1 className='text-white font-poppins text-3xl font-bold'>Upcoming Events</h1>
-                <div className='flex gap-3 items-center justify-center'>
-                    {dropdownData.map((item, index) => {
-                        return <Dropdown key={index} options={item.options} placeholder={item.placeholder} selectedOption={item.selectedOption} setSelectedOption={item.setSelectedOption} />
-                    })}
+            <div className='flex flex-col lg:flex-row justify-between lf:items-center gap-4 pt-2 lg:pt-4'>
+                {search ?
+                    <h2 className='text-white font-poppins text-lg lg:text-xl font-bold'>Search results for &quot;{search}&quot;</h2>
+                    :
+                    <>
+                        <h1 className='text-white font-poppins text-xl lg:text-3xl font-bold'>Upcoming Events</h1>
+                        <div className='flex gap-3 items-center  flex-wrap'>
+                            {dropdownData.map((item, index) => {
+                                return <Dropdown key={index} options={item.options} placeholder={item.placeholder} selectedOption={item.selectedOption} setSelectedOption={item.setSelectedOption} />
+                            })}
+                        </div>
+                    </>
+                }
+            </div>
+            {filteredData.length > 0 ?
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 w-full">
+                    {filteredData.map((event, index) => (
+                        <EventCard
+                            key={index}
+                            imageUrl={event.imageUrl}
+                            price={event.price}
+                            eventEndTime={event.eventEndTime}
+                            eventStartTime={event.eventStartTime}
+                            location={event.location}
+                            eventName={event.eventName}
+                            eventOrganizer={event.eventOrganizer}
+                            imageEventOrganizerUrl={event.imageEventOrganizerUrl}
+                            eventStartDate={event.eventStartDate}
+                            eventEndDate={event.eventEndDate}
+                            timeZone={event.timeZone}
+                        />
+                    ))}
                 </div>
-            </div>
 
-            <div className="grid grid-cols-4 gap-10 w-full">
-                {data.map((event, index) => (
-                    <EventCard
-                        key={index}
-                        imageUrl={event.imageUrl}
-                        price={event.price}
-                        eventEndTime={event.eventEndTime}
-                        eventStartTime={event.eventStartTime}
-                        location={event.location}
-                        eventName={event.eventName}
-                        eventOrganizer={event.eventOrganizer}
-                        imageEventOrganizerUrl={event.imageEventOrganizerUrl}
-                        eventStartDate={event.eventStartDate}
-                        eventEndDate={event.eventEndDate}
-                        timeZone={event.timeZone}
-                    />
-                ))}
-            </div>
+                : <h3 className='text-center text-custom-green-normal  items-center justify-center text-2xl pt-4 font-bold lg:text-3xl font-poppins '>Not found results</h3>}
+            {(selectedCategory || selectedTopic) &&
+                <div className='w-full flex items-center justify-center'>
+
+                    <Button size='extra-small' color='green-primary' onClick={() => { setSelectedCategory(""); setSelectedTopic("") }}>Delete the filters</Button>
+                </div>
+            }
         </div>
     )
 }
