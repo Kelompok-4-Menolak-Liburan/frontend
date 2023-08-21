@@ -123,3 +123,10 @@ export default function Home() {
     </main>
   );
 }
+export const metadata: Metadata = {
+  title: "SeTiket",
+  description: "Homepage",
+  generator: "Next.js",
+  applicationName: "SeTiket",
+  colorScheme: "dark",
+};

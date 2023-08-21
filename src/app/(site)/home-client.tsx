@@ -7,8 +7,8 @@ import ImageSlider from "@/components/image-slider";
 import React, { useState } from "react";
 import { Range } from "react-date-range";
 
-// import required modules
-type EventCardData = {
+// Define the expected structure of event data
+interface EventCardData {
   imageUrl: string;
   price: number;
   eventEndTime: string;
@@ -24,6 +24,7 @@ type EventCardData = {
   category: string;
 };
 export const HomeClient = ({ data }: { data: EventCardData[] }) => {
+  // State for search input
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
   // State to manage the selected date range.
@@ -32,9 +33,12 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     endDate: new Date(),
     key: "selection",
   });
+
+  // State for selected topic and category
   const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
+  // Filtering logic based on search, topic, and category
   const filteredData = data.filter((item) => {
     const includesSearch = item.eventName.includes(search);
     const matchesTopic = !selectedTopic || item.topic.includes(selectedTopic);
@@ -44,6 +48,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     return includesSearch && matchesTopic && matchesCategory;
   });
 
+  // Lists of categories and topics for dropdowns
   const categories = [
     "Festival, Fair, Bazaar",
     "Konser",
@@ -107,6 +112,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     },
   ];
 
+  // Dummy image data for the image slider
   const dummyImages = [
     {
       imageUrl: "/ticket-image.jpg",
@@ -131,7 +137,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
   return (
     <div className="flex w-full flex-col gap-4 lg:gap-4">
-      {" "}
+      {/* Header component */}
       <Header
         dateRange={dateRange}
         setDateRange={setDateRange}
@@ -143,6 +149,8 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
         avatarName="Tes"
         avatarRole="Customer"
       />
+
+      {/* Image slider or dropdowns */}
       {!search ? (
         <ImageSlider imageArray={dummyImages} />
       ) : (
@@ -160,12 +168,16 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           })}
         </div>
       )}
+
+      {/* Display search results or upcoming events */}
       <div className="lg:items-center flex flex-col justify-between gap-9 pt-2 lg:flex-row lg:pt-4">
         {search ? (
+          // Display search results header
           <h2 className="font-poppins text-lg font-bold text-white lg:text-xl">
             Search results for &quot;{search}&quot;
           </h2>
         ) : (
+          // Display upcoming events header
           <>
             <h1 className="font-poppins text-xl font-bold text-white lg:text-2xl">
               Upcoming Events
@@ -186,6 +198,8 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           </>
         )}
       </div>
+
+      {/* Display event cards or "Not found" message */}
       {filteredData.length > 0 ? (
         <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredData.map((event, index) => (
@@ -210,6 +224,8 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           Not found results
         </h3>
       )}
+
+      {/* Display "Delete Filters" button */}
       {(selectedCategory || selectedTopic) && (
         <div className="flex w-full items-center justify-center pt-4">
           <Button
