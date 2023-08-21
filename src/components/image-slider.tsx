@@ -28,7 +28,7 @@ const ImageSlider = ({ imageArray }: { imageArray: ImageSliderProps[] }) => {
                 height={imageArray[currentIndex].imageHeight}
                 alt="Image"
                 key={imageArray[currentIndex].imageAlt}
-                className="w-full h-[300px] animate-blink rounded-3xl object-center object-cover"
+                className="w-full h-[200px] lg:h-[300px] animate-blink rounded-3xl object-center object-cover"
             />
             <BulletPagination
                 numberPage={imageArray.length}

@@ -53,18 +53,18 @@ const EventCard: React.FC<EventCardProps> = ({
           className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-base">
+        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm lg:text-base">
           {getFormattedCurrency(price)}
         </p>
         {/* Adding an "Add to Archive" button */}
         <button className="absolute right-4 top-4 z-10 aspect-square rounded-md bg-custom-purple-300 p-1.5">
-          <ArchiveAdd size={28} color="#FFFFFF" variant="Bold" />
+          <ArchiveAdd size={24} color="#FFFFFF" variant="Bold" />
         </button>
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
-        <div className="flex h-full w-full gap-6 py-4">
+        <div className="flex h-full w-full gap-4 lg:gap-6 py-2 lg:py-4">
           {/* The event month and dates */}
-          <div className="flex flex-col items-center justify-center text-lg font-bold">
+          <div className="flex flex-col items-center justify-center text-base lg:text-lg font-bold">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,23 +73,23 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-xl font-bold uppercase">{eventName}</p>
-            <p className="text-lg">
+            <p className="pb-1 text-base lg:text-xl font-bold uppercase">{eventName}</p>
+            <p className="text-sm lg:text-lg">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
-            <p className="text-lg">{location}</p>
+            <p className="text-sm lg:text-lg">{location}</p>
           </div>
         </div>
         {/* Event organizer information */}
-        <div className="flex items-center gap-4 border-t border-dashed border-white py-3">
+        <div className="flex items-center gap-3 lg:gap-4 border-t border-dashed border-white py-3">
           <Image
             src={imageEventOrganizerUrl}
             alt="Avatar"
             width={36}
             height={36}
-            className="aspect-square h-9 w-9 rounded-full object-cover object-center"
+            className="aspect-square w-6 lg:w-9 rounded-full object-cover object-center"
           />
-          <p className="text-xl font-bold">{eventOrganizer}</p>
+          <p className="text-[15px] lg:text-xl font-bold">{eventOrganizer}</p>
         </div>
       </div>
     </div>

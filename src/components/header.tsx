@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({
     };
   }, []);
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex w-full flex-col gap-2 lg:gap-4">
       <div className="flex w-full items-center gap-4">
         <div className="flex-1">
           {/* Render the TextInput component for search input. */}
@@ -64,14 +64,14 @@ const Header: React.FC<HeaderProps> = ({
         </div>
         <button
           onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-          className="relative"
+          className="lg:relative"
           ref={calendarRef}
         >
           <Calendar2 size={30} color="#FFFFFF" />
 
           {/* Render the Calendar component when the calendar is open. */}
           {isCalendarOpen && (
-            <div className="absolute left-1/2 top-16 -translate-x-1/2 animate-fade-in">
+            <div className="absolute left-1/2 top-32 lg:top-16 -translate-x-1/2 animate-fade-in">
               <Calendar
                 value={dateRange}
                 onChange={(value) => setDateRange(value.selection)}
@@ -81,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({
         </button>
         {/* Render the avatar section if avatarName and avatarRole are provided, otherwise render registration and login buttons. */}
         {avatarName && avatarRole ? (
-          <div className="px-4">
+          <div className="px-4 max-lg:hidden">
             <Avatar
               size="normal"
               imageUrl={avatarImageUrl}
@@ -104,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
         {/* Map and render hashtags if they are provided. */}
         {hastags?.map((item, index) => {
           return (
-            <p key={index} className="text-base text-white">
+            <p key={index} className="text-sm lg:text-base text-white">
               {item}
             </p>
           );
