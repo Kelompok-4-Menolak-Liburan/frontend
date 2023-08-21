@@ -1,24 +1,17 @@
 "use client";
-import { Star1, Ticket, Repeat, Setting, LogoutCurve } from "iconsax-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-// An array of navigation items, each containing an icon, label, and href.
-const navigationItems = [
-  { icon: Star1, label: "Favorites", href: "/favorites" },
-  { icon: Ticket, label: "Ticket", href: "/ticket" },
-  { icon: Repeat, label: "History", href: "/history" },
-  { icon: Setting, label: "Settings", href: "/settings" },
-];
+import { navigationItems } from "./helpers";
+import { LogoutCurve } from "iconsax-react";
 
 const Sidebar = () => {
   // Using the usePathname hook to get the current pathname
   const pathname = usePathname();
 
   return (
-    <nav className="fixed flex h-screen max-w-[303px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white">
+    <nav className="fixed flex h-screen max-w-[250px] flex-col items-center justify-between rounded-r-[30px] bg-custom-purple-500 px-[40px] py-[55px] font-poppins text-white">
       {/* Sidebar header */}
-      <h1 className="text-[33px] font-bold">SeTiket</h1>
+      <h1 className="text-2xl font-bold">SeTiket</h1>
 
       {/* Navigation items list */}
       <ul className="flex flex-col gap-3">
@@ -40,7 +33,7 @@ const Sidebar = () => {
               {/* Displaying the icon with dynamic variant based on the active status */}
               {
                 <item.icon
-                  size="32"
+                  size="24"
                   color="#FFFFFF"
                   variant={`${
                     pathname.toLowerCase().includes(item.href.toLowerCase()) ||
@@ -50,7 +43,7 @@ const Sidebar = () => {
                   }`}
                 />
               }
-              <h2 className="text-[19px]">{item.label}</h2>
+              <h2 className="text-base">{item.label}</h2>
             </Link>
           </li>
         ))}
@@ -58,8 +51,8 @@ const Sidebar = () => {
       {/* Logout button */}
       <button className="rounded-full transition duration-300 hover:bg-custom-purple-300">
         <Link href="/tes" className="flex items-center gap-3 px-6 py-3">
-          <LogoutCurve size="32" color="#FFFFFF" />
-          <h2 className="text-[19px]">Logout</h2>
+          <LogoutCurve size="24" color="#FFFFFF" />
+          <h2 className="text-base">Logout</h2>
         </Link>
       </button>
     </nav>
