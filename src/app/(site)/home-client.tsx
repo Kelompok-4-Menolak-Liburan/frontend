@@ -43,13 +43,13 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
   // Filtering logic based on search, topic, and category
   const filteredData = data.filter((item) => {
-    const includesNameSearch = item.eventName.toLowerCase().includes(search);
-    const includesLocationSearch = item.location.toLowerCase().includes(search);
+    const includesNameSearch = item.eventName.toLowerCase().includes(search.toLowerCase());
+    const includesLocationSearch = item.location.toLowerCase().includes(search.toLowerCase());
     const matchesTopic =
-      !selectedTopic || item.topic.toLowerCase().includes(selectedTopic);
+      !selectedTopic || item.topic.toLowerCase().includes(selectedTopic.toLowerCase());
     const matchesCategory =
       !selectedCategory ||
-      item.category.toLowerCase().includes(selectedCategory);
+      item.category.toLowerCase().includes(selectedCategory.toLowerCase());
 
     // Add the date range filtering condition
     const startDate = selectedDate?.startDate;
