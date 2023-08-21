@@ -1,5 +1,5 @@
 // Importing required modules and components
-import { getFormattedCurrency } from "@/libs/utlils";
+import { getFormattedCurrency } from "@/libs/utils";
 import { format, getDate } from "date-fns";
 import { ArchiveAdd } from "iconsax-react";
 import Image from "next/image";
