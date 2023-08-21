@@ -49,11 +49,9 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
     const includesLocationSearch = item.location
       .toLowerCase()
       .includes(search.toLowerCase());
-    const matchesTopic =
-      !selectedTopic || item.topic.includes(selectedTopic);
+    const matchesTopic = !selectedTopic || item.topic.includes(selectedTopic);
     const matchesCategory =
-      !selectedCategory ||
-      item.category.includes(selectedCategory);
+      !selectedCategory || item.category.includes(selectedCategory);
 
     // Add the date range filtering condition
     const startDate = selectedDate?.startDate;
