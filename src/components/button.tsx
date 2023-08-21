@@ -51,7 +51,7 @@ const Button = ({
       aria-label={
         typeof children === "string" ? `${children} Button` : "Button"
       }
-      className={`rounded-full font-poppins text-lg font-bold transition duration-300 hover:opacity-80 disabled:cursor-not-allowed ${
+      className={`rounded-full font-poppins text-base font-bold transition duration-300 hover:opacity-80 disabled:cursor-not-allowed ${
         fullWidth ? "w-full" : "w-fit"
       } ${sizeEffect[size]} ${colorStyle[color]} `}
     >
