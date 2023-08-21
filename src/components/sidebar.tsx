@@ -63,26 +63,24 @@ const Sidebar = () => {
         </div>
       </div>
       <div
-        className={`fixed z-50 flex ${
-          isExpand
-            ? "max-lg:translate-x-0"
-            : "pointer-events-none max-lg:-translate-x-full"
-        } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[303px]`}
+        className={`fixed z-50 flex ${isExpand
+          ? "max-lg:translate-x-0"
+          : "max-lg:pointer-events-none max-lg:-translate-x-full"
+          } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[250px]`}
       >
         {/* Sidebar header */}
-        <h1 className="text-2xl font-bold lg:text-[33px]">SeTiket</h1>
+        <h1 className="text-2xl font-bold lg:text-3xl">SeTiket</h1>
 
         {/* Navigation items list */}
         <ul className="flex flex-col gap-3">
           {navigationItems.map((item, index) => (
             <li
               key={index}
-              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${
-                pathname.toLowerCase().includes(item.href.toLowerCase()) ||
+              className={`rounded-full transition duration-300 hover:bg-custom-purple-300 ${pathname.toLowerCase().includes(item.href.toLowerCase()) ||
                 pathname.toLowerCase() === item.href.toLowerCase()
-                  ? "bg-custom-purple-300"
-                  : "bg-transparent"
-              }`}
+                ? "bg-custom-purple-300"
+                : "bg-transparent"
+                }`}
             >
               {/* Link to the respective navigation item */}
               <Link
@@ -94,17 +92,16 @@ const Sidebar = () => {
                   <item.icon
                     size="28"
                     color="#FFFFFF"
-                    variant={`${
-                      pathname
-                        .toLowerCase()
-                        .includes(item.href.toLowerCase()) ||
+                    variant={`${pathname
+                      .toLowerCase()
+                      .includes(item.href.toLowerCase()) ||
                       pathname.toLowerCase() === item.href.toLowerCase()
-                        ? "Bold"
-                        : "Outline"
-                    }`}
+                      ? "Bold"
+                      : "Outline"
+                      }`}
                   />
                 }
-                <h2 className="text-base lg:text-[19px]">{item.label}</h2>
+                <h2 className="text-base lg:text-lg">{item.label}</h2>
               </Link>
             </li>
           ))}
@@ -113,7 +110,7 @@ const Sidebar = () => {
         <button className="rounded-full transition duration-300 hover:bg-custom-purple-300">
           <Link href="/tes" className="flex items-center gap-3 px-6 py-3">
             <LogoutCurve size="28" color="#FFFFFF" />
-            <h2 className="text-base lg:text-[19px]">Logout</h2>
+            <h2 className="text-base lg:text-lg">Logout</h2>
           </Link>
         </button>
       </div>

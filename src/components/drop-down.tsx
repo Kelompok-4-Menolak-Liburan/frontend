@@ -51,7 +51,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         onClick={() => setOpen(!open)}
       >
         <div className="flex w-full items-center justify-center gap-4 rounded-xl bg-custom-green-normal px-4 py-1 lg:px-5">
-          <p className="text-center font-poppins text-[13px] font-semibold capitalize text-white lg:text-base">
+          <p className="text-center font-poppins text-[12px] font-semibold capitalize text-white lg:text-sm">
             {selectedOption || placeholder}
           </p>
           <ArrowDown2 size={24} color="#FFFFFF" />
@@ -59,11 +59,10 @@ const Dropdown: React.FC<DropdownProps> = ({
       </div>
       {/* Dropdown open */}
       <div
-        className={`${
-          open
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-[60px] opacity-0"
-        } absolute left-1/2 top-10 z-20 w-full -translate-x-1/2 rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-14 lg:min-w-[250px]`}
+        className={`custom-scrollbar ${open
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none -translate-y-[60px] opacity-0"
+          } absolute left-1/2 top-10 z-20 w-full -translate-x-1/2 max-h-[300px] overflow-y-scroll rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-12 lg:min-w-[250px]`}
       >
         {/* Mapping options */}
         {options.map((option) => (

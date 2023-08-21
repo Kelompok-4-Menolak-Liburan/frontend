@@ -16,8 +16,8 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
     },
     normal: {
       imageStyle: "w-[30px] aspect-square lg:w-[50px]",
-      primaryTextStyle: "text-base lg:text-lg",
-      childTextStyle: "text-sm lg:text-base",
+      primaryTextStyle: "text-base",
+      childTextStyle: "text-sm",
     },
     large: {
       imageStyle: "w-[75px] aspect-square",

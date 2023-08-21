@@ -42,7 +42,7 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[103%]">
+    <div className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]">
       <div className="relative h-[172px] w-full">
         {/* The event image */}
         <Image
@@ -53,7 +53,7 @@ const EventCard: React.FC<EventCardProps> = ({
           className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm lg:text-base">
+        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-1 text-sm lg:text-base">
           {getFormattedCurrency(price)}
         </p>
         {/* Adding an "Add to Archive" button */}
@@ -62,9 +62,9 @@ const EventCard: React.FC<EventCardProps> = ({
         </button>
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
-        <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-4">
+        <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-3">
           {/* The event month and dates */}
-          <div className="flex flex-col items-center justify-center text-base font-bold lg:text-lg">
+          <div className="flex flex-col items-center justify-center text-sm font-bold lg:text-base">
             <p>{formattedMonth(eventStartDate)}</p>
             <p>
               {formattedDate(eventStartDate)}{" "}
@@ -73,25 +73,25 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-base font-bold uppercase lg:text-xl">
+            <p className="pb-1 text-base font-bold uppercase lg:text-lg">
               {eventName}
             </p>
-            <p className="text-sm lg:text-lg">
+            <p className="text-sm lg:text-base">
               {eventStartTime + " - " + eventEndTime} {timeZone}
             </p>
-            <p className="text-sm lg:text-lg">{location}</p>
+            <p className="text-sm lg:text-base">{location}</p>
           </div>
         </div>
         {/* Event organizer information */}
-        <div className="flex items-center gap-3 border-t border-dashed border-white py-3 lg:gap-4">
+        <div className="flex items-center gap-3 border-t border-dashed border-white py-2.5 lg:gap-4">
           <Image
             src={imageEventOrganizerUrl}
             alt="Avatar"
             width={36}
             height={36}
-            className="aspect-square w-6 rounded-full object-cover object-center lg:w-9"
+            className="aspect-square w-5 rounded-full object-cover object-center lg:w-8"
           />
-          <p className="text-[15px] font-bold lg:text-xl">{eventOrganizer}</p>
+          <p className="text-[15px] font-bold lg:text-lg">{eventOrganizer}</p>
         </div>
       </div>
     </div>

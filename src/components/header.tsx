@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
 
           {/* Render the Calendar component when the calendar is open. */}
           {isCalendarOpen && (
-            <div className="absolute left-1/2 top-32 -translate-x-1/2 animate-fade-in lg:top-16">
+            <div className="absolute left-1/2 top-32 z-[30] -translate-x-1/2 animate-fade-in lg:top-16">
               <Calendar
                 value={dateRange}
                 onChange={(value) => setDateRange(value.selection)}
@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = ({
         {/* Map and render hashtags if they are provided. */}
         {hastags?.map((item, index) => {
           return (
-            <p key={index} className="text-sm text-white lg:text-base">
+            <p key={index} className="text-xs text-white lg:text-sm">
               {item}
             </p>
           );
