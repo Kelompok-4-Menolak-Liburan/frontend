@@ -46,7 +46,7 @@ const TextInput: React.FC<TextInputProps> = ({
         colorEffect[color].inputStyle
       } bg-opacity-80 focus-within:border focus-within:border-custom-green-normal `}
     >
-      <div className="flex w-full flex-row items-center rounded-lg bg-transparent px-3.5 py-2.5 font-poppins lg:px-5 lg:py-3 ">
+      <div className="flex w-full flex-row items-center rounded-lg bg-transparent px-3.5 py-2 font-poppins lg:px-5 lg:py-2.5 ">
         {/* Search Icon for search type */}
         {boxType === "search" && (
           <SearchNormal1 size={24} color={colorEffect[color].searchIcon} />

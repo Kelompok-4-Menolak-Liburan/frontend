@@ -3,7 +3,7 @@ const Button = ({
   onClick,
   color,
   children,
-  disabled,
+  disabled = false,
   fullWidth,
   type = "button",
 }: {

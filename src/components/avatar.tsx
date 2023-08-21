@@ -20,7 +20,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
       childTextStyle: "text-sm",
     },
     large: {
-      imageStyle: "w-[75px] h-[75px]",
+      imageStyle: "w-[75px] aspect-square",
       primaryTextStyle: "text-[13px]",
       childTextStyle: "text-[11px]",
     },
@@ -34,7 +34,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, role, imageUrl }) => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center gap-3 lg:gap-4">
       <Image
         src={imageUrl}
         alt={name + " Avatar"}
