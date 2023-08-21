@@ -22,7 +22,7 @@ interface EventCardData {
   timeZone: string;
   topic: string;
   category: string;
-};
+}
 export const HomeClient = ({ data }: { data: EventCardData[] }) => {
   // State for search input
   const [search, setSearch] = useState("");
@@ -170,7 +170,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
       )}
 
       {/* Display search results or upcoming events */}
-      <div className="lg:items-center flex flex-col justify-between gap-9 pt-2 lg:flex-row lg:pt-4">
+      <div className="flex flex-col justify-between gap-9 pt-2 lg:flex-row lg:items-center lg:pt-4">
         {search ? (
           // Display search results header
           <h2 className="font-poppins text-lg font-bold text-white lg:text-xl">
