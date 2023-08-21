@@ -15,13 +15,13 @@ const PurchaseTicket: React.FC<PurchaseTicketProps> = ({
   return (
     <div className="flex w-full flex-col gap-1 rounded-2xl border border-white bg-custom-purple-300 px-7 py-4 font-poppins text-white">
       {/* Ticket name */}
-      <h3 className="text-xl font-bold">{ticketName}</h3>
-      <div className="flex flex-col">
+      <h3 className="text-base font-bold">{ticketName}</h3>
+      <div className="mt-2 flex flex-col">
         {/* Rendering a BulletList component to display the terms */}
-        <BulletList items={terms} style="text-base" />
-        <div className="ml-auto flex items-center gap-4">
+        <BulletList items={terms} style="text-sm" />
+        <div className="ml-auto mt-3 flex items-center gap-4">
           {/* Price */}
-          <p className="border-r border-white px-4 text-lg font-bold">
+          <p className="border-r border-white px-4 text-sm font-bold">
             {getFormattedCurrency(price)}
           </p>
           {/* Rendering a Button component */}
