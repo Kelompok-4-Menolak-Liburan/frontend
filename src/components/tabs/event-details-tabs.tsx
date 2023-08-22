@@ -28,8 +28,8 @@ const EventDetailsTabs = () => {
       ),
     },
     {
-      label: "Terms and Conditions",
-      content: <p>These are the terms and conditions.</p>,
+      label: "Rules",
+      content: <p>These are the rules.</p>,
     },
     {
       label: "Purchase",

@@ -21,11 +21,18 @@ export default function EventDetail() {
         avatarName="Tes"
         avatarRole="Customer"
       />
-      <div className="flex flex-row justify-between gap-16">
+      <Image
+        src="/banner.jpeg"
+        className="h-full w-full rounded-2xl lg:hidden"
+        width={500}
+        height={500}
+        alt={""}
+      />
+      <div className="flex flex-col-reverse justify-between gap-4 lg:flex-row lg:gap-16 ">
         <div className="flex h-full w-full flex-col gap-6">
           <Image
             src="/banner.jpeg"
-            className="h-full w-full rounded-2xl"
+            className="hidden h-full w-full rounded-2xl lg:block"
             width={500}
             height={500}
             alt={""}
@@ -33,7 +40,7 @@ export default function EventDetail() {
           <EventDetailsTabs />
         </div>
         <div className="flex flex-col gap-2">
-          <div className="flex w-80 flex-col gap-4 rounded-xl bg-custom-purple-300 p-7">
+          <div className="flex w-full flex-col gap-4 rounded-xl bg-custom-purple-300 p-7 lg:w-80">
             <h2 className="text-3xl font-bold text-white">
               Joyland Jakarta 2023
             </h2>
