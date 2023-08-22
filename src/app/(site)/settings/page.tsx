@@ -29,8 +29,8 @@ export default function EventDetail() {
         avatarRole="Customer"
       />
       <h2 className="py-8 text-2xl font-semibold">Account Settings</h2>
-      <div className="flex flex-row gap-10">
-        <div className="flex w-1/2 flex-col">
+      <div className="flex flex-col gap-10 lg:flex-row">
+        <div className="flex w-full flex-col lg:w-1/2">
           <h3 className="text-xl font-semibold">Basic Information</h3>
           <span className="w-full border-spacing-y-10 border-b"></span>
 
@@ -87,7 +87,7 @@ export default function EventDetail() {
             </div>
           </div>
         </div>
-        <div className="flex w-1/2 flex-col">
+        <div className="flex w-full flex-col lg:w-1/2">
           <h3 className="text-xl font-semibold">Change Password</h3>
           <span className="w-full border-spacing-y-10 border-b"></span>
 
