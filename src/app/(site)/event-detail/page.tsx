@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Calendar2, Clock, Location } from "iconsax-react";
 import React, { useState } from "react";
+import Link from "next/link";
 
 export default function EventDetail() {
   const [search, setSearch] = useState("");
@@ -73,7 +74,7 @@ export default function EventDetail() {
               <span className="text-sm font-bold text-white">Rp. 150.000</span>
             </div>
             <Button color="green-primary" size="normal" fullWidth>
-              See Ticket
+              <Link href="/event-detail/checkout">See Ticket</Link>
             </Button>
           </div>
           <div className="flex flex-row items-center gap-4 rounded-xl bg-custom-purple-300 p-5">
