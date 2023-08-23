@@ -21,7 +21,7 @@ const Tabs = ({ tabs }: TabsProps) => {
   return (
     <div className="flex w-full flex-col font-poppins text-white">
       {/* Tab header section */}
-      <div className="flex w-full border-spacing-y-10 items-center gap-4 border-b border-white pb-3 text-sm font-bold capitalize lg:gap-10 lg:text-base">
+      <div className="flex w-full border-spacing-y-10 items-center gap-10 border-b border-white pb-3 text-base font-bold capitalize">
         {tabs.map((tab, index) => (
           <button
             key={index}
