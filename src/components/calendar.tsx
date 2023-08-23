@@ -16,8 +16,9 @@ const Calendar = ({
 }) => {
   return (
     <div
-      className={`flex w-[340px] flex-col overflow-hidden ${roundedBottom ? "rounded-xl" : "rounded-t-xl"
-        } border border-white bg-custom-purple-300 font-poppins text-white`}
+      className={`flex w-[340px] flex-col overflow-hidden ${
+        roundedBottom ? "rounded-xl" : "rounded-t-xl"
+      } border border-white bg-custom-purple-300 font-poppins text-white`}
     >
       {/* Render the header */}
       <h2 className="flex w-full items-center  justify-center gap-1 rounded-xl p-2.5 text-center text-base font-bold">

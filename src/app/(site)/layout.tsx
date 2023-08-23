@@ -1,9 +1,8 @@
-"use client"
+"use client";
 import Sidebar from "@/components/sidebar/sidebar";
 import { createContext, useState } from "react";
 
 export const PopUp = createContext({});
-
 
 const SiteLayout = ({ children }: { children: React.ReactNode }) => {
   const [popUp, setPopUp] = useState<React.ReactNode | undefined>();

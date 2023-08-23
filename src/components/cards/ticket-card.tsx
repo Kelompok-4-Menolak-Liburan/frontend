@@ -25,7 +25,6 @@ const TicketCard: React.FC<TicketCardProps> = ({
   dateTimePurchase,
   imageTicketUrl,
 }) => {
-
   // Formatting the purchased date and time
   const formattedPurchasedDateTime = format(
     dateTimePurchase,
@@ -61,8 +60,9 @@ const TicketCard: React.FC<TicketCardProps> = ({
   };
   return (
     <div
-      className={`w-full ${type === "history" ? "py-7" : "py-5"
-        } flex items-center justify-between rounded-[10px] border border-white  bg-custom-purple-300 px-7 font-poppins text-white`}
+      className={`w-full ${
+        type === "history" ? "py-7" : "py-5"
+      } flex items-center justify-between rounded-[10px] border border-white  bg-custom-purple-300 px-7 font-poppins text-white`}
     >
       <div className="flex flex-col gap-1">
         {/* Event Name */}
