@@ -51,7 +51,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         onClick={() => setOpen(!open)}
       >
         <div className="flex w-full items-center justify-center gap-4 rounded-xl bg-custom-green-normal px-4 py-1 lg:px-5">
-          <p className="text-center font-poppins text-[12px] font-semibold capitalize text-white lg:text-sm">
+          <p className="text-center font-poppins text-[12px] font-semibold text-white lg:text-sm">
             {selectedOption || placeholder}
           </p>
           <ArrowDown2 size={24} color="#FFFFFF" />
@@ -59,18 +59,17 @@ const Dropdown: React.FC<DropdownProps> = ({
       </div>
       {/* Dropdown open */}
       <div
-        className={`custom-scrollbar ${
-          open
+        className={`custom-scrollbar ${open
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-[60px] opacity-0"
-        } absolute left-1/2 top-10 z-20 max-h-[300px] w-full -translate-x-1/2 overflow-y-scroll rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-12 lg:min-w-[250px]`}
+          } absolute left-1/2 top-10 z-20 max-h-[300px] w-full -translate-x-1/2 overflow-y-scroll rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-12 lg:min-w-[250px]`}
       >
         {/* Mapping options */}
         {options.map((option) => (
           <p
             key={option}
             onClick={() => handleOptionClick(option)}
-            className="cursor-pointer break-all px-5 py-2 text-center font-poppins text-[12px] font-semibold capitalize text-white transition duration-300 hover:bg-custom-green-dark hover:bg-opacity-30 lg:text-sm"
+            className="cursor-pointer break-all px-5 py-2 text-center font-poppins text-[12px] font-semibold text-white transition duration-300 hover:bg-custom-green-dark hover:bg-opacity-30 lg:text-sm"
           >
             {option}
           </p>

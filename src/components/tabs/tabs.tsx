@@ -41,9 +41,8 @@ const Tabs = ({ tabs }: TabsProps) => {
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`${
-              activeTabIndex === index ? "flex" : "hidden"
-            } animate-blink`}
+            className={`${activeTabIndex === index ? "flex" : "hidden"
+              } animate-blink`}
           >
             {tab.content}
           </div>
