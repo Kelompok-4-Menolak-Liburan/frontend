@@ -13,8 +13,8 @@ const Pagination: FC<PaginationProps> = ({
 }) => {
     const MAX_VISIBLE_PAGES = 7;
 
+    // Calculate the range of visible page numbers based on current page
     let startPage: number, endPage: number;
-
     if (currentNumberPage <= Math.floor(MAX_VISIBLE_PAGES / 2)) {
         startPage = 1;
         endPage = Math.min(numberPage, MAX_VISIBLE_PAGES);
@@ -26,14 +26,17 @@ const Pagination: FC<PaginationProps> = ({
         endPage = currentNumberPage + Math.floor(MAX_VISIBLE_PAGES / 2);
     }
 
+    // Determine whether to show ellipsis for pagination
     const shouldShowStartEllipsis = startPage > 1;
     const shouldShowEndEllipsis = endPage < numberPage;
 
+    // Handle previous page click
     const handlePreviousClick = () => {
         const newPage = ((currentNumberPage - 2 + numberPage) % numberPage) + 1;
         setCurrentNumberPage(newPage);
     };
 
+    // Handle next page click
     const handleNextClick = () => {
         const newPage = (currentNumberPage % numberPage) + 1;
         setCurrentNumberPage(newPage);
@@ -41,10 +44,12 @@ const Pagination: FC<PaginationProps> = ({
 
     return (
         numberPage > 1 && (
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-sm lg:text-base">
+                {/* Previous button */}
                 <button onClick={handlePreviousClick} className="bg-custom-purple-300 px-3 py-2 rounded-lg border border-white">Previous</button>
 
                 <div className="flex">
+                    {/* Render buttons or ellipsis for pages */}
                     {shouldShowStartEllipsis && (
                         <button
                             onClick={() => setCurrentNumberPage(1)}
@@ -54,9 +59,7 @@ const Pagination: FC<PaginationProps> = ({
                         </button>
                     )}
                     {shouldShowStartEllipsis && (
-                        <span aria-label="Ellipsis"
-                            className="transition border border-white duration-300 px-3 py-1 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
-                        >
+                        <span aria-label="Ellipsis" className="transition border border-white duration-300 px-3 py-1 hover:drop-shadow-[0px_0px_4px_#FFFFFF]">
                             ...
                         </span>
                     )}
@@ -74,9 +77,7 @@ const Pagination: FC<PaginationProps> = ({
                         </button>
                     ))}
                     {shouldShowEndEllipsis && (
-                        <span aria-label="Ellipsis"
-                            className="transition border border-white duration-300 px-3 py-1 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
-                        >
+                        <span aria-label="Ellipsis" className="transition border border-white duration-300 px-3 py-1 hover:drop-shadow-[0px_0px_4px_#FFFFFF]">
                             ...
                         </span>
                     )}
@@ -90,6 +91,7 @@ const Pagination: FC<PaginationProps> = ({
                     )}
                 </div>
 
+                {/* Next button */}
                 <button onClick={handleNextClick} className="bg-custom-purple-300 px-3 py-2 rounded-lg border border-white">Next</button>
             </div>
         )

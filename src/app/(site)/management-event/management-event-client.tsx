@@ -1,15 +1,14 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropdown from "@/components/drop-down";
-import EventList from "@/components/table/event-list";
+import EventList from "@/components/table/event-table";
 import Tabs from "@/components/tabs/tabs";
 import TextInput from "@/components/text-input";
 
 interface ManagementListProps {
-    no: number;
     imageUrl: string;
     eventName: string;
-    status: string
+    status: "active" | "not active";
     sold: number;
     view: number;
 }
@@ -21,57 +20,68 @@ interface ManagementEventClientProps {
 const ManagementEventClient: React.FC<ManagementEventClientProps> = ({ data }) => {
     const [search, setSearch] = useState("");
     const [selectedSort, setSelectedSort] = useState("");
-
-    const sortData = (option: string, events: ManagementListProps[]) => {
-        const [field, order] = option.split(" ");
-
-        if (field === "Event Name") {
-            events.sort((a, b) => (order === "asc" ? a.eventName > b.eventName : a.eventName < b.eventName) ? 1 : -1);
-        }
-        else if (field === "Sold") {
-            events.sort((a, b) => (a.sold - b.sold) * (order === "asc" ? 1 : -1));
-        } else if (field === "View") {
-            events.sort((a, b) => (a.view - b.view) * (order === "asc" ? 1 : -1));
-        }
-    };
-
-
-    const activeEvents = data.filter(event => event.status === "Active");
-    const notActiveEvents = data.filter(event => event.status !== "Active");
-
-    if (selectedSort) {
-        sortData(selectedSort, activeEvents);
-        sortData(selectedSort, notActiveEvents);
-    }
-
-    const tabs = [
-        { label: "Active", content: <EventList events={activeEvents} /> },
-        { label: "Not Active", content: <EventList events={notActiveEvents} /> },
-    ];
+    const [sortedData, setSortedData] = useState<ManagementListProps[]>([]);
 
     const sortOptions = [
-        "Event Name (asc)",
-        "Event Name (desc)",
-        "Sold (asc)",
-        "Sold (desc)",
-        "View (asc)",
-        "View (desc)",
+        "Sold asc",
+        "Sold desc",
+        "View asc",
+        "View desc",
     ];
+
+    useEffect(() => {
+        // Filter data based on search input
+        const filteredData = data.filter(event =>
+            event.eventName.toLowerCase().includes(search.toLowerCase())
+        );
+
+        let sortedEvents = [...filteredData];
+
+        // Sort the data if a sort option is selected
+        if (selectedSort) {
+            const [field, order] = selectedSort.split(" ");
+
+            sortedEvents.sort((a, b) => {
+                if (field === "Sold") {
+                    return order === "asc" ? a.sold - b.sold : b.sold - a.sold;
+                } else if (field === "View") {
+                    return order === "asc" ? a.view - b.view : b.view - a.view;
+                }
+
+                return 0;
+            });
+        }
+
+        setSortedData(sortedEvents);
+    }, [data, search, selectedSort]);
+
+    // Filtering data for tabs
+    const activeEvents = sortedData.filter(event => event.status === "active");
+    const notActiveEvents = sortedData.filter(event => event.status !== "active");
+
+    const tabs = [
+        { label: "All", content: <EventList events={sortedData} searchStatus={search.length > 0} /> },
+        { label: "Active", content: <EventList events={activeEvents} searchStatus={search.length > 0} /> },
+        { label: "Not Active", content: <EventList events={notActiveEvents} searchStatus={search.length > 0} /> },
+    ];
+
+
 
     return (
         <div className="flex flex-col gap-5 font-poppins text-white w-full">
-            <h1 className="text-3xl font-bold">Management Event</h1>
-            <div className="flex w-full items-center justify-center gap-5">
-                <div className="flex flex-1"><TextInput fullWidth setTextFieldValue={setSearch} textFieldValue={search} placeholder="Search Your Event" boxType="search" color="purple" /></div>
-                <div className="flex gap-2 items-center justify-center">
-                    <p className="text-base">Sort By:</p>
+            {/* Text Header */}
+            <h1 className="text-xl lg:text-3xl font-bold">Management Event</h1>
+            <div className="flex flex-col lg:flex-row w-full items-center justify-center gap-5">
+                {/* Search Filters */}
+                <div className="flex flex-1 max-lg:w-full"><TextInput fullWidth setTextFieldValue={setSearch} textFieldValue={search} placeholder="Search Your Event" boxType="search" color="purple" /></div>
+                {/* Dropdown filitering  */}
+                <div className="flex flex-col lg:flex-row gap-2 max-lg:w-full items-center justify-center">
+                    <p className="text-sm lg:text-base hidden lg:block">Sort By:</p>
                     <Dropdown placeholder="Set Your Filters Sort" options={sortOptions} selectedOption={selectedSort} setSelectedOption={setSelectedSort} />
                 </div>
             </div>
+            {/* Tabs Content  */}
             <Tabs tabs={tabs} />
-            <div className="w-full flex flex-col gap-2 items-center justify-center">
-                {/* Render additional components */}
-            </div>
         </div>
     );
 };

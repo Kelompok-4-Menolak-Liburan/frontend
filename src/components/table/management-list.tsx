@@ -5,36 +5,64 @@ interface ManagementListProps {
     no: number;
     imageUrl: string;
     eventName: string;
-    status: string
+    status: "active" | "not active"
     sold: number;
     view: number;
 }
 
 const ManagementList: React.FC<ManagementListProps> = ({ no, imageUrl, eventName, status, sold, view }) => {
     return (
-        <div className="w-full flex gap-16 py-3 px-6 bg-custom-purple-300 rounded-[10px] font-poppins text-white items-center text-base ">
-            <h3 className="w-[30px]">{no}</h3>
-            <Image alt={eventName + " Image"} src={imageUrl} width={120} height={60} className="object-center object-cover rounded-[10px] w-[120px] h-[60px]"></Image>
-            <h3 className="flex-1">{eventName}</h3>
-            <h3 className={`capitalize ${status.toLowerCase() === "active" ? "text-custom-green-normal" : "text-red-600"} font-semibold w-[150px]`}>{status}</h3>
-            <h3 className="w-[100px]">{sold}</h3>
-            <h3 className="w-[100px]">{view}</h3>
-            <div className="w-[70px]">
-                <button className="bg-custom-purple-200 rounded-lg w-[34px] aspect-square flex items-center justify-center">
+        <tr
+            key={no}
+            className="w-full bg-custom-purple-300 rounded-[20px] font-poppins text-white text-sm lg:text-base overflow-x-scroll"
+        >
+            {/* Numbering */}
+            <td className="py-3">{no}</td>
+            {/* Image */}
+            <td className="w-[120px] py-3">
+                <Image
+                    alt={eventName + " Image"}
+                    src={imageUrl}
+                    width={120}
+                    height={60}
+                    className="object-center object-cover rounded-[10px] w-[120px] h-[60px]"
+                />
+            </td>
+            {/* Event Name */}
+            {/* Event Name */}
+            <td className="py-3 min-w-[140px] px-2">{eventName}</td>
+            {/* Status */}
+            <td
+                className={`capitalize ${status.toLowerCase() === "active"
+                    ? "text-custom-green-normal"
+                    : "text-red-600"
+                    } font-semibold`}
+            >
+                {status}
+            </td>
+            {/* Sold */}
+            <td className="py-3">{sold}</td>
+            {/* View */}
+            <td className="py-3">{view}</td>
+            {/* BUtton Edit */}
+            <td className="py-3">
+                <button className="bg-custom-purple-200 rounded-lg w-[30px] m-auto flex items-center justify-center lg:w-[34px] aspect-square">
                     <Edit2 size={30} color="#FFFFFF" />
                 </button>
-            </div>
-            <div className="w-[70px]">
-                <button className="bg-custom-purple-200 rounded-lg w-[34px] aspect-square flex items-center justify-center">
-                    <Eye size={30} color="#FFFFFF" />
+            </td>
+            {/* BUtton See */}
+            <td className="py-3">
+                <button className="bg-custom-purple-200 rounded-lg w-[30px] m-auto flex items-center justify-center lg:w-[34px] aspect-square">
+                    <Eye size={26} color="#FFFFFF" />
                 </button>
-            </div>
-            <div className="w-[70px]">
-                <button className="bg-custom-purple-200 rounded-lg w-[34px] aspect-square flex items-center justify-center mr-20">
-                    <Chart size={30} color="#FFFFFF" />
+            </td>
+            {/* BUtton Chart */}
+            <td className="py-3">
+                <button className="bg-custom-purple-200 rounded-lg w-[30px] m-auto flex items-center justify-center lg:w-[34px] aspect-square">
+                    <Chart size={26} color="#FFFFFF" />
                 </button>
-            </div>
-        </div>
+            </td>
+        </tr>
     )
 }
 export default ManagementList
