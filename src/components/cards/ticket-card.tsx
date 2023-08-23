@@ -2,6 +2,7 @@ import { format, isSameDay, isSameMonth } from "date-fns";
 import { Calendar, Ticket } from "iconsax-react";
 import Button from "../button";
 import Image from "next/image";
+import { formattedEventDate } from "@/libs/utils";
 
 // Defining the prop types for the TicketCard component
 interface TicketCardProps {
@@ -24,16 +25,6 @@ const TicketCard: React.FC<TicketCardProps> = ({
   dateTimePurchase,
   imageTicketUrl,
 }) => {
-  // Formatting the event date based on the conditions startdate and enddate
-  const formattedEventDate =
-    eventEndDate && !isSameDay(eventStartDate, eventEndDate)
-      ? format(
-          eventStartDate,
-          `${isSameMonth(eventStartDate, eventEndDate) ? "dd" : "dd MMMM"}'${
-            "-" + format(eventEndDate, "dd MMMM")
-          }' yyyy`,
-        )
-      : format(eventStartDate, "dd MMMM yyyy");
 
   // Formatting the purchased date and time
   const formattedPurchasedDateTime = format(
@@ -70,9 +61,8 @@ const TicketCard: React.FC<TicketCardProps> = ({
   };
   return (
     <div
-      className={`w-full ${
-        type === "history" ? "py-7" : "py-5"
-      } flex items-center justify-between rounded-[10px] border border-white  bg-custom-purple-300 px-7 font-poppins text-white`}
+      className={`w-full ${type === "history" ? "py-7" : "py-5"
+        } flex items-center justify-between rounded-[10px] border border-white  bg-custom-purple-300 px-7 font-poppins text-white`}
     >
       <div className="flex flex-col gap-1">
         {/* Event Name */}
@@ -93,7 +83,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
               <>
                 <Calendar size={22} color="#FFFFFF" />
                 <h5 className={fontSizeTypeEffect[type].date}>
-                  {formattedEventDate}
+                  {formattedEventDate(eventStartDate, eventEndDate)}
                 </h5>
               </>
             )}
