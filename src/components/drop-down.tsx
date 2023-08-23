@@ -59,10 +59,11 @@ const Dropdown: React.FC<DropdownProps> = ({
       </div>
       {/* Dropdown open */}
       <div
-        className={`custom-scrollbar ${open
+        className={`custom-scrollbar ${
+          open
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-[60px] opacity-0"
-          } absolute left-1/2 top-10 z-20 max-h-[300px] w-full -translate-x-1/2 overflow-y-scroll rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-12 lg:min-w-[250px]`}
+        } absolute left-1/2 top-10 z-20 max-h-[300px] w-full -translate-x-1/2 overflow-y-scroll rounded-lg border border-white bg-custom-green-normal transition-all duration-300 lg:top-12 lg:min-w-[250px]`}
       >
         {/* Mapping options */}
         {options.map((option) => (
