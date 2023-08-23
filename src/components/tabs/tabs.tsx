@@ -8,9 +8,10 @@ interface TabProps {
 
 interface TabsProps {
   tabs: TabProps[];
+  centered?: boolean
 }
 
-const Tabs = ({ tabs }: TabsProps) => {
+const Tabs = ({ tabs, centered }: TabsProps) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0); // Using the useState hook to manage active tab index.
 
   // Function to handle tab click and update active tab index.
@@ -21,9 +22,10 @@ const Tabs = ({ tabs }: TabsProps) => {
   return (
     <div className="flex w-full flex-col font-poppins text-white">
       {/* Tab header section */}
-      <div className="flex w-full border-spacing-y-10 items-center gap-10 border-b border-white pb-3 text-base font-bold capitalize">
+      <div className={`flex w-full border-spacing-y-10 items-center gap-4 lg:gap-10 border-b border-white pb-3 text-base font-bold capitalize ${centered && "justify-center"} `}>
         {tabs.map((tab, index) => (
           <button
+            type="button"
             key={index}
             onClick={() => handleTabClick(index)}
             className={`${activeTabIndex === index && "relative"}`}
@@ -41,9 +43,8 @@ const Tabs = ({ tabs }: TabsProps) => {
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`${
-              activeTabIndex === index ? "flex" : "hidden"
-            } animate-blink`}
+            className={`${activeTabIndex === index ? "flex" : "hidden"
+              } animate-blink`}
           >
             {tab.content}
           </div>
