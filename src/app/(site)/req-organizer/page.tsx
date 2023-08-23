@@ -1,30 +1,17 @@
 "use client";
 import Button from "@/components/button";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import Header from "@/components/header";
 import React, { useState } from "react";
 import TextInput from "@/components/text-input";
 import { DocumentUpload, InfoCircle } from "iconsax-react";
 
 export default function EventDetail() {
-  const [search, setSearch] = useState("");
-  const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
-
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      <Header
-        search={search}
-        setSearch={setSearch}
-        placeholder="Search Event"
-        hastags={hastags}
-        avatarImageUrl="/logo.png"
-        avatarName="Tes"
-        avatarRole="Customer"
-      />
       <h2 className="py-8 text-2xl font-semibold">
         Request Event Organizer -{" "}
         <span
