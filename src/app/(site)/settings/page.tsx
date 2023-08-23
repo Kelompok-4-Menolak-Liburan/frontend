@@ -1,15 +1,10 @@
 "use client";
 import Avatar from "@/components/avatar";
 import Button from "@/components/button";
-import Image from "next/image";
-import Header from "@/components/header";
 import React, { useState } from "react";
 import TextInput from "@/components/text-input";
 
 export default function EventDetail() {
-  const [search, setSearch] = useState("");
-  const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -19,15 +14,6 @@ export default function EventDetail() {
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      <Header
-        search={search}
-        setSearch={setSearch}
-        placeholder="Search Event"
-        hastags={hastags}
-        avatarImageUrl="/logo.png"
-        avatarName="Tes"
-        avatarRole="Customer"
-      />
       <h2 className="py-8 text-2xl font-semibold">Account Settings</h2>
       <div className="flex flex-col gap-10 lg:flex-row">
         <div className="flex w-full flex-col lg:w-1/2">
