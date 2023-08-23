@@ -7,7 +7,7 @@ interface TextInputProps {
   setTextFieldValue: React.Dispatch<React.SetStateAction<string>>;
   fullWidth?: boolean;
   placeholder: string;
-  boxType: "text" | "password" | "search" | "email";
+  boxType: "text" | "password" | "search" | "email" | "number";
   description?: string;
   color: "gray" | "purple";
 }
