@@ -128,7 +128,7 @@ const Login = () => {
             {/* Input Form */}
             <form
               onSubmit={(e) => {
-                e.preventDefault()
+                e.preventDefault();
                 sendRequest({ username, password });
               }}
               className="flex w-[305px] flex-col items-center justify-center gap-y-48 sm:w-[300px] md:gap-y-[10px] lg:w-[400px] lg:gap-y-[70px] 2xl:w-[550px]"
