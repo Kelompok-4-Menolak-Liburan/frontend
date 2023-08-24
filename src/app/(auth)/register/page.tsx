@@ -6,6 +6,8 @@ import Link from "next/link";
 import TextInput from "@/components/text-input";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
+import { fetcherPost } from "@/libs/fetcher";
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
   const router = useRouter();
@@ -20,6 +22,25 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const sendRegister = async () => {
+    const data = {
+      email,
+      username,
+      password,
+      phone_number: "08515522842",
+      image: "https://i.imgur.com/6VBx3io.png",
+    };
+
+    try {
+      await fetcherPost("api/auth/register/", data);
+
+      toast.success("Register success!");
+      setTimeout(() => router.push("/login"), 1000);
+    } catch (error) {
+      toast.error("Register failed!");
+    }
+  };
 
   // Image mounting on mobile
   useEffect(() => {
@@ -172,7 +193,7 @@ const Signup = () => {
                   fullWidth={true}
                   size="small"
                   color="green-primary"
-                  type="submit"
+                  onClick={() => sendRegister()}
                 >
                   Sign Up
                 </Button>
