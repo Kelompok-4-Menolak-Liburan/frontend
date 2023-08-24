@@ -6,8 +6,12 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <body>
-    <Toaster />{children}</body>;
+  return (
+    <body>
+      <Toaster />
+      {children}
+    </body>
+  );
 }
 export const metadata: Metadata = {
   title: "Log in | SeTiket",
