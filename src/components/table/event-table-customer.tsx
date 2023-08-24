@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import ManagementList from "@/components/table/management-list";
 import Pagination from "../pagination";
+import ManagementListCustomer from "./managemet-list-customer";
 
-interface Event {
+interface EventData {
   imageUrl: string;
-  eventName: string;
-  status: "active" | "not active";
-  sold: number;
-  view: number;
+  email: string;
+  name: string;
+  ticketName: string;
+  buyDate: Date;
+  price?: number;
+  isFree?: boolean;
 }
 
-interface EventListProps {
-  events: Event[];
+interface EventListCustomerProps {
+  events: EventData[]; // Change the type to EventData[]
   searchStatus: boolean;
 }
 
-const EventList: React.FC<EventListProps> = ({ events, searchStatus }) => {
-  // Number of items per page
+const EventListCustomer: React.FC<EventListCustomerProps> = ({
+  events,
+  searchStatus,
+}) => {
   const listPerPage = 8;
 
   // Number of current page
@@ -28,7 +32,6 @@ const EventList: React.FC<EventListProps> = ({ events, searchStatus }) => {
   const indexOfFirstCard = indexOfLastCard - listPerPage;
   const currentList = events.slice(indexOfFirstCard, indexOfLastCard);
   const numberPage = Math.ceil(events.length / listPerPage);
-
   return (
     <div className="flex w-full flex-col gap-5 max-lg:overflow-x-scroll">
       {/* Render the tables if there's data found */}
@@ -38,41 +41,40 @@ const EventList: React.FC<EventListProps> = ({ events, searchStatus }) => {
             {/* Placeholder table column */}
             <tr className="bg-custom-purple-500 text-sm text-white lg:text-base">
               <th className="px-4 py-2">No</th>
-              <th className="px-4 py-2">Event Image</th>
-              <th className="px-4 py-2">Event Name</th>
-              <th className="px-4 py-2">Status</th>
-              <th className="px-4 py-2">Sold</th>
-              <th className="px-4 py-2">View</th>
-              <th className="px-4 py-2">Edit Event</th>
-              <th className="px-4 py-2">See Event</th>
-              <th className="px-4 py-2">See Data</th>
+              <th className="px-4 py-2">Customer</th>
+              <th className="px-4 py-2">Buy Date</th>
+              <th className="px-4 py-2">Ticket Name</th>
+              <th className="px-4 py-2">Price</th>
+              <th className="px-4 py-2">Edit</th>
             </tr>
           </thead>
           {/* Mapping the data */}
           <tbody className="w-full text-center">
             {!searchStatus
               ? currentList.map((event, index) => (
-                <ManagementList
-                  key={index}
-                  no={indexOfFirstCard + index + 1}
-                  imageUrl={event.imageUrl}
-                  eventName={event.eventName}
-                  status={event.status}
-                  sold={event.sold}
-                  view={event.view}
-                />
-              ))
+                  <ManagementListCustomer
+                    key={index}
+                    no={indexOfFirstCard + index + 1}
+                    imageUrl={event.imageUrl}
+                    name={event.name}
+                    ticketName={event.ticketName}
+                    price={event.price}
+                    buyDate={event.buyDate}
+                    email={event.email}
+                  />
+                ))
               : events.map((event, index) => (
-                <ManagementList
-                  key={index}
-                  no={index + 1}
-                  imageUrl={event.imageUrl}
-                  eventName={event.eventName}
-                  status={event.status}
-                  sold={event.sold}
-                  view={event.view}
-                />
-              ))}
+                  <ManagementListCustomer
+                    key={index}
+                    no={index + 1}
+                    imageUrl={event.imageUrl}
+                    name={event.name}
+                    ticketName={event.ticketName}
+                    price={event.price}
+                    buyDate={event.buyDate}
+                    email={event.email}
+                  />
+                ))}
           </tbody>
         </table>
       ) : (
@@ -92,6 +94,7 @@ const EventList: React.FC<EventListProps> = ({ events, searchStatus }) => {
       )}
     </div>
   );
+  // Your component logic remains the same
 };
 
-export default EventList;
+export default EventListCustomer;
