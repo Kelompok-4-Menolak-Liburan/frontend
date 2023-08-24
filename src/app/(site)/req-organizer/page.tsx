@@ -3,24 +3,34 @@ import Button from "@/components/button";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import React, { useState } from "react";
 import TextInput from "@/components/text-input";
-import { DocumentUpload, InfoCircle } from "iconsax-react";
+import { InfoCircle } from "iconsax-react";
+import { sendRequest, getRequest } from "./helper";
+import { dataRequestProposal } from "./type";
 
 export default function EventDetail() {
+  const id = "1232";
+
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+
+  const data = getRequest({ id }) as unknown as dataRequestProposal;
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
       <h2 className="py-8 text-2xl font-semibold">
         Request Event Organizer -{" "}
-        <span
-          className="inline-flex cursor-pointer gap-1 text-lg font-bold text-red-500"
-          data-tooltip-id="my-tooltip-2"
-        >
-          Rejected
-          <InfoCircle size={18} color="#ef4444" />
-        </span>
+        {data.status === "pending" ? (
+          <span className="text-yellow-500">Pending</span>
+        ) : (
+          <span
+            className="inline-flex cursor-pointer gap-1 text-lg font-bold text-red-500"
+            data-tooltip-id="my-tooltip-2"
+          >
+            Rejected
+            <InfoCircle size={18} color="#ef4444" />
+          </span>
+        )}
       </h2>
 
       <ReactTooltip
@@ -33,7 +43,7 @@ export default function EventDetail() {
           width: 500,
           backgroundColor: "#1e223e",
         }}
-        content="Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet Karena lorem ipsum dolor sit amet"
+        content={data.message}
       />
       <div className="flex w-full flex-col gap-10 lg:flex-row">
         <div className="flex w-full flex-col">
@@ -91,7 +101,13 @@ export default function EventDetail() {
               />
             </div>
             <div className="mt-5 self-center">
-              <Button color="green-primary" size="small">
+              <Button
+                color="green-primary"
+                size="small"
+                onClick={() => {
+                  sendRequest({ name, location, description });
+                }}
+              >
                 Uploud Proposal
               </Button>
             </div>
