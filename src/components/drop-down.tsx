@@ -51,7 +51,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         onClick={() => setOpen(!open)}
       >
         <div className="flex w-full items-center justify-center gap-4 rounded-xl bg-custom-green-normal px-4 py-1 lg:px-5">
-          <p className="text-center font-poppins text-[12px] font-semibold capitalize text-white lg:text-sm">
+          <p className="text-center font-poppins text-[12px] font-semibold text-white lg:text-sm">
             {selectedOption || placeholder}
           </p>
           <ArrowDown2 size={24} color="#FFFFFF" />
@@ -70,7 +70,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           <p
             key={option}
             onClick={() => handleOptionClick(option)}
-            className="cursor-pointer break-all px-5 py-2 text-center font-poppins text-[12px] font-semibold capitalize text-white transition duration-300 hover:bg-custom-green-dark hover:bg-opacity-30 lg:text-sm"
+            className="cursor-pointer break-all px-5 py-2 text-center font-poppins text-[12px] font-semibold text-white transition duration-300 hover:bg-custom-green-dark hover:bg-opacity-30 lg:text-sm"
           >
             {option}
           </p>
