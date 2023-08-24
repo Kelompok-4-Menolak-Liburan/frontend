@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({
             <Avatar
               size="normal"
               imageUrl={avatarImageUrl}
-              role={avatarRole}
+              text={`as a ${avatarRole}`}
               name={avatarName}
             />
           </div>
