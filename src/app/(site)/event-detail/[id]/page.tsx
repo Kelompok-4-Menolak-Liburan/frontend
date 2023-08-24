@@ -5,58 +5,85 @@ import Image from "next/image";
 import Header from "@/components/header";
 import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Calendar2, Clock, Location, ShoppingCart } from "iconsax-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { getEventDetail } from "./helper";
+import { EventDetail } from "./types";
+import { fetcherGet } from "@/libs/fetcher";
+import toast from "react-hot-toast";
 
 export default function EventDetail() {
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
 
-  const ticketData = {
-    eventName: "Joyland Jakarta 2023",
-    location: "Monas, DKI Jakarta",
-    date: "24, 25, 26 November 2023",
-    Time: "15:00 - 23:00 WIB",
-    lowerPrice: "Rp. 150.000",
-    organizer: "Compfest",
-    description: {
-      bulletList: [
-        "Music and arts festival held outdoors in open green space",
-        "Three days of live music, comedy, film, workshops, and marketplace across different areas of the venue",
-        "A multisensory festival that collaborates with artists in various creative fields",
-      ],
-      paragraph: "Music",
-    },
-    rules: "These are the rules.",
-    purchase: [
-      {
-        price: 150000,
-        ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-        terms: [
-          "Harga belum termasuk biaya pajak",
-          "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-        ],
-      },
-      {
-        price: 150000,
-        ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-        terms: [
-          "Harga belum termasuk biaya pajak",
-          "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-        ],
-      },
-      {
-        price: 150000,
-        ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-        terms: [
-          "Harga belum termasuk biaya pajak",
-          "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-        ],
-      },
-    ],
-  };
+  // const ticketDatas = {
+  //   eventName: "Joyland Jakarta 2023",
+  //   location: "Monas, DKI Jakarta",
+  //   date: "24, 25, 26 November 2023",
+  //   Time: "15:00 - 23:00 WIB",
+  //   lowerPrice: "Rp. 150.000",
+  //   organizer: "Compfest",
+  //   description: "Music and arts festival held outdoors in open green spaces.",
+  //   rules: "These are the rules.",
+  //   ticket_type: [
+  //     {
+  //       price: 150000,
+  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
+  //       terms: [
+  //         "Harga belum termasuk biaya pajak",
+  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
+  //       ],
+  //     },
+  //     {
+  //       price: 150000,
+  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
+  //       terms: [
+  //         "Harga belum termasuk biaya pajak",
+  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
+  //       ],
+  //     },
+  //     {
+  //       price: 150000,
+  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
+  //       terms: [
+  //         "Harga belum termasuk biaya pajak",
+  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
+  //       ],
+  //     },
+  //   ],
+  // };
+
+  const [ticketData, setTicketData] = useState<EventDetail>({
+    title: "",
+    image_url: "",
+    description: "",
+    start_date: "",
+    end_date: "",
+    place_name: "",
+    city: "",
+    full_address: "",
+    location: "",
+    category: "",
+    organizer: "",
+    ticket_type: [],
+  });
+
+  const id = "6a6bcee1-5c3f-4177-943d-7ffa7fe709e9";
 
   const [ticketSelected, setTicketSelected] = useState(0);
+
+  const getEventDetail = async () => {
+    try {
+      const response = await fetcherGet(`api/event/${id}/?format=json`);
+      setTicketData(response);
+    } catch (error) {
+      toast.error("Event not found!");
+    }
+  };
+
+  useEffect(() => {
+    getEventDetail() as unknown as EventDetail;
+  }, []);
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
@@ -87,8 +114,7 @@ export default function EventDetail() {
           />
           <EventDetailsTabs
             description={ticketData.description}
-            rules={ticketData.rules}
-            purchase={ticketData.purchase}
+            purchase={ticketData.ticket_type}
           />
           <div className="fixed bottom-0 h-[50px] w-[812px]">
             <div className="row-span-2 flex flex-row items-center justify-between rounded-t-xl bg-custom-purple-200 bg-opacity-80 px-6 py-2">
@@ -121,7 +147,7 @@ export default function EventDetail() {
         <div className="flex flex-col gap-2">
           <div className="flex w-full flex-col gap-4 rounded-xl bg-custom-purple-300 p-7 lg:w-80">
             <h2 className="text-3xl font-bold text-white">
-              {ticketData.eventName}
+              {ticketData.title}
             </h2>
             <div className="flex flex-row items-center gap-2">
               <Location variant="Linear" color="#fff" size={24} />
@@ -134,11 +160,11 @@ export default function EventDetail() {
               <div>
                 <h4 className="text-base font-bold text-white">Date</h4>
                 <span className="text-[13px] font-normal leading-[18.20px] text-white">
-                  {ticketData.date}
+                  {ticketData.start_date} - {ticketData.end_date}
                 </span>
               </div>
             </div>
-            <div className="flex flex-row items-center gap-2">
+            {/* <div className="flex flex-row items-center gap-2">
               <Clock variant="Linear" color="#fff" size={24} />
               <div>
                 <h4 className="text-base font-bold text-white">Time</h4>
@@ -146,11 +172,12 @@ export default function EventDetail() {
                   {ticketData.Time}
                 </span>
               </div>
-            </div>
+            </div> */}
             <div className="flex flex-row justify-between">
               <h4 className="text-sm  text-white">Price start from</h4>
               <span className="text-sm font-bold text-white">
-                {ticketData.lowerPrice}
+                {/* {ticketData.lowerPrice} */}
+                Rp. 150.000
               </span>
             </div>
 
