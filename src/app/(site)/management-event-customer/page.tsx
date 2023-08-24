@@ -5,10 +5,10 @@ interface EventListCustomerProps {
   imageUrl: string;
   email: string;
   name: string;
-  ticketName: string
+  ticketName: string;
   buyDate: Date;
   price?: number;
-  isFree?: boolean
+  isFree?: boolean;
 }
 const dummyData: EventListCustomerProps[] = [];
 

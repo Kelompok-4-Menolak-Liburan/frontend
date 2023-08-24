@@ -11,12 +11,11 @@ interface ManagementClientCustomerProps {
   imageUrl: string;
   email: string;
   name: string;
-  ticketName: string
+  ticketName: string;
   buyDate: Date;
   price?: number;
-  isFree?: boolean
+  isFree?: boolean;
 }
-
 
 interface ManagementCustomerEventClientProps {
   data: ManagementClientCustomerProps[];
@@ -27,21 +26,27 @@ const ManagementEventClient: React.FC<ManagementCustomerEventClientProps> = ({
 }) => {
   const [search, setSearch] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
-  const [sortedData, setSortedData] = useState<ManagementClientCustomerProps[]>([]);
+  const [sortedData, setSortedData] = useState<ManagementClientCustomerProps[]>(
+    [],
+  );
 
   const sortOptions = ["Date asc", "Date desc", "Price asc", "Price desc"];
 
   useEffect(() => {
     const filteredData = data.filter((event) =>
-      event.name.toLowerCase().includes(search.toLowerCase())
+      event.name.toLowerCase().includes(search.toLowerCase()),
     );
 
     // Apply date filter
     let sortedFilteredData = [...filteredData];
     if (selectedSort === "Date asc") {
-      sortedFilteredData.sort((a, b) => a.buyDate.getTime() - b.buyDate.getTime());
+      sortedFilteredData.sort(
+        (a, b) => a.buyDate.getTime() - b.buyDate.getTime(),
+      );
     } else if (selectedSort === "Date desc") {
-      sortedFilteredData.sort((a, b) => b.buyDate.getTime() - a.buyDate.getTime());
+      sortedFilteredData.sort(
+        (a, b) => b.buyDate.getTime() - a.buyDate.getTime(),
+      );
     }
 
     // Apply price filter
@@ -53,7 +58,6 @@ const ManagementEventClient: React.FC<ManagementCustomerEventClientProps> = ({
 
     setSortedData(sortedFilteredData);
   }, [data, search, selectedSort]);
-
 
   return (
     <div className="flex w-full flex-col gap-5 font-poppins text-white">

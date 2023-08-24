@@ -40,10 +40,11 @@ const ManagementList: React.FC<ManagementListProps> = ({
       <td className="min-w-[140px] px-2 py-3">{eventName}</td>
       {/* Status */}
       <td
-        className={`capitalize ${status.toLowerCase() === "active"
-          ? "text-custom-green-normal"
-          : "text-red-600"
-          } font-semibold`}
+        className={`capitalize ${
+          status.toLowerCase() === "active"
+            ? "text-custom-green-normal"
+            : "text-red-600"
+        } font-semibold`}
       >
         {status}
       </td>

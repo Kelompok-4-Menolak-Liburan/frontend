@@ -3,11 +3,17 @@ import Image from "next/image";
 interface AvatarProps {
   size: "small" | "normal" | "large";
   name?: string;
-  text?: string
+  text?: string;
   imageUrl: string;
-  fullWidth?: boolean
+  fullWidth?: boolean;
 }
-const Avatar: React.FC<AvatarProps> = ({ size, name, text, imageUrl, fullWidth }) => {
+const Avatar: React.FC<AvatarProps> = ({
+  size,
+  name,
+  text,
+  imageUrl,
+  fullWidth,
+}) => {
   // Define styles and dimensions based on avatar size
   const sizeEffectStyle = {
     small: {
@@ -35,7 +41,11 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, text, imageUrl, fullWidth }
   };
 
   return (
-    <div className={`flex items-center ${fullWidth ? "w-full" : "w-fit"} justify-center gap-3 lg:gap-4`}>
+    <div
+      className={`flex items-center ${
+        fullWidth ? "w-full" : "w-fit"
+      } justify-center gap-3 lg:gap-4`}
+    >
       <Image
         src={imageUrl}
         alt={name + " Avatar"}
@@ -45,7 +55,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, name, text, imageUrl, fullWidth }
       />
       {/* Render name and text if provided */}
       {name && text && (
-        <div className="flex justify-start items-start flex-col font-poppins text-white">
+        <div className="flex flex-col items-start justify-start font-poppins text-white">
           <p className={`font-bold ${sizeEffectStyle[size].primaryTextStyle}`}>
             {name}
           </p>
