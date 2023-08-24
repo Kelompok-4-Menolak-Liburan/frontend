@@ -6,122 +6,68 @@ import Header from "@/components/header";
 import ImageSlider from "@/components/image-slider";
 import React, { useState } from "react";
 import { Range } from "react-date-range";
+import { EventData } from "./type";
+import { categories } from "@/models/categories";
+import { cities } from "@/models/cities";
 
-// Define the expected structure of event data
-interface EventCardData {
-  imageUrl: string;
-  price: number;
-  eventEndTime: string;
-  eventStartTime: string;
-  location: string;
-  eventName: string;
-  eventOrganizer: string;
-  imageEventOrganizerUrl: string;
-  eventStartDate: Date;
-  eventEndDate: Date;
-  timeZone: string;
-  topic: string;
-  category: string;
-}
-export const HomeClient = ({ data }: { data: EventCardData[] }) => {
+export const HomeClient = ({ data }: { data: EventData[] }) => {
+
+  // ImageUrls for background carousels
+  const imageUrls: string[] = data.map(event => event.image_url).slice(0, 5);
+
   // State for search input
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
+
   // State to manage the selected date range.
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
     key: "selection",
   });
+
   const [selectedDate, setSelectedDate] = useState<undefined | Range>(
     undefined,
   );
 
-  // State for selected topic and category
-  const [selectedTopic, setSelectedTopic] = useState<string>("");
+  // State for selected city and category
+  const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  // Filtering logic based on search, topic, and category
+  // Filtering logic based on search, city, and category
   const filteredData = data.filter((item) => {
-    const includesNameSearch = item.eventName
+    const includesNameSearch = item.title
       .toLowerCase()
       .includes(search.toLowerCase());
-    const includesLocationSearch = item.location
+    const includesLocationSearch = item.city
       .toLowerCase()
       .includes(search.toLowerCase());
-    const matchesTopic = !selectedTopic || item.topic.includes(selectedTopic);
+
+
+    const matchesLocation = !selectedCity || item.city.toLowerCase().includes(selectedCity.toLowerCase());
+
     const matchesCategory =
-      !selectedCategory || item.category.includes(selectedCategory);
+      !selectedCategory || item.category?.toLowerCase().includes(selectedCategory.toLowerCase());
 
     // Add the date range filtering condition
     const startDate = selectedDate?.startDate;
     const endDate = selectedDate?.endDate;
-    const eventStartDate = new Date(item.eventStartDate);
-    const eventEndDate = new Date(item.eventEndDate);
+    const eventStartDate = new Date(item.start_date);
 
     // Check if the event date range is within the selected range (if available)
     const withinDateRange =
       !startDate ||
       !endDate ||
-      (eventStartDate >= startDate && eventEndDate <= endDate);
+      (eventStartDate >= startDate);
 
     // Include the event if any of the filter conditions match
     return (
       (includesNameSearch || includesLocationSearch) &&
-      matchesTopic &&
-      matchesCategory &&
-      (withinDateRange || selectedDate === undefined) // Include if withinDateRange is undefined or selectedDate is undefined
+      matchesCategory && matchesLocation &&
+      (withinDateRange || selectedDate === undefined)
     );
   });
 
-  // Lists of categories and topics for dropdowns
-  const categories = [
-    "Festival, Fair, Bazaar",
-    "Konser",
-    "Pertandingan",
-    "Exhibition, Expo, Pameran",
-    "Konferensi",
-    "Seni, Budaya",
-    "Workshop",
-    "Pertunjukan",
-    "Atraksi, Theme Park",
-    "Akomodasi",
-    "Seminar, Talk Show",
-    "Social Gathering",
-    "Training, Sertifikasi, Ujian",
-    "Pensi, Event Sekolah, Kampus",
-    "Trip, Tur",
-    "Turnamen, Kompetisi",
-    "Lainnya",
-  ];
-  const topics = [
-    "Anak, Keluarga",
-    "Bisnis",
-    "Desain, Foto, Video",
-    "Fashion, Kecantikan",
-    "Film, Sinema",
-    "Game, E-Sports",
-    "Hobi, Kerajinan Tangan",
-    "Investasi, Saham",
-    "Karir, Pengembangan Diri",
-    "Keagamaan",
-    "Kesehatan, Kebugaran",
-    "Keuangan, Finansial",
-    "Lingkungan Hidup",
-    "Makanan, Minuman",
-    "Marketing",
-    "Musik",
-    "Olahraga",
-    "Otomotif",
-    "Sains, Teknologi",
-    "Seni, Budaya",
-    "Sosial, Hukum, Politik",
-    "Standup Comedy",
-    "Pendidikan, Beasiswa",
-    "Tech, Start-Up",
-    "Wisata & Liburan",
-    "Lainnya",
-  ];
 
   const dropdownData = [
     {
@@ -131,34 +77,11 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
       setSelectedOption: setSelectedCategory,
     },
     {
-      options: topics,
-      placeholder: "Topics",
-      selectedOption: selectedTopic,
-      setSelectedOption: setSelectedTopic,
+      options: cities,
+      placeholder: "City",
+      selectedOption: selectedCity,
+      setSelectedOption: setSelectedCity,
     },
-  ];
-
-  // Dummy image data for the image slider
-  const dummyImages = [
-    {
-      imageUrl: "/ticket-image.jpg",
-      imageAlt: "Image 1",
-      imageWidth: 700,
-      imageHeight: 300,
-    },
-    {
-      imageUrl: "/logo.png",
-      imageAlt: "Image 2",
-      imageWidth: 700,
-      imageHeight: 300,
-    },
-    {
-      imageUrl: "/auth/login-bg.png",
-      imageAlt: "Image 3",
-      imageWidth: 700,
-      imageHeight: 300,
-    },
-    // Tambahkan data gambar lainnya sesuai kebutuhan
   ];
 
   return (
@@ -179,7 +102,7 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
 
       {/* Image slider or dropdowns */}
       {!search ? (
-        <ImageSlider imageArray={dummyImages} />
+        <ImageSlider imageArrayUrls={imageUrls} />
       ) : (
         <div className="flex flex-wrap items-center  gap-3">
           {dropdownData.map((item, index) => {
@@ -231,17 +154,12 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
           {filteredData.map((event, index) => (
             <EventCard
               key={index}
-              imageUrl={event.imageUrl}
-              price={event.price}
-              eventEndTime={event.eventEndTime}
-              eventStartTime={event.eventStartTime}
-              location={event.location}
-              eventName={event.eventName}
-              eventOrganizer={event.eventOrganizer}
-              imageEventOrganizerUrl={event.imageEventOrganizerUrl}
-              eventStartDate={event.eventStartDate}
-              eventEndDate={event.eventEndDate}
-              timeZone={event.timeZone}
+              id={event.id}
+              title={event.title}
+              image_url={event.image_url}
+              start_date={event.start_date}
+              city={event.city}
+              organizer={event.organizer}
             />
           ))}
         </div>
@@ -252,14 +170,14 @@ export const HomeClient = ({ data }: { data: EventCardData[] }) => {
       )}
 
       {/* Display "Delete Filters" button */}
-      {(selectedCategory || selectedTopic) && (
+      {(selectedCategory || selectedCity) && (
         <div className="flex w-full items-center justify-center pt-4">
           <Button
             size="extra-small"
             color="green-primary"
             onClick={() => {
               setSelectedCategory("");
-              setSelectedTopic("");
+              setSelectedCity("");
             }}
           >
             Delete the filters
