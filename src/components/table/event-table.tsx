@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import Image from "next/image";
-<<<<<<< HEAD
-=======
-import { Chart, Edit2, Eye } from "iconsax-react";
->>>>>>> 05fd166776aa60ee9b2d468e3bb01e0848f7a04d
 import ManagementList from "@/components/table/management-list";
 import Pagination from "../pagination";
 
@@ -56,27 +51,27 @@ const EventList: React.FC<EventListProps> = ({ events, searchStatus }) => {
           <tbody className="w-full text-center">
             {!searchStatus
               ? currentList.map((event, index) => (
-                  <ManagementList
-                    key={index}
-                    no={indexOfFirstCard + index + 1}
-                    imageUrl={event.imageUrl}
-                    eventName={event.eventName}
-                    status={event.status}
-                    sold={event.sold}
-                    view={event.view}
-                  />
-                ))
+                <ManagementList
+                  key={index}
+                  no={indexOfFirstCard + index + 1}
+                  imageUrl={event.imageUrl}
+                  eventName={event.eventName}
+                  status={event.status}
+                  sold={event.sold}
+                  view={event.view}
+                />
+              ))
               : events.map((event, index) => (
-                  <ManagementList
-                    key={index}
-                    no={index + 1}
-                    imageUrl={event.imageUrl}
-                    eventName={event.eventName}
-                    status={event.status}
-                    sold={event.sold}
-                    view={event.view}
-                  />
-                ))}
+                <ManagementList
+                  key={index}
+                  no={index + 1}
+                  imageUrl={event.imageUrl}
+                  eventName={event.eventName}
+                  status={event.status}
+                  sold={event.sold}
+                  view={event.view}
+                />
+              ))}
           </tbody>
         </table>
       ) : (
