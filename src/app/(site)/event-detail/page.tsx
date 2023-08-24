@@ -60,7 +60,7 @@ export default function EventDetail() {
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      <Header
+      {/* <Header
         search={search}
         setSearch={setSearch}
         placeholder="Search Event"
@@ -68,7 +68,7 @@ export default function EventDetail() {
         avatarImageUrl="/logo.png"
         avatarName="Tes"
         avatarRole="Customer"
-      />
+      /> */}
       <Image
         src="/banner.jpeg"
         className="h-full w-full rounded-2xl lg:hidden"
