@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Dropdown from "@/components/drop-down";
-import EventList from "@/components/table/event-table";
-import Tabs from "@/components/tabs/tabs";
 import TextInput from "@/components/text-input";
 import EventListCustomer from "@/components/table/event-table-customer";
 

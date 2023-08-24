@@ -67,34 +67,38 @@ const Pagination: FC<PaginationProps> = ({
             </button>
           )}
           {shouldShowStartEllipsis && (
-            <span
-              aria-label="Ellipsis"
-              className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
-            >
-              ...
-            </span>
+            <button onClick={() => { setCurrentNumberPage(currentNumberPage - 1) }}>
+
+              <span
+                aria-label="Ellipsis"
+                className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
+              >
+                ...
+              </span>
+            </button>
           )}
           {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
             <button
               key={startPage + index}
               onClick={() => setCurrentNumberPage(startPage + index)}
               aria-label={`Page-${startPage + index}`}
-              className={`border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF] ${
-                startPage + index === currentNumberPage
-                  ? "bg-white text-custom-purple-400"
-                  : "bg-custom-purple-400 text-white"
-              }`}
+              className={`border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF] ${startPage + index === currentNumberPage
+                ? "bg-white text-custom-purple-400"
+                : "bg-custom-purple-400 text-white"
+                }`}
             >
               {startPage + index}
             </button>
           ))}
           {shouldShowEndEllipsis && (
-            <span
-              aria-label="Ellipsis"
-              className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
-            >
-              ...
-            </span>
+            <button onClick={() => { setCurrentNumberPage(currentNumberPage + 1) }}>
+
+              <span
+                aria-label="Ellipsis"
+                className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
+              >
+                ...
+              </span></button>
           )}
           {shouldShowEndEllipsis && (
             <button
