@@ -11,9 +11,8 @@ import { categories } from "@/models/categories";
 import { cities } from "@/models/cities";
 
 export const HomeClient = ({ data }: { data: EventData[] }) => {
-
   // ImageUrls for background carousels
-  const imageUrls: string[] = data.map(event => event.image_url).slice(0, 5);
+  const imageUrls: string[] = data.map((event) => event.image_url).slice(0, 5);
 
   // State for search input
   const [search, setSearch] = useState("");
@@ -43,11 +42,13 @@ export const HomeClient = ({ data }: { data: EventData[] }) => {
       .toLowerCase()
       .includes(search.toLowerCase());
 
-
-    const matchesLocation = !selectedCity || item.city.toLowerCase().includes(selectedCity.toLowerCase());
+    const matchesLocation =
+      !selectedCity ||
+      item.city.toLowerCase().includes(selectedCity.toLowerCase());
 
     const matchesCategory =
-      !selectedCategory || item.category?.toLowerCase().includes(selectedCategory.toLowerCase());
+      !selectedCategory ||
+      item.category?.toLowerCase().includes(selectedCategory.toLowerCase());
 
     // Add the date range filtering condition
     const startDate = selectedDate?.startDate;
@@ -56,18 +57,16 @@ export const HomeClient = ({ data }: { data: EventData[] }) => {
 
     // Check if the event date range is within the selected range (if available)
     const withinDateRange =
-      !startDate ||
-      !endDate ||
-      (eventStartDate >= startDate);
+      !startDate || !endDate || eventStartDate >= startDate;
 
     // Include the event if any of the filter conditions match
     return (
       (includesNameSearch || includesLocationSearch) &&
-      matchesCategory && matchesLocation &&
+      matchesCategory &&
+      matchesLocation &&
       (withinDateRange || selectedDate === undefined)
     );
   });
-
 
   const dropdownData = [
     {

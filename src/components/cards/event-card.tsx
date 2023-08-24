@@ -43,9 +43,7 @@ const EventCard: React.FC<EventData> = ({
           {/* The event month and dates */}
           <div className="flex flex-col items-center justify-center text-sm font-bold 2xl:text-base">
             <p>{formattedMonth(new Date(start_date))}</p>
-            <p>
-              {formattedDate(new Date(start_date))}{" "}
-            </p>
+            <p>{formattedDate(new Date(start_date))} </p>
           </div>
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
@@ -58,8 +56,9 @@ const EventCard: React.FC<EventData> = ({
         </div>
         {/* Event organizer information */}
         <div className="flex items-center gap-3 border-t border-dashed border-white py-2.5 lg:gap-4">
-
-          <p className="text-xs font-bold 2xl:text-sm">Organized by: {organizer}</p>
+          <p className="text-xs font-bold 2xl:text-sm">
+            Organized by: {organizer}
+          </p>
         </div>
       </div>
     </div>
