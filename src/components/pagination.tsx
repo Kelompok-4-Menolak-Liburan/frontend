@@ -67,8 +67,11 @@ const Pagination: FC<PaginationProps> = ({
             </button>
           )}
           {shouldShowStartEllipsis && (
-            <button onClick={() => { setCurrentNumberPage(currentNumberPage - 1) }}>
-
+            <button
+              onClick={() => {
+                setCurrentNumberPage(currentNumberPage - 1);
+              }}
+            >
               <span
                 aria-label="Ellipsis"
                 className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
@@ -82,23 +85,28 @@ const Pagination: FC<PaginationProps> = ({
               key={startPage + index}
               onClick={() => setCurrentNumberPage(startPage + index)}
               aria-label={`Page-${startPage + index}`}
-              className={`border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF] ${startPage + index === currentNumberPage
-                ? "bg-white text-custom-purple-400"
-                : "bg-custom-purple-400 text-white"
-                }`}
+              className={`border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF] ${
+                startPage + index === currentNumberPage
+                  ? "bg-white text-custom-purple-400"
+                  : "bg-custom-purple-400 text-white"
+              }`}
             >
               {startPage + index}
             </button>
           ))}
           {shouldShowEndEllipsis && (
-            <button onClick={() => { setCurrentNumberPage(currentNumberPage + 1) }}>
-
+            <button
+              onClick={() => {
+                setCurrentNumberPage(currentNumberPage + 1);
+              }}
+            >
               <span
                 aria-label="Ellipsis"
                 className="border border-white px-3 py-1 transition duration-300 hover:drop-shadow-[0px_0px_4px_#FFFFFF]"
               >
                 ...
-              </span></button>
+              </span>
+            </button>
           )}
           {shouldShowEndEllipsis && (
             <button
