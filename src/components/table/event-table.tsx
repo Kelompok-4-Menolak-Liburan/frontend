@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
+<<<<<<< HEAD
+=======
+import { Chart, Edit2, Eye } from "iconsax-react";
+>>>>>>> 05fd166776aa60ee9b2d468e3bb01e0848f7a04d
 import ManagementList from "@/components/table/management-list";
 import Pagination from "../pagination";
 
