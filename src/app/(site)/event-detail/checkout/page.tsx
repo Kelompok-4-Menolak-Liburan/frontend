@@ -3,33 +3,39 @@ import Avatar from "@/components/avatar";
 import Button from "@/components/button";
 import Image from "next/image";
 import Header from "@/components/header";
-import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Calendar2, Clock, Location } from "iconsax-react";
 import React, { useState } from "react";
-import PurchaseTicket from "@/components/cards/purchase-ticket-card";
-import TextInput from "@/components/text-input";
 import Link from "next/link";
+import { Range } from "react-date-range";
 
 export default function EventDetail() {
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [payMethod, setPayMethod] = useState("BCA");
+  const [dateRange, setDateRange] = useState<Range>({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
+
+  const [selectedDate, setSelectedDate] = useState<undefined | Range>(
+    undefined,
+  );
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      {/* <Header
+      <Header
+        dateRange={dateRange}
+        setDateRange={setDateRange}
         search={search}
         setSearch={setSearch}
-        placeholder="Search Event"
+        placeholder="Select an event name or event location"
         hastags={hastags}
         avatarImageUrl="/logo.png"
         avatarName="Tes"
+        setSelectedDate={setSelectedDate}
         avatarRole="Customer"
-      /> */}
+      />
       <Image
         src="/banner.jpeg"
         className="h-full w-full rounded-2xl lg:hidden"
