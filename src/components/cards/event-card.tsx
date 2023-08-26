@@ -1,35 +1,21 @@
 // Importing required modules and components
+import { EventData } from "@/app/(site)/type";
 import { getFormattedCurrency } from "@/libs/utils";
 import { format, getDate } from "date-fns";
-import { ArchiveAdd } from "iconsax-react";
 import Image from "next/image";
+import Link from "next/link";
 
-interface EventCardProps {
-  imageUrl: string;
-  price: number;
-  eventName: string;
-  eventStartTime: string;
-  eventEndTime: string;
-  location: string;
-  eventStartDate: Date;
-  eventEndDate?: Date;
-  eventOrganizer: string;
-  imageEventOrganizerUrl: string;
-  timeZone: string;
-}
-
-const EventCard: React.FC<EventCardProps> = ({
-  imageUrl,
+const EventCard: React.FC<EventData> = ({
+  id,
+  title,
+  image_url,
+  start_date,
+  end_date,
+  start_time,
+  end_time,
+  city,
   price,
-  eventName,
-  eventStartTime,
-  eventEndTime,
-  location,
-  eventStartDate,
-  eventEndDate,
-  eventOrganizer,
-  imageEventOrganizerUrl,
-  timeZone,
+  organizer,
 }) => {
   // Function to get the abbreviated month name (e.g., "Jan")
   const formattedMonth = (date: Date) => {
@@ -40,61 +26,57 @@ const EventCard: React.FC<EventCardProps> = ({
   const formattedDate = (date: Date) => {
     return getDate(date);
   };
-
   return (
-    <div className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]">
+    <Link
+      href={`/events/${id}`}
+      className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]"
+    >
       <div className="relative h-[122px] w-full">
         {/* The event image */}
         <Image
-          src={imageUrl}
-          alt={eventName + " Image"}
+          src={image_url}
+          alt={title + " Image"}
           width={328}
           height={82}
           className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm 2xl:text-base">
-          {getFormattedCurrency(price)}
-        </p>
-        {/* Adding an "Add to Archive" button */}
-        <button className="absolute right-4 top-4 z-10 aspect-square rounded-md bg-custom-purple-300 p-1.5">
-          <ArchiveAdd size={18} color="#FFFFFF" variant="Bold" />
-        </button>
+        {price && (
+          <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm 2xl:text-base">
+            {getFormattedCurrency(price)}
+          </p>
+        )}
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
         <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-3">
           {/* The event month and dates */}
           <div className="flex flex-col items-center justify-center text-sm font-bold 2xl:text-base">
-            <p>{formattedMonth(eventStartDate)}</p>
+            <p>{formattedMonth(new Date(start_date))}</p>
             <p>
-              {formattedDate(eventStartDate)}{" "}
-              {eventEndDate && " - " + formattedDate(eventEndDate)}
+              {formattedDate(new Date(start_date))}{" "}
+              {end_date && " - " + formattedDate(new Date(end_date))}{" "}
             </p>
           </div>
+
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
             <p className="pb-1 text-sm font-bold uppercase lg:text-base 2xl:text-lg">
-              {eventName}
+              {title}
             </p>
             <p className="text-xs lg:text-sm">
-              {eventStartTime + " - " + eventEndTime} {timeZone}
+              {start_time && start_time && end_time && " - " + end_time}
             </p>
-            <p className="text-sm 2xl:text-base">{location}</p>
+            <p className="text-sm 2xl:text-base">{city}</p>
           </div>
         </div>
         {/* Event organizer information */}
         <div className="flex items-center gap-3 border-t border-dashed border-white py-2.5 lg:gap-4">
-          <Image
-            src={imageEventOrganizerUrl}
-            alt="Avatar"
-            width={32}
-            height={32}
-            className="aspect-square  rounded-full object-cover object-center"
-          />
-          <p className="text-xs font-bold 2xl:text-sm">{eventOrganizer}</p>
+          <p className="text-xs font-bold 2xl:text-sm">
+            Organized by: {organizer}
+          </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
