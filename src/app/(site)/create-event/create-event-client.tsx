@@ -1,6 +1,5 @@
 "use client";
 import Avatar from "@/components/avatar";
-import BulletList from "@/components/bullet-list";
 import Button from "@/components/button";
 import Calendar from "@/components/calendar";
 import LocationModal from "@/components/modals/location-modal";
@@ -15,25 +14,17 @@ import {
 } from "iconsax-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
-import { Range } from "react-date-range";
 import { PopUp } from "../layout";
-import Tabs from "@/components/tabs/tabs";
+import Tabs, { TabProps } from "@/components/tabs/tabs";
 import TextArea from "@/components/text-area";
-import TimeModal from "@/components/modals/time-modal";
 import TicketForm from "../../../components/ticket-form";
-import CalendarModal from "@/components/modals/calendar-modal";
 import TicketTypeCard from "@/components/cards/ticket-type-card";
-interface TicketState {
-  [key: string]: {
-    value: string;
-    placeholder: string;
-    title: string;
-  };
-}
-interface Tab {
-  label: string;
-  content: JSX.Element;
-}
+import { TicketState, freeTicketInitialState, paidTicketInitialState, volunterTicketInitialState } from "./type";
+import Dropdown from "@/components/drop-down";
+import { categories } from "@/models/categories";
+import { Range } from "react-date-range";
+import { timeOptions } from "@/models/time";
+
 interface LocationProps {
   placeName: string;
   city: string;
@@ -42,137 +33,44 @@ interface LocationProps {
   urlStreaming: string;
 }
 
-const freeTicketInitialState: TicketState = {
-  ticketName: {
-    value: "",
-    placeholder: "Enter your Ticket Name",
-    title: "Ticket Name",
-  },
-  ticketAmount: {
-    value: "",
-    placeholder: "Enter the Ticket Amount",
-    title: "Ticket Amount",
-  },
-  ticketDescription: {
-    value: "",
-    placeholder: "Enter the Ticket Description",
-    title: "Ticket Description",
-  },
-  startDateSale: {
-    value: "",
-    placeholder: "Select the Start Date of Sale",
-    title: "Start Date of Sale",
-  },
-  endDateSale: {
-    value: "",
-    placeholder: "Select the End Date of Sale",
-    title: "End Date of Sale",
-  },
-};
-
-const volunterTicketInitialState: TicketState = {
-  ticketName: {
-    value: "",
-    placeholder: "Enter your Ticket Name",
-    title: "Ticket Name",
-  },
-  ticketAmount: {
-    value: "",
-    placeholder: "Enter the Ticket Amount",
-    title: "Ticket Amount",
-  },
-  ticketDescription: {
-    value: "",
-    placeholder: "Enter the Ticket Description",
-    title: "Ticket Description",
-  },
-  startDateSale: {
-    value: "",
-    placeholder: "Select the Start Date of Sale",
-    title: "Start Date of Sale",
-  },
-  endDateSale: {
-    value: "",
-    placeholder: "Select the End Date of Sale",
-    title: "End Date of Sale",
-  },
-};
-
-const paidTicketInitialState: TicketState = {
-  ticketName: {
-    value: "",
-    placeholder: "Enter your Ticket Name",
-    title: "Ticket Name",
-  },
-  ticketAmount: {
-    value: "",
-    placeholder: "Enter the Ticket Amount",
-    title: "Ticket Amount",
-  },
-  startPrice: {
-    value: "",
-    placeholder: "Enter the Starting Price",
-    title: "Starting Price",
-  },
-  startDateSale: {
-    value: "",
-    placeholder: "Select the Start Date of Sale",
-    title: "Start Date of Sale",
-  },
-  endDateSale: {
-    value: "",
-    placeholder: "Select the End Date of Sale",
-    title: "End Date of Sale",
-  },
-  ticketDescription: {
-    value: "",
-    placeholder: "Enter the Ticket Description",
-    title: "Ticket Description",
-  },
-  price: { value: "", placeholder: "Enter the Price", title: "Price" },
-};
-
 export default function CreateEventClient() {
   const setPopUp = useContext(PopUp) as React.Dispatch<
     React.SetStateAction<React.ReactNode | undefined>
   >;
-  const [eventState, setEventState] = useState({
-    eventName: "",
-    category: "",
-    topic: "",
-    tag: [],
-    imageEventOrganizerUrl: "",
-    imagePosterUrl: "",
-    eventOrganizerName: "",
-    description: "",
-    termAndCondition: "",
-  });
+  // State untuk event
+  const [eventName, setEventName] = useState("");
+  const [category, setCategory] = useState("");
+  const [imageEventOrganizerUrl, setImageEventOrganizerUrl] = useState("");
+  const [imagePosterUrl, setImagePosterUrl] = useState("");
+  const [eventOrganizerName, setEventOrganizerName] = useState("");
+  const [description, setDescription] = useState("");
+  const [termAndCondition, setTermAndCondition] = useState("");
 
-  const [timeState, setTimeState] = useState({
-    dateRange: {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-    timeStart: "",
-    timeEnd: "",
+  // State untuk waktu
+  const [dateRange, setDateRange] = useState<Range>({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
   });
+  const [timeStart, setTimeStart] = useState("");
+  const [timeEnd, setTimeEnd] = useState("");
 
+  // State untuk lokasi
   const [locationState, setLocationState] = useState({
     placeName: "",
     city: "",
     fullAddress: "",
     isOnline: false,
-    urlStreaming: "",
+    urlStreaming: ""
   });
 
-  const [freeTicketState, setFreeTicketState] = useState<TicketState>(
+  const [freeTicketState, setFreeTicketState] = useState(
     freeTicketInitialState,
   );
-  const [volunterTicketState, setVolunterTicketState] = useState<TicketState>(
+  const [volunterTicketState, setVolunterTicketState] = useState(
     volunterTicketInitialState,
   );
-  const [paidTicketState, setPaidTicketState] = useState<TicketState>(
+  const [paidTicketState, setPaidTicketState] = useState(
     paidTicketInitialState,
   );
 
@@ -193,7 +91,7 @@ export default function CreateEventClient() {
   };
   const [selectedTickets, setSelectedTickets] = useState<any[]>([]);
 
-  const tabs: Tab[] = [
+  const tabs: TabProps[] = [
     {
       label: "Free Ticket",
       content: (
@@ -206,7 +104,7 @@ export default function CreateEventClient() {
       ),
     },
     {
-      label: "Relawan Ticket",
+      label: "Volunteer Ticket",
       content: (
         <TicketForm
           initialTicketState={volunterTicketState}
@@ -229,12 +127,20 @@ export default function CreateEventClient() {
     },
   ];
 
+  const outputLocation =
+    !locationState.isOnline ?
+      locationState.placeName ?
+        locationState.placeName + (locationState.fullAddress ? ", " + locationState.fullAddress : (locationState.city ? ", " + locationState.city : ""))
+        : "-"
+      : locationState.urlStreaming ? locationState.urlStreaming : "-";
+
+
   return (
     <form className="flex w-full flex-col gap-5">
       <div className="flex w-full flex-col overflow-hidden rounded-[20px] border border-white">
-        {eventState.imagePosterUrl ? (
+        {imagePosterUrl ? (
           <Image
-            src={eventState.imagePosterUrl}
+            src={imagePosterUrl}
             alt="Poster"
             width={1000}
             height={300}
@@ -257,10 +163,8 @@ export default function CreateEventClient() {
                 *
               </span>
               <TextInput
-                textFieldValue={eventState.eventName}
-                setTextFieldValue={(value: string) => {
-                  setEventState({ ...eventState, eventName: value });
-                }}
+                textFieldValue={eventName}
+                setTextFieldValue={setEventName}
                 fullWidth={true}
                 color="transparent-bold"
                 required
@@ -269,11 +173,46 @@ export default function CreateEventClient() {
               />
             </div>
             {/* Filters */}
-            <button className="flex px-1" type="button">
-              <BulletList
-                style="flex flex-col lg:flex-row items-start  font-poppins text-white text-sm gap-1 lg:text-base lg:gap-10"
-                items={["Category", "Topic", "Tag1, Tag2, Tag3"]}
-              />
+            <button className="flex px-1 items-center gap-4" type="button">
+              Categories: <Dropdown options={categories} placeholder="Select The Category Event" setSelectedOption={setCategory} selectedOption={category} />
+            </button>
+
+            {/* Line */}
+            <hr className="my-1 h-[1px] bg-white"></hr>
+            <div
+              className="flex items-center gap-2"
+            >
+              <CalendarIcon size={20} color="#FFFFFF" />
+              <h3 className="font-poppins text-sm text-white lg:text-base">
+                Date:{" "}
+                {dateRange.startDate &&
+                  formattedEventDate(
+                    dateRange.startDate,
+                    dateRange.endDate,
+                  )}
+              </h3>
+            </div>
+            <button
+              className="flex items-center gap-2"
+              type="button"
+            // onClick={() => setPopUp(<TimeModal />)}
+            >
+              <Clock size={20} color="#FFFFFF" />
+              <Dropdown options={timeOptions} selectedOption={timeStart} setSelectedOption={setTimeStart} placeholder="Start Time" />
+              <Dropdown options={timeOptions} selectedOption={timeEnd} setSelectedOption={setTimeEnd} placeholder="End Time" />
+            </button>
+            <button
+              className="flex items-center gap-2"
+              type="button"
+              onClick={() =>
+                setPopUp(<LocationModal updateLocation={updateData} />)
+              }
+            >
+              <Location size={20} color="#FFFFFF" />
+              <h3 className="font-poppins text-sm text-white lg:text-base">
+                Location:{" "}
+                {outputLocation}
+              </h3>
             </button>
             {/* Line */}
             <hr className="my-1 h-[1px] bg-white"></hr>
@@ -285,17 +224,15 @@ export default function CreateEventClient() {
               <div className="flex items-center gap-3">
                 <Avatar
                   imageUrl={
-                    eventState.imagePosterUrl
-                      ? eventState.imagePosterUrl
+                    imagePosterUrl
+                      ? imagePosterUrl
                       : "/profile-icon.jpg"
                   }
                   size="small"
                 />
                 <TextInput
-                  textFieldValue={eventState.eventOrganizerName}
-                  setTextFieldValue={(value: string) => {
-                    setEventState({ ...eventState, eventOrganizerName: value });
-                  }}
+                  textFieldValue={eventOrganizerName}
+                  setTextFieldValue={setEventOrganizerName}
                   placeholder="Name Organization"
                   boxType="text"
                   color="transparent"
@@ -308,86 +245,18 @@ export default function CreateEventClient() {
                 <Switch />
               </div>
             </div>
-            <button
-              className="flex items-center gap-2"
-              type="button"
-              onClick={() => {
-                setPopUp(
-                  <CalendarModal
-                    dateRange={timeState.dateRange}
-                    onChange={(value) =>
-                      setTimeState((prevTimeState) => ({
-                        ...prevTimeState,
-                        dateRange: {
-                          ...prevTimeState.dateRange,
-                          startDate:
-                            value.selection?.startDate ||
-                            prevTimeState.dateRange.startDate,
-                          endDate:
-                            value.selection?.endDate ||
-                            prevTimeState.dateRange.endDate,
-                        },
-                      }))
-                    }
-                  />,
-                );
-              }}
-            >
-              <CalendarIcon size={20} color="#FFFFFF" />
-              <h3 className="font-poppins text-sm text-white lg:text-base">
-                Date:{" "}
-                {timeState.dateRange.startDate &&
-                  formattedEventDate(
-                    timeState.dateRange.startDate,
-                    timeState.dateRange.endDate,
-                  )}
-              </h3>
-            </button>
 
-            <button
-              className="flex items-center gap-2"
-              type="button"
-              onClick={() => setPopUp(<TimeModal />)}
-            >
-              <Clock size={20} color="#FFFFFF" />
-              <h3 className="font-poppins text-sm text-white lg:text-base">
-                Time: {timeState.timeStart}-{timeState.timeEnd}{" "}
-              </h3>
-            </button>
-            <button
-              className="flex items-center gap-2"
-              type="button"
-              onClick={() =>
-                setPopUp(<LocationModal updateLocation={updateData} />)
-              }
-            >
-              <Location size={20} color="#FFFFFF" />
-              <h3 className="font-poppins text-sm text-white lg:text-base">
-                Location:{" "}
-                {locationState.placeName ? locationState.placeName : "-"}
-              </h3>
-            </button>
           </div>
-          <div className="max-lg:hidden">
+          <div className="max-lg:overflow-x-scroll sm:flex sm:items-center sm:justify-center">
             <Calendar
-              value={timeState.dateRange}
+              value={dateRange}
               roundedBottom
               onChange={(value) =>
-                setTimeState((prevTimeState) => ({
-                  ...prevTimeState,
-                  dateRange: {
-                    ...prevTimeState.dateRange,
-                    startDate:
-                      value.selection?.startDate ||
-                      prevTimeState.dateRange.startDate,
-                    endDate:
-                      value.selection?.endDate ||
-                      prevTimeState.dateRange.endDate,
-                  },
-                }))
+                setDateRange(value.selection)
               }
             />
           </div>
+
         </div>
       </div>
       <div className="flex w-full flex-col gap-4">
@@ -400,8 +269,7 @@ export default function CreateEventClient() {
               key={index}
               ticketName={item.ticketName.value}
               ticketAmount={item.ticketAmount.value}
-              dateSaleStart={item.startDateSale.value}
-              dateSaleEnd={item.endDateSale.value}
+              dateSale={item.dateSale.value}
               price={item.price.value}
             />
           ))}
@@ -415,10 +283,8 @@ export default function CreateEventClient() {
           Event Description
         </h2>
         <TextArea
-          textFieldValue={eventState.description}
-          setTextFieldValue={(value: string) => {
-            setEventState({ ...eventState, description: value });
-          }}
+          textFieldValue={description}
+          setTextFieldValue={setDescription}
           placeholder="Input your text heres"
           fullWidth
         />
@@ -428,10 +294,8 @@ export default function CreateEventClient() {
           Term and Conditions
         </h2>
         <TextArea
-          setTextFieldValue={(value: string) => {
-            setEventState({ ...eventState, termAndCondition: value });
-          }}
-          textFieldValue={eventState.termAndCondition}
+          setTextFieldValue={setTermAndCondition}
+          textFieldValue={termAndCondition}
           placeholder="Input your text heres"
           fullWidth
         />
