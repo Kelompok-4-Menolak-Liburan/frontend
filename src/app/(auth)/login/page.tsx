@@ -6,6 +6,7 @@ import Link from "next/link";
 import TextInput from "@/components/text-input";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
+import { sendRequest } from "./helper";
 
 const Login = () => {
   const router = useRouter();
@@ -126,7 +127,10 @@ const Login = () => {
           <div className="flex flex-col gap-y-[15px]">
             {/* Input Form */}
             <form
-              method="post"
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendRequest({ username, password });
+              }}
               className="flex w-[305px] flex-col items-center justify-center gap-y-48 sm:w-[300px] md:gap-y-[10px] lg:w-[400px] lg:gap-y-[70px] 2xl:w-[550px]"
             >
               {/* Form */}
@@ -139,6 +143,7 @@ const Login = () => {
                   boxType="text"
                   placeholder="Your username"
                   fullWidth={true}
+                  required
                   textFieldValue={username}
                   setTextFieldValue={setUsername}
                 />
@@ -149,6 +154,7 @@ const Login = () => {
                   color="purple"
                   boxType="password"
                   placeholder="Your password"
+                  required
                   fullWidth={true}
                   textFieldValue={password}
                   setTextFieldValue={setPassword}

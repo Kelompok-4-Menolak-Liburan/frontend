@@ -99,6 +99,7 @@ const TextInput: React.FC<TextInputProps> = ({
             value={textFieldValue}
             name={boxType}
             id={boxType}
+            required={required}
             className={`h-full w-full bg-transparent font-poppins text-sm leading-[25px] ${colorEffect[color].fontStyle} outline-none after:hidden lg:text-base `}
           />
         ) : (
@@ -127,9 +128,9 @@ const TextInput: React.FC<TextInputProps> = ({
         {boxType === "password" && (
           <button onClick={togglePasswordVisibility}>
             {showPassword ? (
-              <EyeSlash color="#222747" size={24} />
+              <EyeSlash color="#FFFFFF" size={24} />
             ) : (
-              <Eye color="#222747" size={24} />
+              <Eye color="#FFFFFF" size={24} />
             )}
           </button>
         )}
