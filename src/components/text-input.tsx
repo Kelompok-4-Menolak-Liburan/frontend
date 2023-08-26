@@ -90,7 +90,6 @@ const TextInput: React.FC<TextInputProps> = ({
         )}
 
         {/* Text Input */}
-
         {boxType === "textarea" ? (
           <textarea
             placeholder={placeholder}

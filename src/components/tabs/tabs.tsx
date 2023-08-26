@@ -23,8 +23,9 @@ const Tabs = ({ tabs, centered }: TabsProps) => {
     <div className="flex w-full flex-col font-poppins text-white">
       {/* Tab header section */}
       <div
-        className={`flex w-full border-spacing-y-10 items-center gap-4 border-b border-white pb-3 text-base font-bold capitalize lg:gap-10 ${centered && "justify-center"
-          } `}
+        className={`flex w-full border-spacing-y-10 items-center gap-4 border-b border-white pb-3 text-base font-bold capitalize lg:gap-10 ${
+          centered && "justify-center"
+        } `}
       >
         {tabs.map((tab, index) => (
           <button
@@ -46,8 +47,9 @@ const Tabs = ({ tabs, centered }: TabsProps) => {
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`${activeTabIndex === index ? "flex" : "hidden"
-              } animate-blink`}
+            className={`${
+              activeTabIndex === index ? "flex" : "hidden"
+            } animate-blink`}
           >
             {tab.content}
           </div>
