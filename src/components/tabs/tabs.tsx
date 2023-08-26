@@ -23,9 +23,8 @@ const Tabs = ({ tabs, centered }: TabsProps) => {
     <div className="flex w-full flex-col font-poppins text-white">
       {/* Tab header section */}
       <div
-        className={`flex w-full border-spacing-y-10 items-center gap-4 border-b border-white pb-3 text-base font-bold capitalize lg:gap-10 ${
-          centered && "justify-center"
-        } `}
+        className={`flex w-full border-spacing-y-10 items-center gap-4 border-b border-white pb-3 text-base font-bold capitalize lg:gap-10 ${centered && "justify-center"
+          } `}
       >
         {tabs.map((tab, index) => (
           <button
@@ -36,7 +35,7 @@ const Tabs = ({ tabs, centered }: TabsProps) => {
           >
             {/* Adding a visual indicator for the active tab */}
             {activeTabIndex === index && (
-              <span className="absolute -bottom-3 right-1/2 h-[6px] w-[calc(100%-20px)] translate-x-1/2 rounded-t-[10px] bg-custom-green-normal"></span>
+              <span className="absolute -bottom-3 right-1/2 h-[6px] w-[calc(100%-10px)] min-w-[20px] translate-x-1/2 rounded-t-[10px] bg-custom-green-normal"></span>
             )}
             {tab.label}
           </button>
@@ -47,9 +46,8 @@ const Tabs = ({ tabs, centered }: TabsProps) => {
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`${
-              activeTabIndex === index ? "flex" : "hidden"
-            } animate-blink`}
+            className={`${activeTabIndex === index ? "flex" : "hidden"
+              } animate-blink`}
           >
             {tab.content}
           </div>
