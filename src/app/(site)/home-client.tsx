@@ -6,13 +6,13 @@ import Header from "@/components/header";
 import ImageSlider from "@/components/image-slider";
 import React, { useState } from "react";
 import { Range } from "react-date-range";
-import { EventData } from "./type";
 import { categories } from "@/models/categories";
 import { cities } from "@/models/cities";
+import { EventData } from "./type";
 
 export const HomeClient = ({ data }: { data: EventData[] }) => {
-  // ImageUrls for background carousels
-  const imageUrls: string[] = data.map((event) => event.image_url).slice(0, 5);
+  // carouselsImageUrls for background carousels
+  const carouselsImageUrls: string[] = data.map((event) => event.image_url).slice(0, 5);
 
   // State for search input
   const [search, setSearch] = useState("");
@@ -101,7 +101,7 @@ export const HomeClient = ({ data }: { data: EventData[] }) => {
 
       {/* Image slider or dropdowns */}
       {!search ? (
-        <ImageSlider imageArrayUrls={imageUrls} />
+        <ImageSlider imageArrayUrls={carouselsImageUrls} />
       ) : (
         <div className="flex flex-wrap items-center  gap-3">
           {dropdownData.map((item, index) => {
@@ -155,10 +155,14 @@ export const HomeClient = ({ data }: { data: EventData[] }) => {
               key={index}
               id={event.id}
               title={event.title}
+              price={event.price}
               image_url={event.image_url}
               start_date={event.start_date}
               city={event.city}
               organizer={event.organizer}
+              end_date={event.end_date}
+              start_time={event.start_time}
+              end_time={event.end_time}
             />
           ))}
         </div>

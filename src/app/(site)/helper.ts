@@ -1,4 +1,3 @@
-import { fetcherGet, fetcherPost } from "@/libs/fetcher";
 import { toast } from "react-hot-toast";
 export const getRequest = async () => {
   try {
