@@ -12,7 +12,9 @@ import { EventData } from "./type";
 
 export const HomeClient = ({ data }: { data: EventData[] }) => {
   // carouselsImageUrls for background carousels
-  const carouselsImageUrls: string[] = data.map((event) => event.image_url).slice(0, 5);
+  const carouselsImageUrls: string[] = data
+    .map((event) => event.image_url)
+    .slice(0, 5);
 
   // State for search input
   const [search, setSearch] = useState("");

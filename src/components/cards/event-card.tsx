@@ -16,8 +16,7 @@ const EventCard: React.FC<EventData> = ({
   city,
   price,
   organizer,
-}
-) => {
+}) => {
   // Function to get the abbreviated month name (e.g., "Jan")
   const formattedMonth = (date: Date) => {
     return format(date, "MMM");
@@ -28,8 +27,10 @@ const EventCard: React.FC<EventData> = ({
     return getDate(date);
   };
   return (
-
-    <Link href={`/events/${id}`} className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]">
+    <Link
+      href={`/events/${id}`}
+      className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]"
+    >
       <div className="relative h-[122px] w-full">
         {/* The event image */}
         <Image
@@ -40,19 +41,21 @@ const EventCard: React.FC<EventData> = ({
           className="h-full w-full object-cover object-center"
         />
         {/* The event price */}
-        {price &&
+        {price && (
           <p className="absolute left-4 top-4 z-10 rounded-md bg-custom-purple-300 px-3 py-[5px] text-sm 2xl:text-base">
             {getFormattedCurrency(price)}
           </p>
-        }
+        )}
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-b-xl border-x border-b border-white px-5">
         <div className="flex h-full w-full gap-4 py-2 lg:gap-6 lg:py-3">
           {/* The event month and dates */}
           <div className="flex flex-col items-center justify-center text-sm font-bold 2xl:text-base">
             <p>{formattedMonth(new Date(start_date))}</p>
-            <p>{formattedDate(new Date(start_date))}{" "}
-              {end_date && " - " + formattedDate(new Date(end_date))} </p>
+            <p>
+              {formattedDate(new Date(start_date))}{" "}
+              {end_date && " - " + formattedDate(new Date(end_date))}{" "}
+            </p>
           </div>
 
           {/* Event details */}
