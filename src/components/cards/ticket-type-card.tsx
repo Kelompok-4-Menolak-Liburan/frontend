@@ -3,8 +3,7 @@ import { formattedEventDate, getFormattedCurrency } from "@/libs/utils";
 interface TicketTypeCardProps {
   ticketName: string;
   ticketAmount: string;
-  dateSaleStart: string;
-  dateSaleEnd: string;
+  dateSale: string;
   price?: string;
   startPrice?: string;
 }
@@ -12,8 +11,7 @@ interface TicketTypeCardProps {
 const TicketTypeCard = ({
   ticketName,
   ticketAmount,
-  dateSaleStart,
-  dateSaleEnd,
+  dateSale,
   price,
   startPrice,
 }: TicketTypeCardProps) => {
@@ -24,13 +22,13 @@ const TicketTypeCard = ({
         {price
           ? "Paid Ticket"
           : startPrice
-          ? "Volunteer Ticket"
-          : "Free Ticket"}
+            ? "Volunteer Ticket"
+            : "Free Ticket"}
       </h4>
       <h4 className="text-sm">{ticketAmount}</h4>
-      {dateSaleEnd && dateSaleStart && (
+      {dateSale && (
         <h4 className="text-sm">
-          {formattedEventDate(new Date(dateSaleStart), new Date(dateSaleEnd))}
+          {dateSale}
         </h4>
       )}
       <h4 className="ml-auto pt-1 text-sm font-semibold text-custom-green-normal">

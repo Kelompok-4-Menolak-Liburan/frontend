@@ -90,24 +90,7 @@ const TextInput: React.FC<TextInputProps> = ({
         )}
 
         {/* Text Input */}
-        <input
-          placeholder={placeholder}
-          onChange={(e) => setTextFieldValue(e.target.value)}
-          value={textFieldValue}
-          name={boxType}
-          id={boxType}
-          required={required}
-          type={
-            boxType === "password"
-              ? showPassword
-                ? "text"
-                : "password"
-              : boxType
-          } // Conditionally set input type
-          className={`h-full w-full bg-transparent font-poppins leading-[25px] ${colorEffect[color].fontStyle
-            } outline-none after:hidden ${boxType === "search" && "ml-[11.5px]"
-            } ${boxType === "password" && "mr-[5px]"}`}
-        />
+
         {boxType === "textarea" ? (
           <textarea
             placeholder={placeholder}
@@ -124,6 +107,7 @@ const TextInput: React.FC<TextInputProps> = ({
             value={textFieldValue}
             name={boxType}
             id={boxType}
+            required={required}
             type={
               boxType === "password"
                 ? showPassword
@@ -131,8 +115,8 @@ const TextInput: React.FC<TextInputProps> = ({
                   : "password"
                 : boxType
             } // Conditionally set input type
-            className={`h-full w-full bg-transparent font-poppins text-sm leading-[25px] ${colorEffect[color].fontStyle
-              } outline-none after:hidden lg:text-base ${boxType === "search" && "ml-[11.5px]"
+            className={`h-full w-full bg-transparent font-poppins leading-[25px] ${colorEffect[color].fontStyle
+              } outline-none after:hidden ${boxType === "search" && "ml-[11.5px]"
               } ${boxType === "password" && "mr-[5px]"}`}
           />
         )}

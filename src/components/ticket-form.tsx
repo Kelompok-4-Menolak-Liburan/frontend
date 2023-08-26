@@ -6,14 +6,8 @@ import TextInput from "@/components/text-input";
 import { Range, RangeKeyDict } from "react-date-range";
 import { formattedEventDate } from "@/libs/utils";
 import Button from "./button";
+import { TicketState } from "@/app/(site)/create-event/type";
 
-interface TicketState {
-  [key: string]: {
-    value: string;
-    placeholder: string;
-    title: string;
-  };
-}
 
 interface TicketFormProps {
   initialTicketState: TicketState;
@@ -28,6 +22,7 @@ export default function TicketForm({
   selectedTickets,
   setSelectedTickets,
 }: TicketFormProps) {
+
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -36,24 +31,21 @@ export default function TicketForm({
 
   const handleDateChange = (value: RangeKeyDict) => {
     setDateRange(value.selection);
-    const updatedStartDateSale = {
-      ...initialTicketState.startDateSale,
-      value: value.selection.startDate?.toISOString() || "", // Use an empty string as fallback
-    };
 
-    const updatedEndDateSale = {
-      ...initialTicketState.endDateSale,
-      value: value.selection.endDate?.toISOString() || "", // Use an empty string as fallback
-    };
+    const updatedStartDateSale = value.selection.startDate?.toISOString() || "";
+    const updatedEndDateSale = value.selection.endDate?.toISOString() || "";
 
     const updatedTicketState = {
       ...initialTicketState,
-      startDateSale: updatedStartDateSale,
-      endDateSale: updatedEndDateSale,
+      dateSale: {
+        ...initialTicketState.dateSale,
+        value: updatedStartDateSale + "-" + updatedEndDateSale,
+      },
     };
 
     onTicketStateChange(updatedTicketState);
   };
+
 
   const handleInputChange = (field: keyof TicketState, value: string) => {
     const updatedTicketState = {
@@ -111,7 +103,7 @@ export default function TicketForm({
       <div className="flex w-full flex-col gap-10 lg:flex-row">
         <div className="flex flex-1 flex-col gap-3 font-poppins text-white">
           {Object.keys(initialTicketState).map((key) => {
-            if (key !== "ticketDescription" && key !== "startDateSale") {
+            if (key !== "ticketDescription" && key !== "dateSale" && key) {
               return renderTextField(key);
             }
             return null;
@@ -119,7 +111,7 @@ export default function TicketForm({
           <div className="flex items-center">
             <h3 className="w-[150px] text-[15px] font-semibold text-white lg:w-[238px] lg:text-lg">
               <span className="w-fit text-red-600">*</span>
-              {initialTicketState.startDateSale.title}:
+              {initialTicketState.dateSale.title}:
             </h3>
 
             {dateRange.startDate &&

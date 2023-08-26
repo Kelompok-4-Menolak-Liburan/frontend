@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 
-interface TabProps {
+export interface TabProps {
   label: string;
   content: React.ReactNode;
 }
 
-interface TabsProps {
+export interface TabsProps {
   tabs: TabProps[];
   centered?: boolean;
 }
