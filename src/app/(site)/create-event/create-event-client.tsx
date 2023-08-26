@@ -19,7 +19,12 @@ import Tabs, { TabProps } from "@/components/tabs/tabs";
 import TextArea from "@/components/text-area";
 import TicketForm from "../../../components/ticket-form";
 import TicketTypeCard from "@/components/cards/ticket-type-card";
-import { TicketState, freeTicketInitialState, paidTicketInitialState, volunterTicketInitialState } from "./type";
+import {
+  TicketState,
+  freeTicketInitialState,
+  paidTicketInitialState,
+  volunterTicketInitialState,
+} from "./type";
 import Dropdown from "@/components/drop-down";
 import { categories } from "@/models/categories";
 import { Range } from "react-date-range";
@@ -61,7 +66,7 @@ export default function CreateEventClient() {
     city: "",
     fullAddress: "",
     isOnline: false,
-    urlStreaming: ""
+    urlStreaming: "",
   });
 
   const [freeTicketState, setFreeTicketState] = useState(
@@ -127,13 +132,18 @@ export default function CreateEventClient() {
     },
   ];
 
-  const outputLocation =
-    !locationState.isOnline ?
-      locationState.placeName ?
-        locationState.placeName + (locationState.fullAddress ? ", " + locationState.fullAddress : (locationState.city ? ", " + locationState.city : ""))
-        : "-"
-      : locationState.urlStreaming ? locationState.urlStreaming : "-";
-
+  const outputLocation = !locationState.isOnline
+    ? locationState.placeName
+      ? locationState.placeName +
+        (locationState.fullAddress
+          ? ", " + locationState.fullAddress
+          : locationState.city
+          ? ", " + locationState.city
+          : "")
+      : "-"
+    : locationState.urlStreaming
+    ? locationState.urlStreaming
+    : "-";
 
   return (
     <form className="flex w-full flex-col gap-5">
@@ -173,33 +183,44 @@ export default function CreateEventClient() {
               />
             </div>
             {/* Filters */}
-            <button className="flex px-1 items-center gap-4" type="button">
-              Categories: <Dropdown options={categories} placeholder="Select The Category Event" setSelectedOption={setCategory} selectedOption={category} />
+            <button className="flex items-center gap-4 px-1" type="button">
+              Categories:{" "}
+              <Dropdown
+                options={categories}
+                placeholder="Select The Category Event"
+                setSelectedOption={setCategory}
+                selectedOption={category}
+              />
             </button>
 
             {/* Line */}
             <hr className="my-1 h-[1px] bg-white"></hr>
-            <div
-              className="flex items-center gap-2"
-            >
+            <div className="flex items-center gap-2">
               <CalendarIcon size={20} color="#FFFFFF" />
               <h3 className="font-poppins text-sm text-white lg:text-base">
                 Date:{" "}
                 {dateRange.startDate &&
-                  formattedEventDate(
-                    dateRange.startDate,
-                    dateRange.endDate,
-                  )}
+                  formattedEventDate(dateRange.startDate, dateRange.endDate)}
               </h3>
             </div>
             <button
               className="flex items-center gap-2"
               type="button"
-            // onClick={() => setPopUp(<TimeModal />)}
+              // onClick={() => setPopUp(<TimeModal />)}
             >
               <Clock size={20} color="#FFFFFF" />
-              <Dropdown options={timeOptions} selectedOption={timeStart} setSelectedOption={setTimeStart} placeholder="Start Time" />
-              <Dropdown options={timeOptions} selectedOption={timeEnd} setSelectedOption={setTimeEnd} placeholder="End Time" />
+              <Dropdown
+                options={timeOptions}
+                selectedOption={timeStart}
+                setSelectedOption={setTimeStart}
+                placeholder="Start Time"
+              />
+              <Dropdown
+                options={timeOptions}
+                selectedOption={timeEnd}
+                setSelectedOption={setTimeEnd}
+                placeholder="End Time"
+              />
             </button>
             <button
               className="flex items-center gap-2"
@@ -210,8 +231,7 @@ export default function CreateEventClient() {
             >
               <Location size={20} color="#FFFFFF" />
               <h3 className="font-poppins text-sm text-white lg:text-base">
-                Location:{" "}
-                {outputLocation}
+                Location: {outputLocation}
               </h3>
             </button>
             {/* Line */}
@@ -224,9 +244,7 @@ export default function CreateEventClient() {
               <div className="flex items-center gap-3">
                 <Avatar
                   imageUrl={
-                    imagePosterUrl
-                      ? imagePosterUrl
-                      : "/profile-icon.jpg"
+                    imagePosterUrl ? imagePosterUrl : "/profile-icon.jpg"
                   }
                   size="small"
                 />
@@ -245,18 +263,14 @@ export default function CreateEventClient() {
                 <Switch />
               </div>
             </div>
-
           </div>
           <div className="max-lg:overflow-x-scroll sm:flex sm:items-center sm:justify-center">
             <Calendar
               value={dateRange}
               roundedBottom
-              onChange={(value) =>
-                setDateRange(value.selection)
-              }
+              onChange={(value) => setDateRange(value.selection)}
             />
           </div>
-
         </div>
       </div>
       <div className="flex w-full flex-col gap-4">

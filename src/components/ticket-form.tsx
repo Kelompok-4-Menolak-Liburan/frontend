@@ -8,7 +8,6 @@ import { formattedEventDate } from "@/libs/utils";
 import Button from "./button";
 import { TicketState } from "@/app/(site)/create-event/type";
 
-
 interface TicketFormProps {
   initialTicketState: TicketState;
   onTicketStateChange: (updatedTicketState: TicketState) => void;
@@ -22,7 +21,6 @@ export default function TicketForm({
   selectedTickets,
   setSelectedTickets,
 }: TicketFormProps) {
-
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -45,7 +43,6 @@ export default function TicketForm({
 
     onTicketStateChange(updatedTicketState);
   };
-
 
   const handleInputChange = (field: keyof TicketState, value: string) => {
     const updatedTicketState = {

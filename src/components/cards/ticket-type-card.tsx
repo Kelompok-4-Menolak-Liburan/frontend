@@ -22,15 +22,11 @@ const TicketTypeCard = ({
         {price
           ? "Paid Ticket"
           : startPrice
-            ? "Volunteer Ticket"
-            : "Free Ticket"}
+          ? "Volunteer Ticket"
+          : "Free Ticket"}
       </h4>
       <h4 className="text-sm">{ticketAmount}</h4>
-      {dateSale && (
-        <h4 className="text-sm">
-          {dateSale}
-        </h4>
-      )}
+      {dateSale && <h4 className="text-sm">{dateSale}</h4>}
       <h4 className="ml-auto pt-1 text-sm font-semibold text-custom-green-normal">
         {(price && getFormattedCurrency(parseInt(price))) ||
           (startPrice && ">" + getFormattedCurrency(parseInt(startPrice)))}
