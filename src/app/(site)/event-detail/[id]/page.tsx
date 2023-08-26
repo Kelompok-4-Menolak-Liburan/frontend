@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Avatar from "@/components/avatar";
 import Button from "@/components/button";
@@ -5,53 +6,19 @@ import Image from "next/image";
 import Header from "@/components/header";
 import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Calendar2, Clock, Location, ShoppingCart } from "iconsax-react";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
-import { getEventDetail } from "./helper";
 import { EventDetail } from "./types";
 import { fetcherGet } from "@/libs/fetcher";
 import toast from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
 
 export default function EventDetail() {
+  const router = useRouter();
+  const { id } = useParams();
+
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
-
-  // const ticketDatas = {
-  //   eventName: "Joyland Jakarta 2023",
-  //   location: "Monas, DKI Jakarta",
-  //   date: "24, 25, 26 November 2023",
-  //   Time: "15:00 - 23:00 WIB",
-  //   lowerPrice: "Rp. 150.000",
-  //   organizer: "Compfest",
-  //   description: "Music and arts festival held outdoors in open green spaces.",
-  //   rules: "These are the rules.",
-  //   ticket_type: [
-  //     {
-  //       price: 150000,
-  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-  //       terms: [
-  //         "Harga belum termasuk biaya pajak",
-  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-  //       ],
-  //     },
-  //     {
-  //       price: 150000,
-  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-  //       terms: [
-  //         "Harga belum termasuk biaya pajak",
-  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-  //       ],
-  //     },
-  //     {
-  //       price: 150000,
-  //       ticketName: "PRESALE 1 : 3 Day Pass Reguler Entry",
-  //       terms: [
-  //         "Harga belum termasuk biaya pajak",
-  //         "Tiket berlaku untuk 3 hari (Jum'at - Minggu, 24 - 26 November 2023)",
-  //       ],
-  //     },
-  //   ],
-  // };
 
   const [ticketData, setTicketData] = useState<EventDetail>({
     title: "",
@@ -59,6 +26,8 @@ export default function EventDetail() {
     description: "",
     start_date: "",
     end_date: "",
+    start_time: "",
+    end_time: "",
     place_name: "",
     city: "",
     full_address: "",
@@ -68,22 +37,48 @@ export default function EventDetail() {
     ticket_type: [],
   });
 
-  const id = "6a6bcee1-5c3f-4177-943d-7ffa7fe709e9";
-
   const [ticketSelected, setTicketSelected] = useState(0);
+  const [lowerPrice, setLowerPrice] = useState(0);
 
   const getEventDetail = async () => {
     try {
       const response = await fetcherGet(`api/event/${id}/?format=json`);
+
+      // response start_date and end_date change to format locale id
+      response.start_date = new Date(response.start_date).toLocaleDateString(
+        "id-ID",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+      );
+
+      response.end_date = new Date(response.end_date).toLocaleDateString(
+        "id-ID",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+      );
+
       setTicketData(response);
     } catch (error) {
       toast.error("Event not found!");
+      router.push("/");
     }
   };
 
   useEffect(() => {
     getEventDetail() as unknown as EventDetail;
   }, []);
+
+  useEffect(() => {
+    if (ticketData.ticket_type.length > 0) {
+      setLowerPrice(ticketData.ticket_type[0].price);
+    }
+  }, [ticketData]);
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
@@ -164,21 +159,19 @@ export default function EventDetail() {
                 </span>
               </div>
             </div>
-            {/* <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center gap-2">
               <Clock variant="Linear" color="#fff" size={24} />
               <div>
                 <h4 className="text-base font-bold text-white">Time</h4>
                 <span className="text-[13px] font-normal leading-[18.20px] text-white">
-                  {ticketData.Time}
+                  {ticketData.start_time.slice(0, 5)} WIB -{" "}
+                  {ticketData.end_time.slice(0, 5)} WIB
                 </span>
               </div>
-            </div> */}
+            </div>
             <div className="flex flex-row justify-between">
               <h4 className="text-sm  text-white">Price start from</h4>
-              <span className="text-sm font-bold text-white">
-                {/* {ticketData.lowerPrice} */}
-                Rp. 150.000
-              </span>
+              <span className="text-sm font-bold text-white">{lowerPrice}</span>
             </div>
 
             <Button color="green-primary" size="normal" fullWidth>

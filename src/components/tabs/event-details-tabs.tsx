@@ -3,10 +3,22 @@ import BulletList from "../bullet-list";
 import PurchaseTicket from "../cards/purchase-ticket-card";
 import Tabs from "./tabs";
 
+interface Purchase {
+  id: string;
+  title: string;
+  start_date: string;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  ticket_quantity: number;
+  ticket_type: string;
+  description: string;
+  price: number;
+}
 interface EventDetailsTabsProps {
   description: string;
   // rules: string;
-  purchase: any;
+  purchase: Purchase[];
 }
 
 const EventDetailsTabs: React.FC<EventDetailsTabsProps> = ({
@@ -16,17 +28,15 @@ const EventDetailsTabs: React.FC<EventDetailsTabsProps> = ({
 }) => {
   const [ticketSelected, setTicketSelected] = useState(false);
 
-  const ticket = !purchase ? (
+  console.log(purchase);
+  const ticket = purchase ? (
     purchase.map(
-      (
-        ticket: { price: number; ticketName: string; terms: string[] },
-        index: React.Key | null | undefined,
-      ): any => (
+      (ticket: Purchase, index: React.Key | null | undefined): any => (
         <PurchaseTicket
           key={index}
           price={ticket.price}
-          ticketName={ticket.ticketName}
-          terms={ticket.terms}
+          ticketName={ticket.title}
+          terms={ticket.description}
           ticketSelected={ticketSelected}
           onClick={() => setTicketSelected(true)}
         />
@@ -43,7 +53,6 @@ const EventDetailsTabs: React.FC<EventDetailsTabsProps> = ({
       label: "Description",
       content: (
         <div className="flex flex-col gap-4">
-          {/* <BulletList items={description.bulletList} /> */}
           <p>{description}</p>
         </div>
       ),
