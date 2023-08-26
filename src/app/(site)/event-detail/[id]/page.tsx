@@ -1,17 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import { Range } from "react-date-range";
+import { Calendar2, Clock, Location, ShoppingCart } from "iconsax-react";
+
 import Avatar from "@/components/avatar";
 import Button from "@/components/button";
-import Image from "next/image";
 import Header from "@/components/header";
-import EventDetailsTabs from "@/components/tabs/event-details-tabs";
-import { Calendar2, Clock, Location, ShoppingCart } from "iconsax-react";
-import React, { use, useEffect, useState } from "react";
-import Link from "next/link";
-import { EventDetail } from "./types";
 import { fetcherGet } from "@/libs/fetcher";
-import toast from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
+import EventDetailsTabs from "@/components/tabs/event-details-tabs";
+
+import { EventDetail } from "./types";
 
 export default function EventDetail() {
   const router = useRouter();
@@ -40,11 +43,20 @@ export default function EventDetail() {
   const [ticketSelected, setTicketSelected] = useState(0);
   const [lowerPrice, setLowerPrice] = useState(0);
 
+  const [dateRange, setDateRange] = useState<Range>({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
+
+  const [selectedDate, setSelectedDate] = useState<undefined | Range>(
+    undefined,
+  );
+
   const getEventDetail = async () => {
     try {
       const response = await fetcherGet(`api/event/${id}/?format=json`);
 
-      // response start_date and end_date change to format locale id
       response.start_date = new Date(response.start_date).toLocaleDateString(
         "id-ID",
         {
@@ -82,17 +94,20 @@ export default function EventDetail() {
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      {/* <Header
+      <Header
+        dateRange={dateRange}
+        setDateRange={setDateRange}
         search={search}
         setSearch={setSearch}
-        placeholder="Search Event"
+        placeholder="Select an event name or event location"
         hastags={hastags}
         avatarImageUrl="/logo.png"
         avatarName="Tes"
+        setSelectedDate={setSelectedDate}
         avatarRole="Customer"
-      /> */}
+      />
       <Image
-        src="/banner.jpeg"
+        src={ticketData.image_url}
         className="h-full w-full rounded-2xl lg:hidden"
         width={500}
         height={500}
@@ -101,7 +116,7 @@ export default function EventDetail() {
       <div className="flex flex-col-reverse justify-between gap-4 lg:flex-row lg:gap-16 ">
         <div className="flex h-full w-full flex-col gap-6">
           <Image
-            src="/banner.jpeg"
+            src={ticketData.image_url}
             className="hidden h-full w-full rounded-2xl lg:block"
             width={500}
             height={500}
