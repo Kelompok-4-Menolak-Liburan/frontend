@@ -1,15 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import { Eye, EyeSlash, SearchNormal1 } from "iconsax-react";
+import type { SetStateAction, Dispatch } from "react";
 
 interface TextInputProps {
-  textFieldValue: string;
-  setTextFieldValue: React.Dispatch<React.SetStateAction<string>>;
+  textFieldValue: string | undefined;
+  setTextFieldValue:
+    | Dispatch<SetStateAction<string>>
+    | ((value: string) => void);
   fullWidth?: boolean;
   placeholder: string;
   boxType: "text" | "password" | "search" | "email" | "number" | "textarea";
   description?: string;
-  color: "gray" | "purple";
+  color:
+    | "gray"
+    | "purple"
+    | "transparent"
+    | "transparent-bold"
+    | "transparent-border";
   required?: boolean;
 }
 
@@ -34,14 +42,39 @@ const TextInput: React.FC<TextInputProps> = ({
     gray: {
       searchIcon: "#13A696",
       inputStyle: "rounded-lg bg-custom-purple-50",
-      fontStyle: "text-black placeholder:text-custom-purple-200",
+      fontStyle:
+        "text-black placeholder:text-custom-purple-200  text-sm lg:text-base",
+      padding: "px-3.5 py-2 lg:px-5 lg:py-2.5",
     },
     purple: {
       searchIcon: "#FFFFFF",
-      inputStyle: `${
+      inputStyle: "rounded-full bg-custom-purple-300",
+      fontStyle:
+        "text-white placeholder:text-custom-purple-100 text-sm lg:text-base",
+      padding: "px-3.5 py-2 lg:px-5 lg:py-2.5",
+    },
+    "transparent-border": {
+      searchIcon: "#FFFFFF",
+      inputStyle:
+        "rounded-xl bg-transparent outline-none border-none caret-white",
+      fontStyle:
+        "text-white placeholder:text-custom-purple-100 text-sm lg:text-base",
+      padding: "px-2 py-1 lg:px-3 lg:py-1.5 border border-white",
+    },
+    "transparent-bold": {
+      searchIcon: "#FFFFFF",
+      inputStyle: `bg-transparent outline-none border-none caret-white text-white font-poppins text-lg lg:text-2xl font-bold ${
         boxType === "textarea" ? "rounded-lg h-full" : "rounded-full"
       } bg-custom-purple-300`,
       fontStyle: "text-white placeholder:text-custom-purple-100",
+      padding: "",
+    },
+    transparent: {
+      searchIcon: "#FFFFFF",
+      inputStyle:
+        "rounded-full bg-transparent outline-none border-none caret-white text-white font-poppins text-sm lg:text-base",
+      fontStyle: "text-white placeholder:text-custom-purple-100",
+      padding: "",
     },
   };
   return (
@@ -50,7 +83,9 @@ const TextInput: React.FC<TextInputProps> = ({
         colorEffect[color].inputStyle
       } bg-opacity-80 focus-within:border focus-within:border-custom-green-normal `}
     >
-      <div className="flex h-full w-full flex-row items-center rounded-lg bg-transparent px-3.5 py-2 font-poppins lg:px-5 lg:py-2.5 ">
+      <div
+        className={`flex w-full flex-row items-center rounded-lg bg-transparent font-poppins ${colorEffect[color].padding}`}
+      >
         {/* Search Icon for search type */}
         {boxType === "search" && (
           <SearchNormal1 size={24} color={colorEffect[color].searchIcon} />
@@ -82,9 +117,9 @@ const TextInput: React.FC<TextInputProps> = ({
                   : "password"
                 : boxType
             } // Conditionally set input type
-            className={`h-full w-full bg-transparent font-poppins text-sm leading-[25px] ${
+            className={`h-full w-full bg-transparent font-poppins leading-[25px] ${
               colorEffect[color].fontStyle
-            } outline-none after:hidden lg:text-base ${
+            } outline-none after:hidden ${
               boxType === "search" && "ml-[11.5px]"
             } ${boxType === "password" && "mr-[5px]"}`}
           />
