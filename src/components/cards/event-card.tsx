@@ -28,7 +28,7 @@ const EventCard: React.FC<EventData> = ({
   };
   return (
     <Link
-      href={`/events/${id}`}
+      href={`/event-detail/${id}`}
       className="bg flex w-full cursor-pointer flex-col overflow-hidden rounded-xl bg-custom-purple-300 font-poppins text-white transition duration-300 hover:scale-[102%]"
     >
       <div className="relative h-[122px] w-full">
@@ -60,11 +60,11 @@ const EventCard: React.FC<EventData> = ({
 
           {/* Event details */}
           <div className="flex flex-1 flex-col justify-center">
-            <p className="pb-1 text-sm font-bold uppercase lg:text-base 2xl:text-lg">
-              {title}
+            <p className="pb-1 text-sm font-bold uppercase">
+              {title.length > 25 ? title.slice(0, 25) + "..." : title}
             </p>
             <p className="text-xs lg:text-sm">
-              {start_time && start_time && end_time && " - " + end_time}
+              {start_time.slice(0, 5)} - {end_time.slice(0, 5)}
             </p>
             <p className="text-sm 2xl:text-base">{city}</p>
           </div>

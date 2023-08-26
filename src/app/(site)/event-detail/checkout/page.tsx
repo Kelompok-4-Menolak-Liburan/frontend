@@ -3,32 +3,39 @@ import Avatar from "@/components/avatar";
 import Button from "@/components/button";
 import Image from "next/image";
 import Header from "@/components/header";
-import EventDetailsTabs from "@/components/tabs/event-details-tabs";
 import { Calendar2, Clock, Location } from "iconsax-react";
 import React, { useState } from "react";
-import PurchaseTicket from "@/components/cards/purchase-ticket-card";
-import TextInput from "@/components/text-input";
+import Link from "next/link";
+import { Range } from "react-date-range";
 
 export default function EventDetail() {
   const [search, setSearch] = useState("");
   const hastags = ["#LoketMusik", "#LOKETHITZ", "#TES233434"];
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [payMethod, setPayMethod] = useState("BCA");
+  const [dateRange, setDateRange] = useState<Range>({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
+
+  const [selectedDate, setSelectedDate] = useState<undefined | Range>(
+    undefined,
+  );
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      {/* <Header
+      <Header
+        dateRange={dateRange}
+        setDateRange={setDateRange}
         search={search}
         setSearch={setSearch}
-        placeholder="Search Event"
+        placeholder="Select an event name or event location"
         hastags={hastags}
         avatarImageUrl="/logo.png"
         avatarName="Tes"
+        setSelectedDate={setSelectedDate}
         avatarRole="Customer"
-      /> */}
+      />
       <Image
         src="/banner.jpeg"
         className="h-full w-full rounded-2xl lg:hidden"
@@ -77,68 +84,6 @@ export default function EventDetail() {
         </div>
         <div className="flex w-full flex-col gap-2">
           <div className="flex w-full flex-col gap-3 rounded-xl bg-custom-purple-300 p-7">
-            <h2 className="text-xl font-bold text-white">Information Buyer</h2>
-            <div className="flex w-full flex-col gap-y-[10px]">
-              <h3 className="text-sm leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                Full Name
-              </h3>
-              <TextInput
-                color="gray"
-                boxType="text"
-                placeholder="Your Name"
-                fullWidth={true}
-                textFieldValue={name}
-                setTextFieldValue={setName}
-              />
-              <h3 className="text-sm leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                Email
-              </h3>
-              <TextInput
-                color="gray"
-                boxType="email"
-                placeholder="Your email"
-                fullWidth={true}
-                textFieldValue={email}
-                setTextFieldValue={setEmail}
-              />
-              <h3 className="text-sm leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                Phone Number
-              </h3>
-              <TextInput
-                color="gray"
-                boxType="number"
-                placeholder="Your phone number"
-                fullWidth={true}
-                textFieldValue={phoneNumber}
-                setTextFieldValue={setPhoneNumber}
-              />
-              <h3 className="text-sm leading-[135%] tracking-wider text-white lg:text-base 2xl:text-lg">
-                Payment Method
-              </h3>
-              <div className="flex flex-row gap-2">
-                <input
-                  type="radio"
-                  id="BCA"
-                  name="payment"
-                  value="BCA"
-                  checked={payMethod === "BCA"}
-                  onChange={(e) => setPayMethod(e.target.value)}
-                />
-                <label htmlFor="BCA">BCA</label>
-
-                <input
-                  type="radio"
-                  id="BNI"
-                  name="payment"
-                  value="BNI"
-                  checked={payMethod === "BNI"}
-                  onChange={(e) => setPayMethod(e.target.value)}
-                />
-                <label htmlFor="BNI">BNI</label>
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full flex-col gap-3 rounded-xl bg-custom-purple-300 p-7">
             <h2 className="text-3xl font-bold text-white">Detail Harga</h2>
             <div className="flex flex-row justify-between gap-2 text-gray-300">
               <h4 className="pr-5 text-xs">
@@ -159,9 +104,11 @@ export default function EventDetail() {
                 Rp. 153.000
               </span>
             </div>
-            <Button color="green-primary" size="normal" fullWidth>
-              Buy Ticket Now
-            </Button>
+            <Link href="/login">
+              <Button color="green-primary" size="normal" fullWidth>
+                Buy Ticket Now
+              </Button>
+            </Link>
           </div>
           <div className="flex flex-row items-center gap-4 rounded-xl bg-custom-purple-300 p-5">
             <Avatar size="normal" imageUrl="/logo.png" />

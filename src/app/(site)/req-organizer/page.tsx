@@ -18,8 +18,8 @@ export default function EventDetail() {
 
   return (
     <main className="flex min-h-full flex-col gap-2 p-10 font-poppins text-white">
-      <h2 className="py-8 text-2xl font-semibold">
-        Request Event Organizer -{" "}
+      <h2 className="py-8 text-2xl font-semibold">Request Event Organizer</h2>
+      {/* -{" "}
         {data.status === "pending" ? (
           <span className="text-yellow-500">Pending</span>
         ) : (
@@ -31,7 +31,6 @@ export default function EventDetail() {
             <InfoCircle size={18} color="#ef4444" />
           </span>
         )}
-      </h2>
 
       <ReactTooltip
         id="my-tooltip-2"
@@ -44,7 +43,7 @@ export default function EventDetail() {
           backgroundColor: "#1e223e",
         }}
         content={data.message}
-      />
+      /> */}
       <div className="flex w-full flex-col gap-10 lg:flex-row">
         <div className="flex w-full flex-col">
           <div className="flex flex-col gap-2">

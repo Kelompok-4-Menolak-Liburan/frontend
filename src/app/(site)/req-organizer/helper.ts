@@ -36,6 +36,6 @@ export const getRequest = async ({ id }: { id: string }) => {
 
     return response.json();
   } catch (error) {
-    toast.error("Proposal failed to fetch!");
+    // toast.error("Proposal failed to fetch!");
   }
 };

@@ -28,7 +28,6 @@ const EventDetailsTabs: React.FC<EventDetailsTabsProps> = ({
 }) => {
   const [ticketSelected, setTicketSelected] = useState(false);
 
-  console.log(purchase);
   const ticket = purchase ? (
     purchase.map(
       (ticket: Purchase, index: React.Key | null | undefined): any => (
@@ -45,8 +44,6 @@ const EventDetailsTabs: React.FC<EventDetailsTabsProps> = ({
   ) : (
     <p>No ticket available</p>
   );
-
-  console.log(purchase.length == 0);
 
   const tabs = [
     {

@@ -1,24 +1,10 @@
 "use client";
-import {
-  Star1,
-  Ticket,
-  Repeat,
-  Setting,
-  LogoutCurve,
-  HambergerMenu,
-} from "iconsax-react";
+import { HambergerMenu, LoginCurve } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-// An array of navigation items, each containing an icon, label, and href.
-const navigationItems = [
-  { icon: Star1, label: "Favorites", href: "/favorites" },
-  { icon: Ticket, label: "Ticket", href: "/ticket" },
-  { icon: Repeat, label: "History", href: "/history" },
-  { icon: Setting, label: "Settings", href: "/settings" },
-];
+import { navigationItems } from "./helpers";
 
 const Sidebar = () => {
   // Using the usePathname hook to get the current pathname
@@ -70,7 +56,9 @@ const Sidebar = () => {
         } h-screen max-w-[200px] flex-col items-center justify-between rounded-r-[40px] bg-custom-purple-500 p-[65px] font-poppins text-white transition duration-300 lg:max-w-[225px] xl:max-w-[250px]`}
       >
         {/* Sidebar header */}
-        <h1 className="text-xl font-bold lg:text-2xl">SeTiket</h1>
+        <Link href="/">
+          <h1 className="text-xl font-bold lg:text-2xl">SeTiket</h1>
+        </Link>
 
         {/* Navigation items list */}
         <ul className="flex flex-col gap-3">
@@ -111,9 +99,9 @@ const Sidebar = () => {
         </ul>
         {/* Logout button */}
         <button className="rounded-full transition duration-300 hover:bg-custom-purple-300">
-          <Link href="/tes" className="flex items-center gap-3 px-6 py-3">
-            <LogoutCurve size="28" color="#FFFFFF" />
-            <h2 className="text-sm lg:text-base">Logout</h2>
+          <Link href="/login" className="flex items-center gap-3 px-6 py-3">
+            <LoginCurve size="28" color="#FFFFFF" />
+            <h2 className="text-sm lg:text-base">Login</h2>
           </Link>
         </button>
       </div>

@@ -1,8 +1,15 @@
-import { Star1, Ticket, Repeat, Setting, LogoutCurve } from "iconsax-react";
+import {
+  Setting,
+  Activity,
+  FolderAdd,
+  CalendarAdd,
+  UserSquare,
+} from "iconsax-react";
 
 export const navigationItems = [
-  { icon: Star1, label: "Favorites", href: "/favorites" },
-  { icon: Ticket, label: "Ticket", href: "/ticket" },
-  { icon: Repeat, label: "History", href: "/history" },
+  { icon: UserSquare, label: "Admin", href: "/admin" },
+  { icon: Activity, label: "Event Organizer", href: "/event-organizer" },
+  { icon: FolderAdd, label: "Request Organizer", href: "/req-organizer" },
+  { icon: CalendarAdd, label: "Create Events", href: "/create-event" },
   { icon: Setting, label: "Settings", href: "/settings" },
 ];
