@@ -5,7 +5,7 @@ import { AddCircle, MinusCirlce } from "iconsax-react";
 
 interface PurchaseTicketProps {
   ticketName: string;
-  terms: string[];
+  terms: string;
   price: number;
   onClick: () => void;
   ticketSelected: boolean;
@@ -23,7 +23,8 @@ const PurchaseTicket: React.FC<PurchaseTicketProps> = ({
       <h3 className="text-base font-bold">{ticketName}</h3>
       <div className="mt-2 flex flex-col">
         {/* Rendering a BulletList component to display the terms */}
-        <BulletList items={terms} style="text-sm" />
+        {/* <BulletList items={terms} style="text-sm" /> */}
+        <p className="text-sm">{terms}</p>
         <div className="ml-auto mt-3 flex items-center gap-4">
           {/* Price */}
           <p className="border-r border-white px-4 text-sm font-bold">
